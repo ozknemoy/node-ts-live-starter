@@ -2,6 +2,7 @@ import {BorderStyle, Document, Paragraph, TextRun, WidthType} from 'docx';
 import {getOneOneP, addOneThreeP, makeCommonHeader, makeRequisite} from "./labor-contract-helpers.class";
 import {
   addUnderlineText, emptyLine, getEmptyLinePlusText, getLRText, getTitle, maxRightTabStop, multiTab, pageMargins, redI,
+  removeTableBorders,
   setStandartStyles
 } from "./docx-helpers";
 
@@ -19,13 +20,13 @@ export class PrintLaborContractScientificBuilder2 {
 
   make() {
     return this
-    .makeHeaderAndSectionOne()
+    /*.makeHeaderAndSectionOne()
     .makeSectionTwo()
       .makeSectionThree()
       .makeSectionFour()
       .makeSectionFive()
       .makeSectionSix()
-      .makeSectionSeven()
+      .makeSectionSeven()*/
       .makeSectionRequisite()
       .build();
   }
@@ -390,14 +391,13 @@ export class PrintLaborContractScientificBuilder2 {
   }
 
   makeSectionRequisite() {
-    makeRequisite(this.doc);
-
-    /*const table = this.doc.createTable(2, 2);
-    table.Properties.setWidth(WidthType.DXA, 5555);
+    //makeRequisite(this.doc);
+    const table = this.doc.createTable(2, 3);
     table.getCell(0, 0).addContent(new Paragraph()
       .center()
       .addRun(new TextRun(' Работодатель ').bold()));
-    table.getCell(0, 1).addContent(new Paragraph()
+    table.getCell(0, 1).addContent(new Paragraph(' \t\t '));
+    table.getCell(0, 2).addContent(new Paragraph()
       .center()
       .addRun(new TextRun(' Работник ').bold()));
 
@@ -411,25 +411,21 @@ export class PrintLaborContractScientificBuilder2 {
       .addRun(new TextRun('ул. Большая Морская, д. 67, лит. А').break())
       .addRun(new TextRun('ИНН  7812003110/КПП 783801001').break())
       .addRun(new TextRun(''))
-      .addRun(new TextRun(''))
+      .addRun(new TextRun(''));
 
 
-    table.getCell(1, 0).addContent(left)
-      .CellProperties.Borders
-      .addTopBorder(BorderStyle.NONE, 0, 'white')
-      .addBottomBorder(BorderStyle.NONE, 0, "white")
-      .addStartBorder(BorderStyle.NONE, 0, "white")
-      .addEndBorder(BorderStyle.NONE, 0, "#white");
-
-    //
-    table.getCell(1, 1).addContent(right);
-
-;
     const right = new Paragraph()
       .center()
       .addRun(new TextRun('______________________________________________'))
       .addRun(new TextRun(''))
-    ;*/
+    ;
+    table.getCell(1, 0).addContent(left);
+
+    //
+    table.getCell(1, 2).addContent(right);
+
+    removeTableBorders(table,2, 3);
+
 
 
 

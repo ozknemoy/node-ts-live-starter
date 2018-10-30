@@ -1,5 +1,4 @@
-import {Paragraph, TextRun} from "docx";
-import {strict} from "assert";
+import {BorderStyle, Paragraph, Table, TextRun} from "docx";
 
 export function setStandartStyles(doc, font = 'Arial') {
   doc.Styles.createParagraphStyle('10', "10")
@@ -88,4 +87,21 @@ export function multiTab(n: number, size = 8, text = '(нужное подчер
   let t = new TextRun(i + text);
   t.size(size * 2);
   return t.break()
+}
+
+export function removeTableBorders(tbl: Table, rows: number, cols: number) {
+  const matrix = [];
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      matrix.push([i, j])
+    }
+  }
+  matrix.forEach(pair =>
+    tbl.getCell(pair[0],pair[1])
+      .CellProperties.Borders
+      .addTopBorder(BorderStyle.NONE, 0, 'white')
+      .addBottomBorder(BorderStyle.NONE, 0, "white")
+      .addStartBorder(BorderStyle.NONE, 0, "white")
+      .addEndBorder(BorderStyle.NONE, 0, "white")
+  );
 }
