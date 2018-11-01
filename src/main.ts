@@ -6,12 +6,16 @@ const dox = new PrintLaborContractScientificBuilder2({}).make();
 createOfficeFile(dox);
 
 function createOfficeFile(doc) {
-  const dir = 'E:/files/';
+  const dir = 'C:/files/';
   const name = 'doc-dev2';
   const ext = '.docx';
   (new docx.Packer()).toBuffer(doc).then((b) => {
     console.info('-----  ok make  -----');
     // пробую писать
+    if(!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+
     fs.writeFile(dir + name + ext, b, (e) => {
       if (e) {
         console.log('*****    ', e.code, '    *****');
