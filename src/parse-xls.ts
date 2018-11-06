@@ -41,6 +41,11 @@ export class ParseXls {
   }
 
   static parse(xls: string[]) {
+    xls.forEach((cell, i) => {
+      if(cell === '') {
+        xls[i] = null
+      }
+    });
     const [surname, name, middleName] = this.splitByN(xls[1], 3);
     console.log(xls[10], xls[12]);
     //console.log(xls);
@@ -86,8 +91,20 @@ export class ParseXls {
     };
     // Z-AH пока пропустил
     const workplaces: Partial<IPersonnel['workplaces'][0]> = {
+      date: HandleData.ruDateToServer(xls[42] || xls[56]),
       department: xls[34],
       specialty: xls[35],
+
+      reason: xls[43] || xls[57],
+      academicCouncilDate: HandleData.ruDateToServer(xls[120]),
+      attractionTerms: xls[44] === 'Шт' ? 'основная' : (xls[44] === 'С' ? 'по совместительству' : null),
+      rate: +xls[37],
+      duration: +xls[108],
+      category: xls[37],
+      dismissalDate: HandleData.ruDateToServer(xls[74]),
+      dismissalGround: xls[75],
+      dismissalReason: xls[76],
+      lawArticle: xls[77],
     };
     const workExp: Partial<IPersonnel['workExp']> = this.getWorkExp(xls, null);
 
