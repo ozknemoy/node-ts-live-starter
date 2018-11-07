@@ -20,4 +20,4 @@ console.assert(HandleData.onlyDayToServer('2018-01-01') === '2017-12-31T21:00:00
 console.assert(HandleData.ruDateToServer('13.11.2018') === '2018-11-12T21:00:00.000Z',
   'ParseXls.ruDateToServer', HandleData.ruDateToServer('13.11.2018'));
 
-console.log(ParseXls.create(22));
+console.log(ParseXls.create());

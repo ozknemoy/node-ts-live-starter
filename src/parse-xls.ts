@@ -8,21 +8,25 @@ import {IPersonnel} from "../../staffjs/src/server/components/personnel/personne
 
 export class ParseXls {
 
-  static createFromFile(personnelId, file) {
+  static createFromFile(file) {
     const w = xlsx.parse(file)[0];
-    return  this.parse(personnelId, w.data[1]);
+    return  this.parse( w.data[1]);
   }
 
-  static create(personnelId, excelPath = './src/staff.xls') {
-    const w = xlsx.parse(fs.readFileSync(excelPath))[0];
-    return  this.parse(personnelId, w.data[1]);
+  static create(excelPath = './staff.xls') {
+    try {
+      const w = xlsx.parse(fs.readFileSync(excelPath))[0];
+      return  this.parse(w.data[1]);
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
   static splitByN(_str, n, splitter = ' ') {
     const strArr = _str.split(splitter);
     let out = [];
     for (let i = 0; i < strArr.length; i++) {
-      if(strArr[i]) {
+      if (strArr[i]) {
         // пишем лишнее в последний элемент разбивая с помощью splitter
         if (i > n - 1) {
           out[n - 1] = out[n - 1] + splitter + strArr[i]
@@ -36,22 +40,31 @@ export class ParseXls {
     return out
   }
 
-  static parse(personnelId: number, xls: string[]) {
-    const [name, surname, middleName] = this.splitByN(xls[1], 3);
+  static parse(xls: string[]) {
+    xls.forEach((cell, i) => {
+      if(cell === '') {
+        xls[i] = null
+      }
+    });
+    const [surname, name, middleName] = this.splitByN(xls[1], 3);
+    console.log(xls[10], xls[12]);
+    //console.log(xls);
 
     const worker: Partial<IPersonnel> = {
       number: xls[0],
       surname,
       name,
       middleName,
-      inn: xls[2],
+      inn: /*invalidINN*/(xls[2]) ? null : xls[2],
       insurance: xls[3],
       /*passport*/
       educationName: xls[13],
       /*institutions*/
+      afterInstEduName: xls[20],
+      workExpDate: xls[52],
+      profession: xls[54],
     };
     const passport: Partial<IPersonnel['passport']> = {
-      personnelId,
       birthDate: HandleData.ruDateToServer(xls[4]),
       birthPlace: xls[5],
       citizenship: xls[6],
@@ -63,7 +76,6 @@ export class ParseXls {
       passportRegDate: HandleData.ruDateToServer(xls[12]),
     };
     const institution: Partial<IPersonnel['institutions'][0]> = {
-      personnelId,
       name: xls[14],
 
       endDate: HandleData.setYear(xls[16]),
@@ -71,13 +83,60 @@ export class ParseXls {
       specialty: xls[18],
       docNumber: xls[19],// T
     };
+    const scientificInst: Partial<IPersonnel['scientificInst']> = {
+      name: xls[21],
+      fullInfo: xls[22],
+      endDate: HandleData.setYear(xls[23]),
+      specialty: xls[24],
+    };
+    // Z-AH пока пропустил
+    const workplaces: Partial<IPersonnel['workplaces'][0]> = {
+      date: HandleData.ruDateToServer(xls[42] || xls[56]),
+      department: xls[34],
+      specialty: xls[35],
 
+      reason: xls[43] || xls[57],
+      academicCouncilDate: HandleData.ruDateToServer(xls[120]),
+      attractionTerms: xls[44] === 'Шт' ? 'основная' : (xls[44] === 'С' ? 'по совместительству' : null),
+      rate: +xls[37],
+      duration: +xls[108],
+      category: xls[37],
+      dismissalDate: HandleData.ruDateToServer(xls[74]),
+      dismissalGround: xls[75],
+      dismissalReason: xls[76],
+      lawArticle: xls[77],
+    };
+    const workExp: Partial<IPersonnel['workExp']> = this.getWorkExp(xls, null);
 
     return {
-      worker, passport, institution
+      worker, passport, institution, scientificInst , workplaces, workExp
     }
   }
 
+  static getWorkExp(xls, personnelId): Partial<IPersonnel['workExp']> {
+    return <Partial<IPersonnel['workExp']>>[{
+      id: null,
+      personnelId,
+      typeId: 1,
+      amountY: parseInt(xls[46]),
+      amountM: parseInt(xls[47]),
+      amountD: parseInt(xls[48]),
+    },{
+      id: null,
+      personnelId,
+      typeId: 2,
+      amountY: parseInt(xls[49]),
+      amountM: parseInt(xls[50]),
+      amountD: parseInt(xls[51]),
+    },{
+      id: null,
+      personnelId,
+      typeId: 3,
+      amountY: null,
+      amountM: null,
+      amountD: null,
+    }]
+  }
 }
 
 
