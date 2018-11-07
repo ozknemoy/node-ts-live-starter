@@ -47,8 +47,6 @@ export class ParseXls {
       }
     });
     const [surname, name, middleName] = this.splitByN(xls[1], 3);
-    console.log(xls[10], xls[12]);
-    //console.log(xls);
 
     const worker: Partial<IPersonnel> = {
       number: xls[0],
@@ -57,9 +55,7 @@ export class ParseXls {
       middleName,
       inn: /*invalidINN*/(xls[2]) ? null : xls[2],
       insurance: xls[3],
-      /*passport*/
       educationName: xls[13],
-      /*institutions*/
       afterInstEduName: xls[20],
       workExpDate: xls[52],
       profession: xls[54],
@@ -90,14 +86,14 @@ export class ParseXls {
       specialty: xls[24],
     };
     // Z-AH пока пропустил
+    const attractionTerms = xls[44] === 'Шт' ? 'основная' : (xls[44] === 'С' ? 'по совместительству' : null)
     const workplaces: Partial<IPersonnel['workplaces'][0]> = {
       date: HandleData.ruDateToServer(xls[42] || xls[56]),
       department: xls[34],
       specialty: xls[35],
-
       reason: xls[43] || xls[57],
       academicCouncilDate: HandleData.ruDateToServer(xls[120]),
-      attractionTerms: xls[44] === 'Шт' ? 'основная' : (xls[44] === 'С' ? 'по совместительству' : null),
+      attractionTerms,
       rate: +xls[37],
       duration: +xls[108],
       category: xls[37],
@@ -107,9 +103,16 @@ export class ParseXls {
       lawArticle: xls[77],
     };
     const workExp: Partial<IPersonnel['workExp']> = this.getWorkExp(xls, null);
-
+    const laborContracts: Partial<IPersonnel['laborContract'][0]> = {
+      number: xls[39],
+      date: HandleData.ruDateToServer(xls[40]),
+      endDate: HandleData.ruDateToServer(xls[41]),
+      specialty: xls[35],
+      department: xls[34],
+      attractionTerms,
+    };
     return {
-      worker, passport, institution, scientificInst , workplaces, workExp
+      worker, passport, institution, scientificInst , workplaces, workExp, laborContracts
     }
   }
 
