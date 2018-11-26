@@ -392,7 +392,7 @@ export class PrintLaborContractScientificBuilder2 {
 
   makeSectionRequisite() {
     //makeRequisite(this.doc);
-    const table = this.doc.createTable(2, 3);
+    const table = this.doc.createTable(3, 3);
     table.getCell(0, 0).addContent(new Paragraph()
       .center()
       .addRun(new TextRun(' Работодатель ').bold()));
@@ -400,10 +400,10 @@ export class PrintLaborContractScientificBuilder2 {
     table.getCell(0, 2).addContent(new Paragraph()
       .center()
       .addRun(new TextRun(' Работник ').bold()));
-
+    const line = '______________________________________________';
     const left = new Paragraph()
       .center()
-      .addRun(new TextRun('Федеральное государственное автономное').break())
+      .addRun(new TextRun('Федеральное государственное автономное'))
       .addRun(new TextRun(' образовательное учреждение высшего образования ').break())
       .addRun(new TextRun('“Санкт-Петербургский государственный').break().bold())
       .addRun(new TextRun(' университет аэрокосмического приборостроения”').break().bold())
@@ -414,20 +414,68 @@ export class PrintLaborContractScientificBuilder2 {
       .addRun(new TextRun(''));
 
 
-    const right = new Paragraph()
-      .center()
-      .addRun(new TextRun('______________________________________________'))
-      .addRun(new TextRun(''))
-    ;
+    const right = new Paragraph();
+
+    if(true) {
+      right
+        .addRun(new TextRun(line))
+        .addRun(new TextRun(line).break())
+        .addRun(new TextRun(line).break())
+        .addRun(new TextRun('                          (Фамилия, Имя, Отчество)').break());
+    } else {
+
+    }
+
+    if(true) {
+      right
+        .addRun(new TextRun(line).break())
+        .addRun(new TextRun('                          (дата и место рождения)').break());
+    } else {
+
+    }
+    right
+      .addRun(new TextRun('Почтовый индекс, адрес и телефон:').break());
+    if(true) {
+      right
+        .addRun(new TextRun(line).break())
+        .addRun(new TextRun(line).break())
+        .addRun(new TextRun(line).break())
+    } else {
+
+    }
+    right
+      .addRun( new TextRun(
+        true
+          ? getEmptyLinePlusText('паспорт: серия, №  ', line)
+          : ''
+      ).break())
+      .addRun( new TextRun(
+        true
+          ? getEmptyLinePlusText('выдан  ', line)
+          : ''
+      ).break())
+      .addRun( new TextRun(
+        true
+          ? getEmptyLinePlusText('ИНН  ', line)
+          : ''
+      ).break())
+      .addRun( new TextRun(
+        true
+          ? getEmptyLinePlusText('Св-во с/с №  ', line)
+          : ''
+      ).break());
+    const footerL = new Paragraph()
+      .addRun(new TextRun('Ректор (проректор)').break())
+      .addRun(new TextRun('_______________/_________________').break());
+    const footerR = new Paragraph()
+      .addRun(new TextRun(`____________________ (______________________)`).break())
+      .addRun(new TextRun('(подпись Работника)                       ФИО').break());
+
     table.getCell(1, 0).addContent(left);
-
-    //
     table.getCell(1, 2).addContent(right);
-
-    removeTableBorders(table,2, 3);
-
-
-
+    table.getCell(2, 0).addContent(footerL);
+    table.getCell(2, 2).addContent(footerR);
+    removeTableBorders(table,3, 3);
 
     return this
   }
