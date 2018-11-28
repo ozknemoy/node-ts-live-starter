@@ -1,9 +1,11 @@
-import * as _ from 'lodash/core';
-import {IPersonnel} from 'D:/staffjs/src/server/components/personnel/personnel.interface';
-import {defaultFontSize, defaultTableLayout, tableFontSize} from 'D:/staffjs/src/server/components/print/print.constants';
-import {PrintHelpers} from 'D:/staffjs/src/server/components/print/print-helpers.class';
-import {INSTITUTIONS_NAME} from 'D:/staffjs/src/shared/constants';
-import {HandleData} from 'D:/staffjs/src/shared/handle-data';
+import * as _ from 'lodash';
+
+import {IPersonnel} from '../../staffjs/src/server/components/personnel/personnel.interface';
+import {defaultFontSize, defaultTableLayout, tableFontSize} from '../../staffjs/src/server/components/print/print.constants';
+import {PrintHelpers} from '../../staffjs/src/server/components/print/print-helpers.class';
+import {INSTITUTIONS_NAME} from '../../staffjs/src/shared/constants';
+import {HandleData} from '../../staffjs/src/shared/handle-data';
+import {getMarginT, marginTMd, marginTSm, makeEmptiness, underlineText} from "./pdf-helpers";
 
 
 export class PrintT2Builder {
@@ -14,34 +16,13 @@ export class PrintT2Builder {
 
   make() {
     return this
-      .makeHeader()
-      .makeSectionFirstToSixth()
-      .makeSectionSeventh()
-      .makeFamilyTable()
+    /*.makeHeader()
+    .makeSectionFirstToSixth()
+    .makeSectionSeventh()
+    .makeSectionNinth()
+    .makeSectionTenth()*/
+      .makeSectionEleventh()
       .build();
-  }
-
-  private makeFamilyTable() {
-    const f = this.pers.families;
-    /*if (_.isEmpty(f)) {
-      return this;
-    }*/
-    const body: (string | number)[][] = f.map((row) => [row.relationshipDegree, row.fullName, row.birthYear]);
-    const tbl = {
-      fontSize: tableFontSize,
-      margin: [0, 15],
-      table: {
-        widths: [90, '*', 50],
-        body: [[
-          'Степень родства (ближайшие родственники)',
-          'Фамилия, имя, отчество',
-          'Год рождения'
-        ], ...PrintHelpers.addEmptyRow(body, 5, 3)]
-      },
-      layout: defaultTableLayout
-    };
-    this.pdf.push(tbl);
-    return this;
   }
 
   private makeHeader() {
@@ -122,57 +103,39 @@ export class PrintT2Builder {
       {
         columns: [
           {text: '1. Фамилия', width: 70},
-          {text: HandleData.getUnderlined(worker.surname, 30, true), decoration: 'underline'},
+          underlineText(HandleData.getUnderlined(worker.surname, 30, true)),
           {text: 'Имя', alignment: 'right', width: 65},
-          {text: HandleData.getUnderlined(worker.name, 30, true), decoration: 'underline'},
+          underlineText(HandleData.getUnderlined(worker.name, 30, true)),
           {text: 'Отчество', alignment: 'right', width: 65},
-          {text: HandleData.getUnderlined(worker.middleName, 23, true), decoration: 'underline'}
+          underlineText(HandleData.getUnderlined(worker.middleName, 23, true))
         ],
         columnGap: 5
       }, {
         text: [
           '2. Дата рождения  ',
-          {
-            text: HandleData.getUnderlined(worker.passport ? HandleData.getRuDate(worker.passport.birthDate) : '', 30),
-            decoration: 'underline'
-          },
+          underlineText(HandleData.getUnderlined(worker.passport ? HandleData.getRuDate(worker.passport.birthDate) : '', 30)),
         ]
       }, {
         text: [
           '3. Место рождения  ',
-          {
-            text: HandleData.getUnderlined(worker.passport ? worker.passport.birthPlace : '', 70),
-            decoration: 'underline'
-          },
+          underlineText(HandleData.getUnderlined(worker.passport ? worker.passport.birthPlace : '', 70)),
         ]
       }, {
         text: [
           '4. Гражданство  ',
-          {
-            text: HandleData.getUnderlined(worker.passport ? worker.passport.citizenship : '', 50),
-            decoration: 'underline'
-          },
+          underlineText(HandleData.getUnderlined(worker.passport ? worker.passport.citizenship : '', 50)),
         ]
       }, {
         text: [
           '5. Знание иностранного языка ',
-          {
-            text: HandleData.getUnderlined(worker.foreignLanguage, 45),
-            decoration: 'underline'
-          },
+          underlineText(HandleData.getUnderlined(worker.foreignLanguage, 45)),
           '  ',
-          {
-            text: HandleData.getUnderlined(worker.foreignLanguageGrade, 50),
-            decoration: 'underline'
-          }
+          underlineText(HandleData.getUnderlined(worker.foreignLanguageGrade, 50))
         ]
       }, {
         text: [
           '6. Образование ',
-          {
-            text: HandleData.getUnderlined(worker.educationName, 100),
-            decoration: 'underline'
-          },
+          underlineText(HandleData.getUnderlined(worker.educationName, 100)),
         ]
       },
     ];
@@ -197,10 +160,7 @@ export class PrintT2Builder {
     const afterInstEduName = {
       text: [
         'Послевузовское профессиональное образование ',
-        {
-          text: HandleData.getUnderlined(worker.afterInstEduName, 50),
-          decoration: 'underline'
-        },
+        underlineText(HandleData.getUnderlined(worker.afterInstEduName, 50)),
       ]
     };
     const bodyTwo = (worker.scientificInst || []).map((inst) => this.getEduTwoTableRow(inst));
@@ -246,20 +206,108 @@ export class PrintT2Builder {
   private makeSectionSeventh() {
     const worker = this.pers;
     const seventh = {
+      margin: marginTMd,
       text: [
         '7. Профессия \t',
         {text: HandleData.getUnderlined(worker.profession, 70), decoration: 'underline'}
         ]
     };
+    const workExp = HandleData.sortArrById(worker.workExp);
     const eightTitle = {
+      margin: getMarginT(280),
       text: [
-        `8. Стаж работы (по состоянию на ${HandleData.getRuDate(new Date)}):`
+        `8. Стаж работы (по состоянию на ${HandleData.getRuDate(worker.workExpDate) || '“		”	          	20	 г.'}):`
       ]
     };
-    const eightTable = {
-
+    const workExpUnderline = (arr) => {
+      return arr.map(text => text.map(t =>
+        ({alignment: 'center', width: 42, text: '\t' + t + '\t\n', decoration: 'underline'})))
     };
-    this.pdf = this.pdf.concat([seventh, eightTitle, eightTable]);
+    const fillWorkExp = (wrkExp: IPersonnel['workExp']) => {
+      const line = '\t';
+      let tbl = [[], [], []];
+      /// для четвертой строки пустышки
+      wrkExp.push(<any>{});
+      wrkExp.forEach(({amountD, amountM, amountY}: IPersonnel['workExp'][0], i) => {
+        tbl[0].push(HandleData.getValidValue(amountD, line));
+        tbl[1].push(HandleData.getValidValue(amountM, line));
+        tbl[2].push(HandleData.getValidValue(amountY, line));
+      });
+      return workExpUnderline(tbl)
+    };
+    const workExpHandledToTable = fillWorkExp(workExp);
+    const workExpTable = {
+      margin: marginTSm,
+      columns: [
+        {
+          width: 270,
+          text: ['Общий\n', 'Непрерывный\n', 'Дающий право на надбавку за выслугу лет\n', '']
+        }, workExpHandledToTable[0],
+        {width: 40, text: Array(4).fill('дней\n')},
+        workExpHandledToTable[1],
+        {width: 55, text: Array(4).fill('месяцев\n')},
+        workExpHandledToTable[2],
+        {width: 30, text: Array(4).fill('лет\n')},
+      ]
+    };
+    this.pdf = this.pdf.concat([seventh, eightTitle, workExpTable]);
+    return this;
+  }
+
+  private makeSectionNinth() {
+    const ninth = {
+      margin: marginTMd,
+      text: [
+        `9. Состояние в браке \t\t`,
+        underlineText(_.get(this.pers, 'passport.maritalStatus') || '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t')
+      ]
+    };
+    this.pdf = this.pdf.concat([ninth]);
+    return this;
+  }
+
+  private makeSectionTenth() {
+    const f = this.pers.families;
+    const body: (string | number)[][] = f.map((row) => [row.relationshipDegree, row.fullName, row.birthYear]);
+    const tbl = {
+      fontSize: tableFontSize,
+      margin: [0, 15],
+      table: {
+        widths: [90, '*', 50],
+        body: [[
+          'Степень родства (ближайшие родственники)',
+          'Фамилия, имя, отчество',
+          'Год рождения'
+        ], ...PrintHelpers.addEmptyRow(body, 5, 3)]
+      },
+      layout: defaultTableLayout
+    };
+    this.pdf.push(tbl);
+    return this;
+  }
+
+  private makeSectionEleventh() {
+    const tenth = {
+      margin: marginTMd,
+      text: [
+        '11. Паспорт:	№ ',
+        underlineText(_.get(this.pers, 'passport.number') || '\t\t\t\t\t\t'),
+        '\tДата выдачи\t',
+        underlineText(_.get(this.pers, 'passport.passportDate')? HandleData.getRuDate(this.pers.passport.passportDate) : '\t\t\t\t\t\t'),
+        '\n',
+        'Выдан\t',
+        underlineText(_.get(this.pers, 'passport.passportIssued') || makeEmptiness(40)),
+        '\n',
+        {text: '(наименование органа, выдавшего паспорт)', fontSize: 8, margin: [60, 60], alignment: 'center'},
+        '\n',
+        underlineText(makeEmptiness(40) + '\n'),
+        underlineText(makeEmptiness(10) + '\n'),
+        underlineText(makeEmptiness(10) + '\n'),
+      ]
+    };
+    console.log(makeEmptiness(5) + '(наименование органа, выдавшего паспорт)');
+
+    this.pdf = this.pdf.concat([tenth]);
     return this;
   }
 

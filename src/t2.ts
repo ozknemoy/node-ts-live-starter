@@ -68,7 +68,7 @@ export const worker = <any>{
     "birthDate": "1993-12-15T20:00:00.000Z",
     "birthPlace": "г.Ставрополь Ставропольский Край",
     "citizenship": null,
-    "maritalStatus": null,
+    "maritalStatus": 'Женат',
     "number": "40 13 878114",
     "passportIssued": "ТП № 26 отдела УФМС России по СПб и ЛО",
     "passportDate": "2014-01-27T20:00:00.000Z",
@@ -130,17 +130,17 @@ export const worker = <any>{
     {
       "id": 1423,
       "personnelId": 2,
-      "amountD": 0,
-      "amountM": 0,
-      "amountY": 0,
+      "amountD": 1,
+      "amountM": 2,
+      "amountY": 3,
       "typeId": 1
     },
     {
       "id": 1424,
       "personnelId": 2,
-      "amountD": 0,
-      "amountM": 0,
-      "amountY": 0,
+      "amountD": 45,
+      "amountM": 555,
+      "amountY": 6,
       "typeId": 2
     },
     {
@@ -189,7 +189,7 @@ function saveExactNameOrWithTimestampLocal(dir: string, name: string, ext: strin
       // при неудаче добавляю Timestamp
       fs.writeFileSync(`${dir}${name}-${ +new Date}${ext}`, buffer);
     } else {
-      console.log('-----  ok write  ----');
+      console.log(`-----  ok write  to  ${dir}----`);
       // при удаче удаляю файлы с номерами
       fs.readdir(dir, (_e, files) => {
         if (files.length) {
