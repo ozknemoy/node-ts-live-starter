@@ -5,7 +5,7 @@ import {defaultFontSize, defaultTableLayout, tableFontSize} from '../../staffjs/
 import {PrintHelpers} from '../../staffjs/src/server/components/print/print-helpers.class';
 import {INSTITUTIONS_NAME} from '../../staffjs/src/shared/constants';
 import {HandleData} from '../../staffjs/src/shared/handle-data';
-import {getMarginT, marginTMd, marginTSm, makeEmptiness, underlineText} from "./pdf-helpers";
+import {getMarginT, marginTMd, marginTSm, makeEmptiness, underlineText, underlineFull} from "./pdf-helpers";
 
 
 export class PrintT2Builder {
@@ -296,18 +296,33 @@ export class PrintT2Builder {
         underlineText(_.get(this.pers, 'passport.passportDate')? HandleData.getRuDate(this.pers.passport.passportDate) : '\t\t\t\t\t\t'),
         '\n',
         'Выдан\t',
-        underlineText(_.get(this.pers, 'passport.passportIssued') || makeEmptiness(40)),
-        '\n',
-        {text: '(наименование органа, выдавшего паспорт)', fontSize: 8, margin: [60, 60], alignment: 'center'},
-        '\n',
-        underlineText(makeEmptiness(40) + '\n'),
-        underlineText(makeEmptiness(10) + '\n'),
-        underlineText(makeEmptiness(10) + '\n'),
+        underlineText(_.get(this.pers, 'passport.passportIssued') || makeEmptiness(39)),
       ]
     };
-    console.log(makeEmptiness(5) + '(наименование органа, выдавшего паспорт)');
+    const tenthUnderline = {
+      margin: [60, 0, 0, 0],
+      text: [
+        {text: '(наименование органа, выдавшего паспорт)', fontSize: 7},
+      ]
+    };
+    const lines = underlineFull(3, {margin: [50, 0, 0, 0],});
 
-    this.pdf = this.pdf.concat([tenth]);
+    const address = _.get(this.pers, 'passport.address');
+    const addressFact = _.get(this.pers, 'passport.addressFact');
+    const addressTitle = {
+      margin: marginTMd,
+      text: [
+        '12. Адрес места жительства:\n',
+        'По паспорту\t \t',
+        underlineText(HandleData.getUnderlined(address, address? 96 : 140, true)),
+        underlineText('\n' + HandleData.getUnderlined(' ', 140, true)),
+        '\nФактический\t\t',
+        underlineText(HandleData.getUnderlined(addressFact, addressFact? 96 : 140, true)),
+        underlineText('\n' + HandleData.getUnderlined(' ', 140, true)),
+      ]
+    };
+
+    this.pdf = this.pdf.concat([tenth, tenthUnderline, lines, addressTitle]);
     return this;
   }
 
