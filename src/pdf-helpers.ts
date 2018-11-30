@@ -1,8 +1,14 @@
 
 import {HandleData} from '../../staffjs/src/shared/handle-data';
-import {defaultFontSize, defaultTableLayout, tableFontSize} from '../../staffjs/src/server/components/print/print.constants';
 export const marginTMd = [0, 20, 0, 0];
 export const marginTSm = [0, 13, 0, 0];
+export const tableFontSize = 10;
+export const defaultFontSize = 10;
+export const defaultTableLayout = {
+  // 0.5 подобрано для совпадения с decoration: 'underline'
+  hLineWidth: (i, node) => 0.5,
+  vLineWidth: (i, node) =>  0.5
+};
 
 export const getMarginT = (n: number) => [0, n, 0, 0];
 

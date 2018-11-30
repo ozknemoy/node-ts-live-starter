@@ -1,11 +1,14 @@
 import * as _ from 'lodash';
 
 import {IPersonnel} from '../../staffjs/src/server/components/personnel/personnel.interface';
-import {defaultFontSize, defaultTableLayout, tableFontSize} from '../../staffjs/src/server/components/print/print.constants';
 import {PrintHelpers} from '../../staffjs/src/server/components/print/print-helpers.class';
 import {INSTITUTIONS_NAME} from '../../staffjs/src/shared/constants';
 import {HandleData} from '../../staffjs/src/shared/handle-data';
-import {getMarginT, marginTMd, marginTSm, makeEmptiness, underlineText, underlineFull} from "./pdf-helpers";
+import {
+  getMarginT, marginTMd, marginTSm, makeEmptiness, underlineText, underlineFull,
+  tableFontSize, defaultTableLayout, defaultFontSize
+} from "./pdf-helpers";
+import {log} from "util";
 
 
 export class PrintT2Builder {
@@ -296,33 +299,47 @@ export class PrintT2Builder {
         underlineText(_.get(this.pers, 'passport.passportDate')? HandleData.getRuDate(this.pers.passport.passportDate) : '\t\t\t\t\t\t'),
         '\n',
         'Выдан\t',
-        underlineText(_.get(this.pers, 'passport.passportIssued') || makeEmptiness(39)),
+        underlineText(HandleData.getUnderlined(_.get(this.pers, 'passport.passportIssued'), 108, true, true) || makeEmptiness(39)),
       ]
     };
     const tenthUnderline = {
       margin: [60, 0, 0, 0],
-      text: [
-        {text: '(наименование органа, выдавшего паспорт)', fontSize: 7},
-      ]
+      text: [{text: '(наименование органа, выдавшего паспорт)', fontSize: 7},]
     };
     const lines = underlineFull(3, {margin: [50, 0, 0, 0],});
 
     const address = _.get(this.pers, 'passport.address');
     const addressFact = _.get(this.pers, 'passport.addressFact');
-    const addressTitle = {
+    const addrLength = 136;
+    const addrFLength = addrLength - 45;
+    const addressUndrln = underlineFull(1, {margin: [100, 0, 0, 0],});
+    const addrss = [{
       margin: marginTMd,
       text: [
         '12. Адрес места жительства:\n',
-        'По паспорту\t \t',
-        underlineText(HandleData.getUnderlined(address, address? 96 : 140, true)),
-        underlineText('\n' + HandleData.getUnderlined(' ', 140, true)),
+        'По паспорту \t \t',
+        underlineText(HandleData.getUnderlined(address, address? addrFLength : addrLength, true, true)),
+      ]
+    }, addressUndrln,{
+      text: [
         '\nФактический\t\t',
-        underlineText(HandleData.getUnderlined(addressFact, addressFact? 96 : 140, true)),
-        underlineText('\n' + HandleData.getUnderlined(' ', 140, true)),
+        underlineText(HandleData.getUnderlined(addressFact, addressFact? addrFLength : addrLength, true, true)),
+      ]
+    }, addressUndrln
+    ];
+    const last = {
+      margin: marginTMd,
+      text: [
+        `Дата регистрации по месту жительства\t`,
+        underlineText(HandleData.getRuDate(_.get(this.pers, 'passport.passportRegDate')) || '“   ”\t \t\t    \tг.'),
+        '\n',
+        'Номер телефона ',
+        underlineText(HandleData.getUnderlined(this.pers.phone, 40)),
       ]
     };
 
-    this.pdf = this.pdf.concat([tenth, tenthUnderline, lines, addressTitle]);
+
+    this.pdf = this.pdf.concat([tenth, tenthUnderline, lines, ...addrss, last]);
     return this;
   }
 
