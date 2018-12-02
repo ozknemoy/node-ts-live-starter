@@ -1,4 +1,4 @@
-import {BorderStyle, Paragraph, Table, TextRun} from "docx";
+import {BorderStyle, Paragraph, Table, TextRun} from 'docx/build';
 
 export function setStandartStyles(doc, font = 'Arial') {
   doc.Styles.createParagraphStyle('10', "10")
@@ -35,10 +35,10 @@ export const maxRightTabStop = 10900;
 }
 
 export function getEmptyLinePlusText(text: string, line = emptyLine): string {
-  return text + line.slice(text.length) + (line === emptyLine? '__' : '');
+  return text + line.slice(text.length) + (line === emptyLine ? '__' : '');
 }
 
-export function addEmptyLineWithTextUnderlined(doc, text: string, withComma = false, size = 9, spacing = 0) {
+export function addEmptyLineWithTextUnderlined(doc, text: string, withComma = false, style = '9', spacing = 0, bold = false) {
   const p = new Paragraph()
     .center()
     .thematicBreak();
@@ -46,9 +46,12 @@ export function addEmptyLineWithTextUnderlined(doc, text: string, withComma = fa
     p.spacing({before: spacing});
   }
   const _text = new TextRun(text);
+  if(bold) {
+    _text.bold();
+  }
   p.addRun(_text);
-  if (size) {
-    _text.size(size * 2);
+  if (style) {
+    p.style(style);
   }
   if (withComma) {
     p.addRun(new TextRun(','));
@@ -73,6 +76,7 @@ export function addUnderlineText(left: number, text = 'нужное подчер
 
 export function getTitle(text: string) {
   return new Paragraph()
+    .spacing({after: 300})
     .center()
     .style('10')
     .addRun(new TextRun(text).break().bold());
@@ -97,7 +101,7 @@ export function removeTableBorders(tbl: Table, rows: number, cols: number) {
     }
   }
   matrix.forEach(pair =>
-    tbl.getCell(pair[0],pair[1])
+    tbl.getCell(pair[0], pair[1])
       .CellProperties.Borders
       .addTopBorder(BorderStyle.NONE, 0, 'white')
       .addBottomBorder(BorderStyle.NONE, 0, "white")

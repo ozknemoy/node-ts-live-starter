@@ -1,8 +1,9 @@
-import {PrintLaborContractScientificBuilder2} from './print-labor-contract-scientific2.class';
 import * as fs from 'fs';
-import * as docx from 'docx';
+import * as docx from 'docx/build';
+import {PrintExtraLaborContractDynamicBuilder} from "./print-extra-labor-contract.class";
+import {worker} from "./worker";
 
-const dox = new PrintLaborContractScientificBuilder2({}).make();
+const dox = new PrintExtraLaborContractDynamicBuilder(worker).make();
 createOfficeFile(dox);
 
 function createOfficeFile(doc) {
