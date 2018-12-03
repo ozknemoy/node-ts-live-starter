@@ -1,10 +1,14 @@
 
 import * as fs from "fs";
 import xlsx from 'node-xlsx';
-import {HandleData} from '../../staffjs/src/client/app/shared/services/handle-data';
+import {HandleData} from '../../staffjs/src/shared/handle-data';
 import {IPersonnel} from "../../staffjs/src/server/components/personnel/personnel.interface";
+import {attractionTermsDict} from "../../staffjs/src/shared/dictionaries/attraction-terms.dict";
+import {invalidINN} from '../../staffjs/src/shared/validators';
+import {IPersonnelNamedThingWithDoc} from "../../staffjs/src/server/components/personnel/relations/personnel-named-thing-with-doc.interface";
+import {salaryDict} from '../../staffjs/src/shared/dictionaries/salary.dict';
 
-
+const salaryDictHandled = HandleData.handleSalary(salaryDict);
 
 export class ParseXls {
 
@@ -16,7 +20,7 @@ export class ParseXls {
   static create(excelPath = './staff.xls') {
     try {
       const w = xlsx.parse(fs.readFileSync(excelPath))[0];
-      return  this.parse(w.data[1]);
+      return  this.parse(w.data[11]);
     } catch (e) {
       throw new Error(e);
     }
@@ -42,34 +46,41 @@ export class ParseXls {
 
   static parse(xls: string[]) {
     xls.forEach((cell, i) => {
-      if(cell === '') {
+      if (cell === '') {
         xls[i] = null
       }
     });
-    const [surname, name, middleName] = this.splitByN(xls[1], 3);
-
+    try {
+      HandleData.splitByN(xls[1], 3)
+    } catch (e) {
+      new Error('Ошибка разбора файла. Строка содержит пустую ячейку с ФИО. Вероятно excel содержит пустые строки');
+    }
+    const [surname, name, middleName] = HandleData.splitByN(xls[1], 3);
+    const sex = !HandleData.isInvalidPrimitive(middleName)
+      ? middleName.trim().slice(-3) === 'вна'
+        ? 'ж' : 'м'
+      : null;
+    const attractionTerms = HandleData.where(attractionTermsDict, 'shortName', xls[44], true).name;
     const worker: Partial<IPersonnel> = {
-      number: xls[0],
+      // пропускаю только 4 значные
+      number: xls[83] && (parseInt(xls[83]) > 999) ? xls[83] : null,
       surname,
       name,
       middleName,
-      inn: /*invalidINN*/(xls[2]) ? null : xls[2],
+      sex,
+      inn: invalidINN(xls[2]) ? null : xls[2],
       insurance: xls[3],
       educationName: xls[13],
-
-      workExpDate: xls[52],
+      workExpDate: HandleData.ruDateToServer(xls[56]),
       profession: xls[54],
-
-      //afterInstEduName: xls[20],
       membershipGAN: !!xls[58],
       membershipGANDate: HandleData.ruDateToServer(xls[59]),
       membershipOAN: !!xls[60],
       membershipOANDate: HandleData.ruDateToServer(xls[61]),
-      scientificRank: xls[25],
       phone: xls[85],
       medicalCert: !!xls[36],
       psychoCert: !!xls[118],
-      conviction: !!xls[113],
+      convictionCert: !!xls[113],
       disabilityDegree: xls[107],
     };
     const passport: Partial<IPersonnel['passport']> = {
@@ -89,7 +100,7 @@ export class ParseXls {
       endDate: HandleData.setYear(xls[16]),
       qualification: xls[17],
       specialty: xls[18],
-      docNumber: xls[19],// T
+      docNumber: xls[19],
     };
     const scientificInst: Partial<IPersonnel['scientificInst'][0]> = {
       name: xls[21],
@@ -109,37 +120,56 @@ export class ParseXls {
       appointingAuthority: xls[32],
     };
     // Z-AH пока пропустил
-    const attractionTerms = xls[44] === 'Шт' ? 'основная' : (xls[44] === 'С' ? 'по совместительству' : null)
-    const workplaces: Partial<IPersonnel['workplaces'][0]> = {
+    const [contractNumber, contractD] = HandleData.splitByDivider(xls[39], 'от', true);
+    const workplace: Partial<IPersonnel['workplaces'][0]> = {
       date: HandleData.ruDateToServer(xls[42] || xls[56]),
       department: xls[34],
       specialty: xls[35],
       reason: xls[43] || xls[57],
       academicCouncilDate: HandleData.ruDateToServer(xls[120]),
       attractionTerms,
-      rate: +xls[37],
-      duration: +xls[108],
-      category: xls[37],
+      rate: HandleData.parseNumber(xls[37]),
+      salaryCoef: HandleData.parseNumber(xls[90]),
+      duration: HandleData.parseNumber(xls[108]),
+      category: xls[38],
       dismissalDate: HandleData.ruDateToServer(xls[74]),
       dismissalGround: xls[75],
-      dismissalReason: xls[76],
       lawArticle: xls[77],
+      active: true,
+      contractNumber,
+      contractDate: HandleData.ruDateToServer(contractD),
+      contractEndDate: HandleData.ruDateToServer(xls[41]),
     };
+    // не перемещать!!!
+    workplace.category = this.findCategory(workplace, HandleData.parseNumber(xls[89]));
     const workExp: Partial<IPersonnel['workExp']> = this.getWorkExp(xls, null);
-    const laborContracts: Partial<IPersonnel['laborContract'][0]> = {
-      number: xls[39],
-      date: HandleData.ruDateToServer(xls[40]),
-      endDate: HandleData.ruDateToServer(xls[41]),
-      specialty: xls[35],
-      department: xls[34],
-      attractionTerms,
-    };
-    const rewards/*: Partial<IPersonnel['rewards']>*/ = this.getRewards(xls);
-
+    const rewards = <Partial<IPersonnelNamedThingWithDoc>>this.getRewards(xls);
     return {
-      worker, rewards,academicRank, passport, institution, scientificInst ,
-      workplaces, workExp, laborContracts
+      worker, passport, institution, scientificInst , workplace, workExp,
+      academicRank, rewards
     }
+  }
+
+  // по зп определяю категорию
+  static findCategory(wp, baseSalary): string {
+    if((wp.category !== 'АУП' && wp.category !== 'ОП')
+      || !wp.category
+      || !salaryDictHandled.hasOwnProperty(wp.category)) {
+      return wp.category
+    }
+    let category;
+    salaryDict.some(salaryRow => {
+      if(salaryRow.value.indexOf(wp.category) > -1 && baseSalary === salaryRow.salary) {
+        category = salaryRow.value;
+        console.count('---------людей у которых все норм с окладом/ставкой--------');
+        return true
+      }
+      return false
+    });
+    if(wp.rate  && wp.salaryCoef) {
+      console.count('---------людей у которых все норм с окладом, ставкой, коэф--------');
+    }
+    return category || wp.category
   }
 
   static getRewards(xls) {
