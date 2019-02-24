@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@types/node": "^10.7.1",
+    "cheerio": "^1.0.0-rc.2",
     "reflect-metadata": "^0.1.12",
+    "request": "^2.88.0",
     "typescript": "^3.0.1"
   },
   "devDependencies": {
