@@ -1,0 +1,847 @@
+{
+  "ret": [
+    {
+      "w:p": [
+        {
+          "$": {
+            "w:rsidR": "00422579",
+            "w:rsidRDefault": "009B198C",
+            "w:rsidP": "00422579"
+          },
+          "w:pPr": [
+            {
+              "w:spacing": [
+                {
+                  "$": {
+                    "w:after": "0",
+                    "w:line": "240",
+                    "w:lineRule": "auto"
+                  }
+                }
+              ]
+            }
+          ],
+          "w:proofErr": [
+            {
+              "$": {
+                "w:type": "spellStart"
+              }
+            },
+            {
+              "$": {
+                "w:type": "spellEnd"
+              }
+            },
+            {
+              "$": {
+                "w:type": "spellStart"
+              }
+            },
+            {
+              "$": {
+                "w:type": "spellEnd"
+              }
+            },
+            {
+              "$": {
+                "w:type": "spellStart"
+              }
+            },
+            {
+              "$": {
+                "w:type": "spellEnd"
+              }
+            },
+            {
+              "$": {
+                "w:type": "spellStart"
+              }
+            },
+            {
+              "$": {
+                "w:type": "spellEnd"
+              }
+            }
+          ],
+          "w:r": [
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                "Oт"
+              ]
+            },
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                {
+                  _: " космизма барокко к романтическому космизму Е.Г. ",
+                  "$": {
+                    "xml:space": "preserve"
+                  }
+                }
+              ]
+            },
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                "Милюгина"
+              ]
+            },
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                ", Тверь Эпоха Барокко - важнейшее звено в цепи культурных эпох и «великих стилей». Переломный его\r\n                    характер проявляется в том, что, наследуя идеи Средневековья, Барокко противопоставляет себя\r\n                    Ренессансу, взрывая его иллюзорные надежды на построение социальной гармонии и восхождение по\r\n                    «лестнице прогресса», и открывает возможности более сложного развития искусства,\r\n                "
+              ]
+            },
+            {
+              "$": {
+                "w:rsidR": "00422579",
+                "w:rsidRPr": "00422579"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Times New Roman",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Times New Roman",
+                        "w:cs": "Times New Roman"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "24"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "24"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                {
+                  "$": {
+                    "xml:space": "preserve"
+                  }
+                }
+              ]
+            },
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                {
+                  _: "выразившегося в маятниковых сменах «правополушарных» (Романтизма и Символизма) и «левополушарных» (Классицизма, Просвещения, Реализма) стилей. Кардинальный характер поворота в развитии философии и искусства, выраженный Барокко наряду с другими направлениями эпохи, настоятельно требует уяснения сущности этого культурно-исторического феномена. В науке Барокко описывается разноречиво - от указаний на ",
+                  "$": {
+                    "xml:space": "preserve"
+                  }
+                }
+              ]
+            },
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                "антиномичность"
+              ]
+            },
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                {
+                  _: " (С.Д.",
+                  "$": {
+                    "xml:space": "preserve"
+                  }
+                }
+              ]
+            },
+            {
+              "$": {
+                "w:rsidR": "00422579",
+                "w:rsidRPr": "00422579"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Times New Roman",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Times New Roman",
+                        "w:cs": "Times New Roman"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "24"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "24"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                {
+                  "$": {
+                    "xml:space": "preserve"
+                  }
+                }
+              ]
+            },
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                {
+                  _: "Артамонов) до утверждений стремления к цельности и органичности мировосприятия (А.А. ",
+                  "$": {
+                    "xml:space": "preserve"
+                  }
+                }
+              ]
+            },
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                "Аникст"
+              ]
+            },
+            {
+              "$": {
+                "w:rsidRPr": "009B198C"
+              },
+              "w:rPr": [
+                {
+                  "w:rFonts": [
+                    {
+                      "$": {
+                        "w:ascii": "Arial",
+                        "w:eastAsia": "Times New Roman",
+                        "w:hAnsi": "Arial",
+                        "w:cs": "Arial"
+                      }
+                    }
+                  ],
+                  "w:color": [
+                    {
+                      "$": {
+                        "w:val": "292C31"
+                      }
+                    }
+                  ],
+                  "w:sz": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:szCs": [
+                    {
+                      "$": {
+                        "w:val": "21"
+                      }
+                    }
+                  ],
+                  "w:shd": [
+                    {
+                      "$": {
+                        "w:val": "clear",
+                        "w:color": "auto",
+                        "w:fill": "FFFFFF"
+                      }
+                    }
+                  ],
+                  "w:lang": [
+                    {
+                      "$": {
+                        "w:eastAsia": "ru-RU"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "w:t": [
+                {
+                  _: "). ",
+                  "$": {
+                    "xml:space": "preserve"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$": {
+            "w:rsidR": "00DE53E5",
+            "w:rsidRDefault": "00422579",
+            "w:rsidP": "009B198C"
+          },
+          "w:bookmarkStart": [
+            {
+              "$": {
+                "w:id": "0",
+                "w:name": "_GoBack"
+              }
+            }
+          ],
+          "w:bookmarkEnd": [
+            {
+              "$": {
+                "w:id": "0"
+              }
+            }
+          ]
+        }
+      ],
+      "w:sectPr": [
+        {
+          "$": {
+            "w:rsidR": "00DE53E5"
+          },
+          "w:pgSz": [
+            {
+              "$": {
+                "w:w": "11906",
+                "w:h": "16838"
+              }
+            }
+          ],
+          "w:pgMar": [
+            {
+              "$": {
+                "w:top": "1134",
+                "w:right": "850",
+                "w:bottom": "1134",
+                "w:left": "1701",
+                "w:header": "708",
+                "w:footer": "708",
+                "w:gutter": "0"
+              }
+            }
+          ],
+          "w:cols": [
+            {
+              "$": {
+                "w:space": "708"
+              }
+            }
+          ],
+          "w:docGrid": [
+            {
+              "$": {
+                "w:linePitch": "360"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

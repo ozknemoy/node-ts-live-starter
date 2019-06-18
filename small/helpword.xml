@@ -1,0 +1,1366 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+            xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:o="urn:schemas-microsoft-com:office:office"
+            xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+            xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml"
+            xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
+            xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+            xmlns:w10="urn:schemas-microsoft-com:office:word"
+            xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+            xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
+            xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml"
+            xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex"
+            xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup"
+            xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
+            xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
+            xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
+            mc:Ignorable="w14 w15 w16se wp14">
+    <w:body>
+        <w:p w:rsidR="00422579" w:rsidRDefault="009B198C" w:rsidP="00422579">
+            <w:pPr>
+                <w:spacing w:after="0" w:line="240" w:lineRule="auto"/>
+            </w:pPr>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t>Oт</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t xml:space="preserve"> космизма барокко к романтическому космизму Е.Г. </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t>Милюгина</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t  xml:space="preserve">, Тверь Эпоха </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> искусства </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>Барокко</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> - важнейшее звено </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> в </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>в</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> цепи культурных </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> Переломный </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>эпох</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> и «великих </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> великих </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>стилей</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve">». Переломный его </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> построение </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>характер</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> проявляется в </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> искусства </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>том</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve">, что, наследуя </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> себя </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>идеи</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> Средневековья, Барокко </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> Ренессансу </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>противопоставляет</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> себя Ренессансу, </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> построение </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>взрывая</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> его иллюзорные </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> лестнице </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>надежды</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> на построение </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> более </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>социальной</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> гармонии и </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> по </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>восхождение</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> по «лестнице </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> открывает </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>прогресса</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve">», и открывает </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> сложного </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>возможности</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> более сложного </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> развития </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>развития</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t xml:space="preserve"> искусства,</w:t>
+            </w:r>
+            <w:r w:rsidR="00422579" w:rsidRPr="00422579">
+                <w:rPr>
+                    <w:rFonts w:ascii="Times New Roman" w:eastAsia="Times New Roman" w:hAnsi="Times New Roman"
+                              w:cs="Times New Roman"/>
+                    <w:sz w:val="24"/>
+                    <w:szCs w:val="24"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t  xml:space="preserve">выразившегося </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> Кардинальный </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>в</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> маятниковых сменах «</w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> и </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>правополушарных</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve">» (Романтизма и </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> и </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>Символизма</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve">) и «левополушарных» (</w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> другими </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>Классицизма</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve">, Просвещения, Реализма) </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> разноречиво </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>стилей</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve">. Кардинальный характер </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> и </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>поворота</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> в развитии </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> от </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>философии</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> и искусства, </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> разноречиво </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>выраженный</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> Барокко наряду </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> указаний </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>с</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> другими направлениями </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> другими </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>эпохи</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve">, настоятельно требует </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> настоятельно </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>уяснения</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> сущности этого </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> разноречиво </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>культурно</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve">-исторического феномена. </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> от </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>В</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> науке Барокко </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> указаний </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>описывается</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> разноречиво - от </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> указаний </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>указаний</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t xml:space="preserve"> на </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t>антиномичность</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t  xml:space="preserve"> (</w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> С </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>С</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t xml:space="preserve">.Д.</w:t>
+            </w:r>
+            <w:r w:rsidR="00422579" w:rsidRPr="00422579">
+                <w:rPr>
+                    <w:rFonts w:ascii="Times New Roman" w:eastAsia="Times New Roman" w:hAnsi="Times New Roman"
+                              w:cs="Times New Roman"/>
+                    <w:sz w:val="24"/>
+                    <w:szCs w:val="24"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t  xml:space="preserve">Артамонов) </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> до </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>до</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> утверждений стремления </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> органичности </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>к</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> цельности и </w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> А </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>органичности</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t  xml:space="preserve"> мировосприятия (А.</w:t>
+                <w:rPr>
+                    <w:highlight w:val="white"/>
+                </w:rPr>
+                <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+                <w:instrText>eq</w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                    <w:color w:val="FFFFFF"/>
+                    <w:spacing w:val="-20000"/>
+                    <w:sz w:val="2"/>
+                    <w:szCs w:val="28"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> А </w:instrText>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:noProof/>
+                </w:rPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:instrText xml:space="preserve"> </w:instrText>
+                <w:instrText>А</w:instrText>
+                <w:fldChar w:fldCharType="end"/>
+                <w:t xml:space="preserve">. </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t>Аникст</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t xml:space="preserve">). </w:t>
+            </w:r>
+        </w:p>
+        <w:p w:rsidR="00DE53E5" w:rsidRDefault="00422579" w:rsidP="009B198C">
+            <w:bookmarkStart w:id="0" w:name="_GoBack"/>
+            <w:bookmarkEnd w:id="0"/>
+        </w:p>
+        <w:sectPr w:rsidR="00DE53E5">
+            <w:pgSz w:w="11906" w:h="16838"/>
+            <w:pgMar w:top="1134" w:right="850" w:bottom="1134" w:left="1701" w:header="708" w:footer="708"
+                     w:gutter="0"/>
+            <w:cols w:space="708"/>
+            <w:docGrid w:linePitch="360"/>
+        </w:sectPr>
+    </w:body>
+</w:document>
