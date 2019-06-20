@@ -1,4 +1,4 @@
-import {IParagraphOne} from "./models";
+import {IParagraphOne, IParagraphPreferences, IRunOne, IWTextOne} from "./models";
 
 export const realXml = `
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -214,35 +214,33 @@ export const dummyXml = `
 </w:r>
 `;
 
-export const getDummyRun/*: { 'w:r': IParagraphOne }*/ = (word: string) => ({
-  'w:r':
-    {
-      '$': {'w:rsidR': '008364C4', 'w:rsidRPr': '008364C4'},
-      'w:rPr': [
+export const getDummyRun = (word: string): IRunOne => ({
+  $: {'w:rsidR': '008364C4', 'w:rsidRPr': '008364C4'},
+  'w:rPr': [
+    <IParagraphPreferences>{
+      'w:rFonts': [
         {
-          'w:rFonts': [
-            {
-              '$': {
-                'w:ascii': 'Times New Roman',
-                'w:eastAsia': 'Times New Roman',
-                'w:hAnsi': 'Times New Roman',
-                'w:cs': 'Times New Roman'
-              }
-            }],
-          'w:color': [{'$': {'w:val': 'F8F8F8'}}],
-          'w:spacing': [{'$': {'w:val': '-100'}}],
-          'w:w': [{'$': {'w:val': '50'}}],
-          'w:sz': [{'$': {'w:val': '21'}}],
-          'w:szCs': [{'$': {'w:val': '21'}}],
-          'w:shd':
-            [{'$': {'w:val': 'clear', 'w:color': 'auto', 'w:fill': 'FFFFFF'}}],
-          'w:lang': [{'$': {'w:eastAsia': 'ru-RU'}}]
+          '$': {
+            'w:ascii': 'Times New Roman',
+            'w:eastAsia': 'Times New Roman',
+            'w:hAnsi': 'Times New Roman',
+            'w:cs': 'Times New Roman'
+          }
         }],
-      'w:t': [
-        {
-          _: word + ' ',
-          '$': {'xml:space': 'preserve'}
-        }
-      ]
+      'w:color': [{'$': {'w:val': 'F8F8F8'}}],
+      'w:spacing': [{'$': {'w:val': '-100'}}],
+      'w:w': [{'$': {'w:val': '50'}}],
+      'w:sz': [{'$': {'w:val': '21'}}],
+      'w:szCs': [{'$': {'w:val': '21'}}],
+      'w:shd':
+        [{'$': {'w:val': 'clear', 'w:color': 'auto', 'w:fill': 'FFFFFF'}}],
+      'w:lang': [{'$': {'w:eastAsia': 'ru-RU'}}]
+    }],
+  'w:t': [
+    <IWTextOne>{
+      _: word + ' ',
+      '$': {'xml:space': 'preserve'}
     }
+  ]
+
 });

@@ -24,6 +24,11 @@ export interface IJsonXml {
   }
 }
 
+export interface IRunOne {
+  '$': { 'w:rsidR'?: string, 'w:rsidRPr'?: string },
+  'w:rPr': IParagraphPreferences[],
+  'w:t': (IWTextOne | IWTextTwo)[]
+}
 export interface IParagraphOne {
   '$': IParagraphRoot,
   'w:pPr': [{
@@ -40,11 +45,7 @@ export interface IParagraphOne {
     { '$': { 'w:type': 'spellStart' } },
     { '$': { 'w:type': 'spellEnd' } }
     ],
-  'w:r': {
-    '$': { 'w:rsidRPr': string },
-    'w:rPr': IParagraphPreferences[],
-    'w:t': (IRunOne | IRunTwo)[]
-  }[]
+  'w:r': IRunOne[]
 }
 
 export function isParagraphOne(p: IParagraphOne | IParagraphTwo): p is IParagraphOne {
@@ -52,23 +53,23 @@ export function isParagraphOne(p: IParagraphOne | IParagraphTwo): p is IParagrap
 }
 
 
-export function isRunOne(wT: IRunOne | IRunTwo): wT is IRunOne {
+export function isRunOne(wT: IWTextOne | IWTextTwo): wT is IWTextOne {
   return typeof wT !== 'string'
 }
 
-export function isRunTwo(wT: IRunOne | IRunTwo): wT is IRunTwo {
+export function isRunTwo(wT: IWTextOne | IWTextTwo): wT is IWTextTwo {
   return typeof wT === 'string'
 }
 
-export interface IRunOne {
-  _: ' космизма барокко к романтическому космизму Е.Г. ',
-  '$': { 'xml:space': 'preserve' }
+export interface IWTextOne {
+  _: string,
+  $: { 'xml:space': 'preserve' }
 }
 
-export type IRunTwo = string;
+export type IWTextTwo = string;
 
 export interface IFont {
-  '$': {
+  $: {
     'w:ascii': string,
     'w:eastAsia': string,
     'w:hAnsi': string,
@@ -76,13 +77,18 @@ export interface IFont {
   }
 }
 
+export interface I$WVal {
+  $: {'w:val': string}
+}
 export interface IParagraphPreferences {
   'w:rFonts': IFont[],
-  'w:color': [{ '$': { 'w:val': '292C31' } }],
-  'w:sz': [{ '$': { 'w:val': '21' } }],
-  'w:szCs': [{ '$': { 'w:val': '21' } }],
-  'w:shd': [{ '$': { 'w:val': 'clear', 'w:color': 'auto', 'w:fill': 'FFFFFF' } }],
-  'w:lang': [{ '$': { 'w:eastAsia': 'ru-RU' } }]
+  'w:color': I$WVal[],
+  'w:sz': I$WVal[],
+  'w:szCs': I$WVal[],
+  'w:spacing'?: I$WVal[],
+  'w:w'?: I$WVal[],
+  'w:shd': [{ '$': { 'w:val': string, 'w:color': string, 'w:fill': string } }],
+  'w:lang': [{ '$': { 'w:eastAsia': string } }]
 }
 
 export interface IParagraphTwo {
