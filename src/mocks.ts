@@ -3,6 +3,21 @@ import {IParagraphOne, IParagraphPreferences, IRunOne, IWTextOne} from "./models
 export const realXml = `
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+            xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:o="urn:schemas-microsoft-com:office:office"
+            xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+            xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml"
+            xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
+            xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+            xmlns:w10="urn:schemas-microsoft-com:office:word"
+            xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+            xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
+            xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml"
+            xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex"
+            xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup"
+            xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
+            xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
             xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
             mc:Ignorable="w14 w15 w16se wp14">
     <w:body>
@@ -228,12 +243,12 @@ export const getDummyRun = (word: string): IRunOne => ({
           }
         }],
       'w:color': [{'$': {'w:val': 'F8F8F8'}}],
-      'w:spacing': [{'$': {'w:val': '-100'}}],
-      'w:w': [{'$': {'w:val': '50'}}],
-      'w:sz': [{'$': {'w:val': '21'}}],
-      'w:szCs': [{'$': {'w:val': '21'}}],
-      'w:shd':
-        [{'$': {'w:val': 'clear', 'w:color': 'auto', 'w:fill': 'FFFFFF'}}],
+      'w:spacing': [{'$': {'w:val': '-1'}}],
+      'w:w': [{'$': {'w:val': '1'}}],
+      'w:sz': [{'$': {'w:val': '1'}}],
+      'w:szCs': [{'$': {'w:val':'1'}}],
+      /*'w:shd':
+        [{'$': {'w:val': 'clear', 'w:color': 'auto', 'w:fill': 'FFFFFF'}}],*/
       'w:lang': [{'$': {'w:eastAsia': 'ru-RU'}}]
     }],
   'w:t': [

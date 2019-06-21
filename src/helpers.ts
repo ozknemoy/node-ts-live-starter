@@ -1,7 +1,17 @@
 import {IParagraphOne, IWTextOne, isRunOne, IRunOne} from "./models";
 import {getDummyRun} from "./mocks";
 import * as util from "util";
+import {join} from "path";
+import {dictWordRandom} from "./dict";
 
+export const FOLDER_DIST = join(process.cwd(), 'dist');
+export const FOLDER_CLIENT = 'client';
+export const FOLDER_SERVER = 'server';
+export const FILES_FOLDER_SERVER = 'files';
+
+export const WORKING_DIRECTORY = process.env.NODE_ENV === 'production'
+  ? FOLDER_DIST
+  : join(process.cwd(), '');
 export const ruRegexp = /[а-яА-ЯёЁ]+/;
 
 /*export function findRuText(str: string) {
@@ -198,16 +208,30 @@ export function extendWRunWithWT(originalRun: IRunOne , wT: IWTextOne): IRunOne 
   return {...originalRun, ...{'w:t': <any>wT}}
 }
 
+// Антиплагиат.ВУЗ / Antiplagiat.ru / Руконтекст
 export function pluralizeWRun(originalRun: IRunOne , wT: IWTextOne): IRunOne[] {
-  const originalTxtArr = wT._.split(' ');
+  // потом надо вернуть пробелы обратно
+  // ' 123 45  678 ' -> [" ", "123", "45", " ", "678", " "]
+  const originalTxtArr = wT._.split(/\s/).map(txt => txt === '' ? ' ' : txt);
+  const lastLetterIsNotSpace = wT._[wT._.length - 1] !== ' ';
+  const firstLetterIsSpace = wT._[0] === ' ';
   let ret: IRunOne[] = [];
+
   originalTxtArr.forEach((originalTxt, i) => {
-    ret.push(extendWRunWithWT(originalRun , runTwoToRunOne(originalTxt)));
-    if(originalTxt.trim() == '') return;
+    // пропускаю пустые текстовые ноды кроме originalTxt === ' ' ||
+    if(originalTxt === '') return;
+    let txt = originalTxt;
+    // возвращаю пробелы ...
+    // ...но не последнему слову в массиве и последний символ не пробел
+    if(!(lastLetterIsNotSpace && i === originalTxtArr.length - 1)) txt = txt + ' ';
+    // ... если первое слово в массиве и первый символ в массиве пробел
+    if(firstLetterIsSpace && i === 0) txt = ' ' + txt;
+    ret.push(extendWRunWithWT(originalRun , runTwoToRunOne(txt)));
+    if(__.isInvalidPrimitive(originalTxt)) return;
     // todo добавить логику по процентам уникальности. сейчас максимальная
     if(i> -1 && amountLettersEnough(originalTxt)) {
-      console.log("****************",originalTxt, '***');
-      ret.push(getDummyRun('777777777777'));
+      //console.log("****************",originalTxt, '***');
+      ret.push(getDummyRun(dictWordRandom()/*'777777777777'*/));
     }
   });
   //consoleNode(ret);
