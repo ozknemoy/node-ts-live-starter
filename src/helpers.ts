@@ -1,17 +1,17 @@
-import {IParagraphOne, IWTextOne, isRunOne, IRunOne} from "./models";
+import {IParagraphOne, IWTextOne, isWTextOne, IRunOne} from "./models";
 import {getDummyRun} from "./mocks";
 import * as util from "util";
 import {join} from "path";
 import {dictWordRandom} from "./dict";
 
 export const FOLDER_DIST = join(process.cwd(), 'dist');
-export const FOLDER_CLIENT = 'client';
-export const FOLDER_SERVER = 'server';
-export const FILES_FOLDER_SERVER = 'files';
-
 export const WORKING_DIRECTORY = process.env.NODE_ENV === 'production'
   ? FOLDER_DIST
   : join(process.cwd(), '');
+export const FILE_DIRECTORY = join(WORKING_DIRECTORY, 'assets');
+export const TEMP_FILE_DIRECTORY = FILE_DIRECTORY + 'temp';
+
+
 export const ruRegexp = /[а-яА-ЯёЁ]+/;
 
 /*export function findRuText(str: string) {
@@ -182,7 +182,16 @@ export let __ = {
   isInvalidValue(value) {
     return __.isInvalidPrimitive(value) || (Array.isArray(value) && !value.length)
   },
-
+  splitWords(str: string): string[] {
+    // ` 123 45  678
+    // 111 22   33 ` -> [" 123 ", "45  ", "678↵", "111 ", "22   ", "33 "]
+    // [\s]* любое количество пробелов, переновов, табов
+    // [^\s] любое количество НЕ [\s]
+    // не обрабатывается пустая строка поэтому отдельное условие
+    return typeof str === 'string' && str.trim() === ''
+      ? [str]
+      : str.match(/[\s]*[^\s]+[\s]*/g)
+  }
 };
 
 export function getRsidR() {
@@ -190,14 +199,14 @@ export function getRsidR() {
 }
 
 export function getAmountWord(str: string) {
-  return str.split(' ').length
+  return __.splitWords(str).length
 }
 
 export function amountLettersEnough(str: string, n = 1) {
   return !__.isInvalidPrimitive(str) && str.length > n
 }
 
-export function runTwoToRunOne(str: string): IWTextOne {
+export function wTextTwoToWTextOne(str: string): IWTextOne {
   return {
     _: str,
     '$': {'xml:space': 'preserve'}
@@ -210,26 +219,13 @@ export function extendWRunWithWT(originalRun: IRunOne , wT: IWTextOne): IRunOne 
 
 // Антиплагиат.ВУЗ / Antiplagiat.ru / Руконтекст
 export function pluralizeWRun(originalRun: IRunOne , wT: IWTextOne): IRunOne[] {
-  // потом надо вернуть пробелы обратно
-  // ' 123 45  678 ' -> [" ", "123", "45", " ", "678", " "]
-  const originalTxtArr = wT._.split(/\s/).map(txt => txt === '' ? ' ' : txt);
-  const lastLetterIsNotSpace = wT._[wT._.length - 1] !== ' ';
-  const firstLetterIsSpace = wT._[0] === ' ';
+  const originalTxtArr = __.splitWords(wT._);
   let ret: IRunOne[] = [];
 
   originalTxtArr.forEach((originalTxt, i) => {
-    // пропускаю пустые текстовые ноды кроме originalTxt === ' ' ||
-    if(originalTxt === '') return;
-    let txt = originalTxt;
-    // возвращаю пробелы ...
-    // ...но не последнему слову в массиве и последний символ не пробел
-    if(!(lastLetterIsNotSpace && i === originalTxtArr.length - 1)) txt = txt + ' ';
-    // ... если первое слово в массиве и первый символ в массиве пробел
-    if(firstLetterIsSpace && i === 0) txt = ' ' + txt;
-    ret.push(extendWRunWithWT(originalRun , runTwoToRunOne(txt)));
-    if(__.isInvalidPrimitive(originalTxt)) return;
+    ret.push(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxt)));
     // todo добавить логику по процентам уникальности. сейчас максимальная
-    if(i> -1 && amountLettersEnough(originalTxt)) {
+    if(amountLettersEnough(originalTxt)) {
       //console.log("****************",originalTxt, '***');
       ret.push(getDummyRun(dictWordRandom()/*'777777777777'*/));
     }

@@ -48,16 +48,16 @@ export interface IParagraphOne {
   'w:r': IRunOne[]
 }
 
-export function isParagraphOne(p: IParagraphOne | IParagraphTwo): p is IParagraphOne {
+export function isParagraphOneWithWRun(p: IParagraphOne | IParagraphTwo): p is IParagraphOne {
   return !!p['w:r']
 }
 
 
-export function isRunOne(wT: IWTextOne | IWTextTwo): wT is IWTextOne {
+export function isWTextOne(wT: IWTextOne | IWTextTwo): wT is IWTextOne {
   return typeof wT !== 'string'
 }
 
-export function isRunTwo(wT: IWTextOne | IWTextTwo): wT is IWTextTwo {
+export function isWTextTwo(wT: IWTextOne | IWTextTwo): wT is IWTextTwo {
   return typeof wT === 'string'
 }
 
