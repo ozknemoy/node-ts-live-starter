@@ -1,4 +1,4 @@
-import {IParagraphOne, IWTextOne, isWTextOne, IRunOne} from "./models";
+import {IParagraphOne, IWTextOne, isWTextOne, IRunOne, isWTextTwo, IWTextTwo} from "./models";
 import {getDummyRun} from "./mocks";
 import * as util from "util";
 import {join} from "path";
@@ -13,10 +13,6 @@ export const TEMP_FILE_DIRECTORY = FILE_DIRECTORY + 'temp';
 
 
 export const ruRegexp = /[а-яА-ЯёЁ]+/;
-
-/*export function findRuText(str: string) {
-  return
-}*/
 
 
 const _cf = (function () {
@@ -236,3 +232,7 @@ export function pluralizeWRun(originalRun: IRunOne , wT: IWTextOne): IRunOne[] {
 }
 
 export const consoleNode = (str) => console.log(util.inspect(str, false, null));
+
+export function getTextFromWText(wT: IWTextOne | IWTextTwo): string {
+  return isWTextTwo(wT) ? wTextTwoToWTextOne(wT)._ : wT._
+}
