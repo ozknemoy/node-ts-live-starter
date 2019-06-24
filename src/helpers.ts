@@ -5,7 +5,8 @@ import {join} from "path";
 import {dictWordRandom} from "./dict";
 
 export const FOLDER_DIST = join(process.cwd(), 'dist');
-export const WORKING_DIRECTORY = process.env.NODE_ENV === 'production'
+export const isDev = process.env.NODE_ENV !== 'production';
+export const WORKING_DIRECTORY = !isDev
   ? FOLDER_DIST
   : join(process.cwd(), '');
 export const FILE_DIRECTORY = join(WORKING_DIRECTORY, 'assets');
