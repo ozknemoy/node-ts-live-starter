@@ -1,22 +1,25 @@
 import {
+  __,
   amountLettersEnough, consoleNode,
-  extendWRunWithWT, FILE_DIRECTORY, pluralizeWRun, TEMP_FILE_DIRECTORY, WORKING_DIRECTORY,
+  extendWRunWithWT, FILE_DIRECTORY, TEMP_FILE_DIRECTORY, WORKING_DIRECTORY,
   wTextTwoToWTextOne
 } from "./helpers";
 import {
   IJsonXml, IParagraphOne, IParagraphTwo, IRunOne, isParagraphOneWithWRun, isWTextOne,
-  isWTextTwo
+  isWTextTwo, IWTextOne
 } from "./models";
 import * as path from "path";
 const fs = require('fs-extra');
 import JSZip = require('jszip');
-import {realXml} from "./mocks";
+import {getDummyRun, realXml} from "./mocks";
+import {createWordsMap, IDummyAmount} from "./create-words-map";
+import {dictWordRandom} from "./dict";
 const xml2js = require('xml2js');
 
 export class ConvertDocx {
   private originalDocxFileAsZip;
 
-  constructor(private filePath: string) {}
+  constructor(private filePath: string, private start: number, private end: number) {}
 
   create() {
     fs.readFile(path.join(FILE_DIRECTORY, this.filePath), (err, file) => {
@@ -38,7 +41,7 @@ export class ConvertDocx {
       // https://stuk.github.io/jszip/documentation/howto/read_zip.html
       JSZip.loadAsync(file).then((originalDocxFileAsZip) => {
         this.originalDocxFileAsZip = originalDocxFileAsZip;
-        this.readDocx(/*realXml*/fs.readFileSync(path.join(WORKING_DIRECTORY, filePath)));
+        this.readDocx(realXml/*fs.readFileSync(path.join(WORKING_DIRECTORY, filePath))*/);
       });
     });
   }
@@ -53,7 +56,7 @@ export class ConvertDocx {
 
   readDocx(xmlStr: string) {
     xml2js.parseString(xmlStr, {ignoreAttrs : true}, (err, jsonXmlNoAttrs: IJsonXml) => {
-      consoleNode(jsonXmlNoAttrs);
+      //consoleNode(jsonXmlNoAttrs);
       xml2js.parseString(xmlStr, (err, jsonXml: IJsonXml) => {
         //console.log(jsonXml);
         const parsedJsonXml = this.parseXml(jsonXml, jsonXmlNoAttrs);
@@ -66,9 +69,9 @@ export class ConvertDocx {
   }
 
   parseXml(jsonXml: IJsonXml, jsonXmlNoAttrs: IJsonXml) {
+    const wordsMap = createWordsMap(jsonXmlNoAttrs, this.start, this.end, undefined);
     jsonXml['w:document']['w:body'].forEach((bodyEl, iBodyEl) => {
       bodyEl['w:p'].forEach((p: IParagraphOne | IParagraphTwo, iP) => {
-        //consoleNode(p);
         if(isParagraphOneWithWRun(p)) {
           let newWR: IRunOne[] = [];
           p['w:r'].forEach((run: IRunOne, iRun)=> {
@@ -82,7 +85,6 @@ export class ConvertDocx {
                 newWT = wT;
               }
               // плагин не записал в свойство _ пустоту в теге <w:t xml:space='preserve'> </w:t>
-              // PR https://github.com/Leonidas-from-XIV/node-xml2js/pull/512
               if(newWT._ === undefined) {
                 // но у инстанса jsonXmlNoAttrs есть эта пустота
                 const emptyValue = jsonXmlNoAttrs['w:document']['w:body'][iBodyEl]['w:p'][iP]['w:r'][iRun]['w:t'][iWT];
@@ -92,15 +94,43 @@ export class ConvertDocx {
                   newWT._ = emptyValue._;
                 }
               }
-              if(amountLettersEnough(newWT._)) {
-                // разбиваю run
-                newWR = newWR.concat(pluralizeWRun(originalRun, newWT));
-              } else {
+              const originalTxtArr = __.splitWords(newWT._);
+              const map: IDummyAmount = wordsMap[iP][iRun];
+              console.log(map, originalTxtArr.length, newWT._);
+              if(__.isInvalidPrimitive(map.from)) {
+                // если мапы нет то добавляю весь newWT без разбиения
                 newWR.push(extendWRunWithWT(originalRun, newWT));
+              } else {
+                // [текст как есть] 456 [текст как есть]
+                //               1234567890
+                // map.from == 0  всегда    map.to === originalTxtArr.length
+
+                if(map.from === 0 && map.to === originalTxtArr.length) {
+                  // полный отрезок
+                  newWR = newWR.concat(this.pluralizeWRun(originalRun, originalTxtArr, map));
+                } else if(map.from === 0) {
+                  // не полный левый
+
+                  // не менять порядок!!!
+                  newWR = newWR.concat(this.pluralizeWRun(originalRun, originalTxtArr, map));
+                  newWR = newWR.concat(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxtArr.slice(map.to - 1).join(''))));
+                } else if(map.to === originalTxtArr.length ) {
+                  // не полный правый
+                  // не менять порядок!!!
+                  newWR = newWR.concat(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxtArr.slice(0, map.to - 1).join(''))));
+                  newWR = newWR.concat(this.pluralizeWRun(originalRun, originalTxtArr, map));
+                } else {
+                  console.log("---------------------------------ошибка алгоритма 44444444444-----------------------------------------\n", originalTxtArr, map);
+                }
               }
             });
           });
           p['w:r'] = newWR;
+          /*consoleNode(newWR.map(wr => {
+            delete wr['w:rPr'];
+            return wr
+          }));*/
+
         } else {
           // игнор пока
         }
@@ -109,11 +139,23 @@ export class ConvertDocx {
     return jsonXml
   }
 
+  pluralizeWRun(originalRun: IRunOne , originalTxtArr: string[], map: IDummyAmount): IRunOne[] {
+    let runs: IRunOne[] = [];
+    originalTxtArr.forEach((originalTxt, i) => {
+      // именно такое условие
+      if(i >= map.from && i < map.to) {
+        runs.push(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxt)));
+        runs.push(getDummyRun(/*dictWordRandom()*/'777777777777'));
+      }
+    });
+    return runs
+  }
+
   makeDocxCopyAndPushXml(xmlStr: string) {
     // а контейнере подменяю только document.xml
     this.originalDocxFileAsZip.file('word/document.xml', xmlStr);
     this.originalDocxFileAsZip.generateAsync({type: 'uint8array'}).then((d) => {
-      fs.writeFile(path.join(TEMP_FILE_DIRECTORY, this.filePath), d, ()=>{console.log('file writed');});
+      fs.writeFile(path.join(TEMP_FILE_DIRECTORY, this.filePath), d, ()=>{console.log('file writed ', path.join(TEMP_FILE_DIRECTORY, this.filePath));});
 
     });
   }

@@ -214,8 +214,8 @@ export function extendWRunWithWT(originalRun: IRunOne , wT: IWTextOne): IRunOne 
   return {...originalRun, ...{'w:t': <any>wT}}
 }
 
-// Антиплагиат.ВУЗ / Antiplagiat.ru / Руконтекст
-export function pluralizeWRun(originalRun: IRunOne , wT: IWTextOne): IRunOne[] {
+
+export function pluralizeAllWRun(originalRun: IRunOne , wT: IWTextOne): IRunOne[] {
   const originalTxtArr = __.splitWords(wT._);
   let ret: IRunOne[] = [];
 

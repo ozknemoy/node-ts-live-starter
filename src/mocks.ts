@@ -35,7 +35,7 @@ export const realXml = `
                     <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
                     <w:lang w:eastAsia="ru-RU"/>
                 </w:rPr>
-                <w:t>Oт</w:t>
+                <w:t>11 22 33 44 55 </w:t>
             </w:r>
             <w:proofErr w:type="spellEnd"/>
             <w:r w:rsidRPr="009B198C">
@@ -47,7 +47,18 @@ export const realXml = `
                     <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
                     <w:lang w:eastAsia="ru-RU"/>
                 </w:rPr>
-                <w:t xml:space="preserve"> космизма барокко к романтическому космизму Е.Г. </w:t>
+                <w:t> 111 222 333 444  </w:t>
+            </w:r>
+            <w:r w:rsidRPr="009B198C">
+                <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:eastAsia="Times New Roman" w:hAnsi="Arial" w:cs="Arial"/>
+                    <w:color w:val="292C31"/>
+                    <w:sz w:val="21"/>
+                    <w:szCs w:val="21"/>
+                    <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
+                    <w:lang w:eastAsia="ru-RU"/>
+                </w:rPr>
+                <w:t xml:space="preserve"> 111111 22222 3 44444 55555 6666 7777 </w:t>
             </w:r>
         </w:p>
         <w:p w:rsidR="00DE53E5" w:rsidRDefault="00422579" w:rsidP="009B198C">
@@ -260,7 +271,7 @@ export const getDummyRun = (word: string): IRunOne => ({
 
 });
 
-export const xmlSOriginalWTextOnlyJson = /*115 слов*/{
+export const xmlSOriginalWTextOnlyJson = {
   'w:document':
     {
       'w:body':
