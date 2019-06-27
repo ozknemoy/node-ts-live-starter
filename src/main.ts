@@ -12,7 +12,8 @@ fs.ensureDir(TEMP_FILE_DIRECTORY);
 
 
 //new ConvertDocx('s оригинал.docx', 40, 85).createTest('assets/s оригинал raw.xml');
-new ConvertDocx('s оригинал.docx', 40, 85).create();
+new ConvertDocx('s оригинал.docx', 3, 85).create();
 
+import './create-words-map.test'
 
 // test createWordsMap(jsonXml)

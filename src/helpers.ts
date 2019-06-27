@@ -211,7 +211,7 @@ export function wTextTwoToWTextOne(str: string): IWTextOne {
 }
 
 export function extendWRunWithWT(originalRun: IRunOne , wT: IWTextOne): IRunOne {
-  return {...originalRun, ...{'w:t': <any>wT}}
+  return {...originalRun, ...{'w:t': <any>[wT]}}
 }
 
 

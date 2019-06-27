@@ -96,10 +96,12 @@ export class ConvertDocx {
               }
               const originalTxtArr = __.splitWords(newWT._);
               const map: IDummyAmount = wordsMap[iP][iRun];
-              console.log(map, originalTxtArr.length, newWT._);
+              //console.log(map, originalTxtArr.length, newWT._);
               if(__.isInvalidPrimitive(map.from)) {
                 // если мапы нет то добавляю весь newWT без разбиения
+                //console.log("qqqqqqqqqqq", map.from, extendWRunWithWT(originalRun, newWT));
                 newWR.push(extendWRunWithWT(originalRun, newWT));
+                //console.log('++++ orig', extendWRunWithWT(originalRun, newWT));
               } else {
                 // [текст как есть] 456 [текст как есть]
                 //               1234567890
@@ -108,19 +110,29 @@ export class ConvertDocx {
                 if(map.from === 0 && map.to === originalTxtArr.length) {
                   // полный отрезок
                   newWR = newWR.concat(this.pluralizeWRun(originalRun, originalTxtArr, map));
+                  //console.log("++++center",this.pluralizeWRun(originalRun, originalTxtArr, map).map(d => d['w:t']));
                 } else if(map.from === 0) {
-                  // не полный левый
-
-                  // не менять порядок!!!
-                  newWR = newWR.concat(this.pluralizeWRun(originalRun, originalTxtArr, map));
-                  newWR = newWR.concat(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxtArr.slice(map.to - 1).join(''))));
-                } else if(map.to === originalTxtArr.length ) {
                   // не полный правый
                   // не менять порядок!!!
-                  newWR = newWR.concat(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxtArr.slice(0, map.to - 1).join(''))));
-                  newWR = newWR.concat(this.pluralizeWRun(originalRun, originalTxtArr, map));
+                  /*newWR = newWR.concat(this.pluralizeWRun(originalRun, originalTxtArr, map));
+                  newWR = newWR.concat(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxtArr.slice(map.to).join(''))));*/
+                  const right = []
+                    .concat(this.pluralizeWRun(originalRun, originalTxtArr, map))
+                    .concat(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxtArr.slice(map.to).join(''))));
+                  newWR = newWR.concat(right);
+                  //console.log("++++right", right.map(d => d['w:t'][0]._));
+                } else if(map.to === originalTxtArr.length ) {
+                  // не полный левый
+                  // не менять порядок!!!
+                  /*newWR = newWR.concat(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxtArr.slice(0, map.from).join(''))));
+                  newWR = newWR.concat(this.pluralizeWRun(originalRun, originalTxtArr, map));*/
+                  const left = []
+                    .concat(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxtArr.slice(0, map.from).join(''))))
+                    .concat(this.pluralizeWRun(originalRun, originalTxtArr, map));
+                  //console.log("++++left", left.map(d => d['w:t'][0]._));
+                  newWR = newWR.concat(left);
                 } else {
-                  console.log("---------------------------------ошибка алгоритма 44444444444-----------------------------------------\n", originalTxtArr, map);
+                  console.log("---------------------------------ошибка алгоритма 44444444444-----------------------------------------------------------------\n", originalTxtArr, map);
                 }
               }
             });
@@ -128,7 +140,7 @@ export class ConvertDocx {
           p['w:r'] = newWR;
           /*consoleNode(newWR.map(wr => {
             delete wr['w:rPr'];
-            return wr
+            return wr/!*['w:t']*!/
           }));*/
 
         } else {
@@ -145,7 +157,7 @@ export class ConvertDocx {
       // именно такое условие
       if(i >= map.from && i < map.to) {
         runs.push(extendWRunWithWT(originalRun , wTextTwoToWTextOne(originalTxt)));
-        runs.push(getDummyRun(/*dictWordRandom()*/'777777777777'));
+        runs.push(getDummyRun(dictWordRandom() /*'77777777'*/));
       }
     });
     return runs

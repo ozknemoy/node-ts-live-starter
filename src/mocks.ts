@@ -35,7 +35,7 @@ export const realXml = `
                     <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
                     <w:lang w:eastAsia="ru-RU"/>
                 </w:rPr>
-                <w:t>11 22 33 44 55 </w:t>
+                <w:t>1_1 1_2 1_3 1_4 1_5 </w:t>
             </w:r>
             <w:proofErr w:type="spellEnd"/>
             <w:r w:rsidRPr="009B198C">
@@ -47,7 +47,7 @@ export const realXml = `
                     <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
                     <w:lang w:eastAsia="ru-RU"/>
                 </w:rPr>
-                <w:t> 111 222 333 444  </w:t>
+                <w:t> 2_1 2_2 2_3 2_4  </w:t>
             </w:r>
             <w:r w:rsidRPr="009B198C">
                 <w:rPr>
@@ -58,7 +58,7 @@ export const realXml = `
                     <w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/>
                     <w:lang w:eastAsia="ru-RU"/>
                 </w:rPr>
-                <w:t xml:space="preserve"> 111111 22222 3 44444 55555 6666 7777 </w:t>
+                <w:t xml:space="preserve"> 3_1 3_2 3_3 3_4 3_5 3_6 3_7 </w:t>
             </w:r>
         </w:p>
         <w:p w:rsidR="00DE53E5" w:rsidRDefault="00422579" w:rsidP="009B198C">
@@ -264,7 +264,7 @@ export const getDummyRun = (word: string): IRunOne => ({
     }],
   'w:t': [
     <IWTextOne>{
-      _: ' ' + word + ' ',
+      _: word + ' ',
       '$': {'xml:space': 'preserve'}
     }
   ]
