@@ -1,4 +1,10 @@
 {
+  "compilerOptions": {
+    "removeComments": true,
+    "target": "es2017",
+    "sourceMap": false
+  },
   "extends": "./tsconfig.json",
+
   "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
 }

@@ -1,11 +1,12 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "xml-parser-be",
   "private": true,
-  "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "version": "0.1.0",
+  "description": "NestJS repository",
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
+    "build:bundle": "npm run build && webpack",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "concurrently --handle-input \"wait-on dist/main.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
@@ -24,9 +25,14 @@
     "@nestjs/microservices": "^6.0.4",
     "@nestjs/platform-express": "^6.0.4",
     "@nestjs/websockets": "^6.0.4",
+    "express-rate-limit": "^5.0.0",
+    "fs-extra": "^8.1.0",
+    "helmet": "^3.18.0",
+    "jszip": "^3.2.1",
     "reflect-metadata": "0.1.13",
     "rimraf": "2.6.3",
-    "rxjs": "6.4.0"
+    "rxjs": "6.4.0",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "@nestjs/testing": "6.1.1",
@@ -44,7 +50,9 @@
     "tsconfig-paths": "3.8.0",
     "tslint": "5.16.0",
     "typescript": "3.4.3",
-    "wait-on": "^3.2.0"
+    "wait-on": "^3.2.0",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5"
   },
   "jest": {
     "moduleFileExtensions": [
