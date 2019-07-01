@@ -16,7 +16,7 @@ angular.module('docx-upload', [])
         element.bind('change', function () {
           var formData = new FormData();
           formData.append('file', element[0].files[0]);
-          httpService.postFile('upload_image.php', formData).then(function (d) {
+          httpService.postFile('file-parse/uniqueize-2000/40/85', formData).then(function (d) {
 
             console.log(d);
           });
@@ -27,13 +27,23 @@ angular.module('docx-upload', [])
   })
 
   .service('httpService', function ($http) {
+    function saveFileAs(response) {
+      var contentDisposition = response.headers("content-disposition");
+      //Retrieve file name from content-disposition
+      var fileName = contentDisposition.substr(contentDisposition.indexOf("filename=") + 9);
+      fileName = fileName.replace(/\"/g, "");
+      var contentType = response.headers("content-type");
+      var blob = new Blob([response.data], { type: contentType });
+      saveAs(blob, fileName);
+    }
+
     this.postFile = function (url, file) {
       return $http({
         url: url,
         method: "POST",
         data: file,
         headers: {'Content-Type': undefined}
-      });
+      }).then(file => saveFileAs(file));
     };
   })
 
