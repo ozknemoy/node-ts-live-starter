@@ -6,6 +6,9 @@ import {CorsOptions} from "@nestjs/common/interfaces/external/cors-options.inter
 import {HttpException, HttpStatus} from "@nestjs/common";
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
+import * as path from "path";
+import {NestExpressApplication} from "@nestjs/platform-express";
+import * as hbs from 'hbs';
 
 const fs = require('fs-extra');
 fs.ensureDir(FILE_DIRECTORY);
@@ -32,7 +35,13 @@ function setCors(app) {
 }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  //https://docs.nestjs.com/techniques/mvc
+  app.useStaticAssets(path.join(__dirname, '..', 'public'));
+  app.setBaseViewsDir(path.join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
+  hbs.registerPartials(path.join(__dirname, '..', 'views/partials'));
+
   if(!isDev) {
     setCors(app);
     app.use(helmet());
