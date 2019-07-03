@@ -2,7 +2,7 @@ export interface IJsonXml {
   'w:document': {
     $: { [key: string]: string }
     'w:body': {
-      'w:p': (IParagraphOne | IParagraphTwo)[]
+      'w:p'?: (IParagraphOne | IParagraphTwo)[]
       'w:sectPr': {
         '$': { 'w:rsidR': string },
         'w:pgSz': { '$': { 'w:w': string, 'w:h': string } }[],
@@ -20,6 +20,7 @@ export interface IJsonXml {
         'w:cols': { '$': { 'w:space': string } }[],
         'w:docGrid': { '$': { 'w:linePitch': string } }[]
       }[]
+      'w:tbl'?: any
     }[]
   }
 }
@@ -27,7 +28,8 @@ export interface IJsonXml {
 export interface IRunOne {
   '$': { 'w:rsidR'?: string, 'w:rsidRPr'?: string },
   'w:rPr': IParagraphPreferences[],
-  'w:t': (IWTextOne | IWTextTwo)[]
+  'w:t'?: (IWTextOne | IWTextTwo)[]
+  'w:drawing'?: any
 }
 export interface IParagraphOne {
   '$': IParagraphRoot,
@@ -50,6 +52,10 @@ export interface IParagraphOne {
 
 export function isParagraphOneWithWRun(p: IParagraphOne | IParagraphTwo): p is IParagraphOne {
   return !!p['w:r']
+}
+
+export function isRunWithWT(r: IRunOne): boolean {
+  return !!r['w:t']
 }
 
 

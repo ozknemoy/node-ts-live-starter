@@ -1,9 +1,15 @@
-import {Controller, Get, HttpException, Param, Post, Query, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {
+  Controller, Get, HttpException, HttpStatus, Param, Post, Query, Res, UploadedFile,
+  UseInterceptors
+} from '@nestjs/common';
 import {FileInterceptor} from "@nestjs/platform-express";
 import {IFileUpload} from "../types/file-upload";
 import {FileParseService} from "./file-parse.service";
+import {consoleNode} from "../algo/helpers";
 
 export function handleErrorAndManualSend(err, resp) {
+  const status = (err instanceof HttpException) ? err.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
+  resp.status(status);
   return resp.send(err);
 }
 

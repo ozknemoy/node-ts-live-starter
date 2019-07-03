@@ -5,14 +5,14 @@ import {
   wTextTwoToWTextOne
 } from "./helpers";
 import {
-  IJsonXml, IParagraphOne, IParagraphTwo, IRunOne, isParagraphOneWithWRun, isWTextOne,
+  IJsonXml, IParagraphOne, IParagraphTwo, IRunOne, isParagraphOneWithWRun, isRunWithWT, isWTextOne,
   isWTextTwo
 } from "./models";
 import * as path from "path";
 const fs = require('fs-extra');
 import JSZip = require('jszip');
 import {getDummyRun, realXml} from "./mocks";
-import {createWordsMap, IDummyAmount} from "./create-words-map";
+import {createWordsMap, getFileParseError, IDummyAmount} from "./create-words-map";
 import {dictWordRandom} from "./dict";
 import {HttpException, HttpStatus} from "@nestjs/common";
 const xml2js = require('xml2js');
@@ -73,15 +73,17 @@ export class ConvertDocx {
     return new Promise((res, fail) =>
       JSZip.loadAsync(file).then((originalDocxFileAsZip) => {
         this.originalDocxFileAsZip = originalDocxFileAsZip;
-        originalDocxFileAsZip.file('word/document.xml').async('string').then((docXml) => {
+        originalDocxFileAsZip.file('word/document.xml').async('string').then((docXml) =>
           this._getStats(docXml).then((wordsAmount: number) => {
             if(wordsAmount <= FREE_WORD_AMOUNT) {
               res(this.readDocx(docXml))
             } else {
               fail(new HttpException(`Документ содержит более ${FREE_WORD_AMOUNT} слов (удалите ${wordsAmount - FREE_WORD_AMOUNT} и попробуйте заново)`, HttpStatus.NOT_ACCEPTABLE))
             }
-          });
-        });
+          },
+            (e) => fail(e)
+          )
+        );
       })
     );
   }
@@ -131,23 +133,27 @@ export class ConvertDocx {
     xml2js.parseString(xmlStr, {ignoreAttrs : true}, (err, jsonXmlNoAttrs: IJsonXml) => {
       //consoleNode(jsonXmlNoAttrs);
       xml2js.parseString(xmlStr, (err, jsonXml: IJsonXml) => {
-        //console.log(jsonXml);
         const parsedJsonXml = this.parseXml(jsonXml, jsonXmlNoAttrs);
         const builder = new xml2js.Builder({renderOpts: {pretty: false}});
         const xml = builder.buildObject(parsedJsonXml);
-        //console.log(xml);
         this.makeDocxCopyAndPushXml(xml);
       });
     });
   }
 
   parseXml(jsonXml: IJsonXml, jsonXmlNoAttrs: IJsonXml) {
+    try {
     const wordsMap = createWordsMap(jsonXmlNoAttrs, this.start, this.end, undefined)[0];
     jsonXml['w:document']['w:body'].forEach((bodyEl, iBodyEl) => {
+      if(!bodyEl['w:p']) return;
       bodyEl['w:p'].forEach((p: IParagraphOne | IParagraphTwo, iP) => {
         if(isParagraphOneWithWRun(p)) {
           let newWR: IRunOne[] = [];
           p['w:r'].forEach((run: IRunOne, iRun)=> {
+            // если у ран нет текста то просто копирую его без обработки
+            if(!isRunWithWT(run)) {
+              return newWR.push(run);
+            }
             run['w:t'].forEach((wT, iWT) => {
               const originalRun: IRunOne = {...run};
               let newWT;
@@ -169,12 +175,9 @@ export class ConvertDocx {
               }
               const originalTxtArr = __.splitWords(newWT._);
               const map: IDummyAmount = wordsMap[iP][iRun];
-              //console.log(map, originalTxtArr.length, newWT._);
               if(__.isInvalidPrimitive(map.from)) {
                 // если мапы нет то добавляю весь newWT без разбиения
-                //console.log("qqqqqqqqqqq", map.from, extendWRunWithWT(originalRun, newWT));
                 newWR.push(extendWRunWithWT(originalRun, newWT));
-                //console.log('++++ orig', extendWRunWithWT(originalRun, newWT));
               } else {
                 // [текст как есть] 456 [текст как есть]
                 //               1234567890
@@ -217,11 +220,14 @@ export class ConvertDocx {
           }));*/
 
         } else {
-          // игнор пока
+          // ничего не делаю если вдруг сюда зайдёт
         }
       })
     });
     return jsonXml
+    } catch(e) {
+      throw new HttpException('Документ не разобрался', HttpStatus.UNPROCESSABLE_ENTITY)
+    }
   }
 
   pluralizeWRun(originalRun: IRunOne , originalTxtArr: string[], map: IDummyAmount): IRunOne[] {

@@ -16,7 +16,7 @@ export class FileParseService {
 
   private checkDocx(file: IFileUpload, from: number, to: number) {
     if(!file || Number.isNaN(from) || Number.isNaN(to)) {
-      return new HttpException('Кривой запрос dev', HttpStatus.BAD_REQUEST);
+      return new HttpException('Кривой запрос', HttpStatus.BAD_REQUEST);
     } else if(file.mimetype !== this.docxMime) {
       return new HttpException('Кривой формат. Загружать можно только DOCX', HttpStatus.BAD_REQUEST);
     } else if(file.size > 20 * 1024 * 1024) {
