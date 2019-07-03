@@ -18,7 +18,7 @@ const aRoot = {
 
   },
   template: `
-  <div class="button" ngf-select="$ctrl.upload($file)" ngf-accept="'.docx'">Upload on file select</div>
+  <div class="button" ngf-select="$ctrl.upload($file)" ngf-accept="'.docx'">Нажмите для выбора файла</div>
   <div range-slider min="1" max="100" step="1"
        prevent-equal-min-max
        attach-handle-values="true"
