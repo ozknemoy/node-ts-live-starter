@@ -1,14 +1,17 @@
 import {IWTextOne, IRunOne, isWTextTwo, IWTextTwo} from "./models";
 import * as util from "util";
 import {join} from "path";
+require('dotenv').config();
 
 export const FOLDER_DIST = join(process.cwd(), 'dist');
 export const isDev = process.env.NODE_ENV === 'development';
 export const WORKING_DIRECTORY = !isDev
   ? FOLDER_DIST
   : join(process.cwd(), '');
+
 export const FILE_DIRECTORY = join(WORKING_DIRECTORY, 'temp-file');
 export const TEMP_FILE_DIRECTORY = FILE_DIRECTORY + '-handled';
+console.log(process.env.NODE_ENV, WORKING_DIRECTORY);
 
 
 export const ruRegexp = /[а-яА-ЯёЁ]+/;
