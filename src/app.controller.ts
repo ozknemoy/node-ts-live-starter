@@ -1,5 +1,7 @@
-import {Controller, Get, Render} from '@nestjs/common';
-import { AppService } from './app.service';
+import {Controller, Get, Param, Render} from '@nestjs/common';
+import {AppService, IFilePayInfo} from './app.service';
+import DocxFile from "./bd/docx-file.model";
+import {getAfterPayUrl, getForPayUrl} from "./algo/helpers";
 
 @Controller()
 export class AppController {
@@ -8,7 +10,7 @@ export class AppController {
   @Get()
   @Render('index')
   index() {
-    return { message: this.appService.getHello() };
+    return {};
   }
 
   @Get('about')
@@ -20,9 +22,36 @@ export class AppController {
       }
     };
   }
+
   @Get('docx-upload')
   @Render('docx-upload')
   docxUpload() {
     return {};
+  }
+
+  @Get('pay/:fileName')
+  @Render('pay')
+  pay(@Param('fileName') fileName: string) {
+    return {
+      $ctrl: {
+        fileName
+      }
+    };
+  }
+
+  @Get('handled-file/:fileName')
+  @Render('handled-file')
+  async handledFile(@Param('fileName') fileName: string) {
+    const filePayInfo: IFilePayInfo = await this.appService.getHandledFile(fileName);
+    console.log(filePayInfo
+    );
+    return {
+      $ctrl: {
+        fileName,
+        filePayInfo,
+        urlForPay: getForPayUrl(fileName),
+        urlFile: getAfterPayUrl(fileName),
+      }
+    };
   }
 }

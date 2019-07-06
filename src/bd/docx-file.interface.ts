@@ -2,8 +2,9 @@
 
 
 export class IDocxFile {
-  id: number;
-  uuid: string = null;
-  email: string = null;
+  constructor(public id: number, public hash: string, public name: string, public email: string) {}
+
   payed: boolean = false;
+  parsed: number = 1;
+  deleted: boolean = false;
 }

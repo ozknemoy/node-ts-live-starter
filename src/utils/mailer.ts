@@ -1,50 +1,80 @@
-import {TEMP_FILE_DIRECTORY} from "../algo/helpers";
+import {
+  DOMEN_PROD, FILE_DIRECTORY, getAfterPayUrl, getForPayUrl, ORIGIN,
+} from "../algo/helpers";
 import {DOCX_MIME} from "../file-parse/file-parse.service";
 import {logger} from "./winston-logger";
+import {HttpException, HttpStatus} from "@nestjs/common";
 
 require('dotenv').config();
 const path = require('path');
 const email = require("emailjs");
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-const server = email.server.connect({
-  user: "ozk.nemoy",
-  password: process.env.EMAIL_PASSWORD,
-  host: "smtp.mail.ru",
-  ssl: true
-});
+//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+const mailName = 'ozk.nemoy';
 
-function sendEmailWithFile(to, fileName) {
-  const message = {
-    text: "В течении 5 дней вы можете повторно сделать обработку, изменив степень уникальности",
-    to,
-    from: "admin <ozk.nemoy@mail.ru>",
-    //cc: "",
-    subject: "Документ с сайта " + process.env.DOMEN,
-    attachment:
-      [
-        //{data: "<html>i <i>hope</i> this works!</html>", alternative: true},
-        {path: path.join(TEMP_FILE_DIRECTORY, fileName), type: DOCX_MIME, name: fileName}
-      ]
-  };
+class EmailSend {
+  from = `${DOMEN_PROD} <${mailName}@mail.ru>`;
 
-// send the message and get a callback with an error or details of the message that was sent
-  server.send(message, function (err, message) {
-    if(err) {
-      logger.error(`Инфа по файлу ${fileName} не отправлена на мыло ${to}. ${err.toString()}`)
-    } else {
-      console.log(message);
-    }
-
+  private server = email.server.connect({
+    user: mailName,
+    password: process.env.EMAIL_PASSWORD,
+    host: 'smtp.mail.ru',
+    ssl: true
   });
 
-// you can continue to send more messages with successive calls to 'server.send',
-// they will be queued on the same smtp connection
+  sendFinalWithFile(to: string, fileName: string, originalName: string) {
+    const html = `
+    <html>
+      В течении 5 дней вы можете повторно сделать обработку, изменив степень уникальности.
+      <a href="${getAfterPayUrl(fileName)}">Повторно обработать</a>
+    </html>`;
+    const message = {
+      //text: '',
+      to,
+      from: this.from,
+      subject: "Ваш готовый документ с сайта " + DOMEN_PROD,
+      attachment: [
+        {data: html, alternative: true},
+        {path: path.join(FILE_DIRECTORY, fileName), type: DOCX_MIME, name: originalName}
+      ]
+    };
 
-// or you can create a new server connection with 'email.server.connect'
-// to asynchronously send individual emails instead of a queue
+    return this.send(message, `Инфа по файлу ${fileName} не отправлена на мыло ${to}.`)
+  }
+
+  sendBeforePay(to: string, fileName: string, originalName: string) {
+    const html = `
+    <html>
+      Уникальность документа ${originalName} повышена. После оплаты новый документ станет доступным для скачивания и изменения уникальности. Так же он будет отправлен на указанный e-mail.
+            <a href="${getForPayUrl(fileName)}">Перейти к оплате</a>
+    </html>
+    `;
+    const message = {
+      to,
+      from: this.from,
+      subject: `Ваш документ "${originalName}" успешно обработан`,
+      attachment: [{data: html, alternative: true},]
+    };
+
+    return this.send(message, `Инфа по файлу ${fileName} не отправлена на мыло ${to}.`)
+  }
+
+  send(message, errorTxt: string) {
+    return new Promise((res, fail) =>
+      this.server.send(message, function (err, messageObj) {
+        if (err) {
+          logger.error(`${errorTxt} ${err.toString()}`);
+          console.log('----------fail');
+          fail(new HttpException('Ошибка отправки Email', HttpStatus.BAD_GATEWAY));
+        } else {
+          //console.log(messageObj);
+          res();
+        }
+      })
+    )
+  }
 }
 
-
-sendEmailWithFile('ozk.nemoyy@yandex.ru', 'table-only.doc');
+export const EMAIL_SEND = new EmailSend();
+//EMAIL_SEND.sendFinalWithFile('ozk.nemoyy@yandex.ru', 'table-only.doc');
 

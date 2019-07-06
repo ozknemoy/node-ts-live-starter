@@ -2,6 +2,7 @@ import {IWTextOne, IRunOne, isWTextTwo, IWTextTwo} from "./models";
 import * as util from "util";
 import {join} from "path";
 require('dotenv').config();
+const crypto = require('crypto');
 
 export const FOLDER_DIST = join(process.cwd(), 'dist');
 export const isDev = process.env.NODE_ENV === 'development';
@@ -11,12 +12,18 @@ export const WORKING_DIRECTORY = !isDev
 
 export const FILE_DIRECTORY = join(WORKING_DIRECTORY, 'temp-file');
 export const TEMP_FILE_DIRECTORY = FILE_DIRECTORY + '-handled';
-console.log(process.env.NODE_ENV, WORKING_DIRECTORY);
+export const DOMEN_PROD = 'test-domen.ru';
+export const DOMEN = isDev ? 'localhost:3001' : DOMEN_PROD;
+export const ORIGIN = 'http://' + DOMEN;
 
 
 export const ruRegexp = /[а-яА-ЯёЁ]+/;
 
-
+export const getAfterPayUrl = (fileName: string) => `${ORIGIN}/handled-file/${fileName}`;
+export const getForPayUrl = (fileName: string) => `${ORIGIN}/pay/${fileName}`;
+export function getFileHash(buffer: Buffer) {
+  return crypto.createHash('SHA1').update(buffer.toString()).digest("hex")
+}
 const _cf = (function () {
   function _shift(x) {
     const parts = x.toString().split('.');

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="docx-upload">
+<head>
+  <meta charset="utf-8" />
+  <title>Оплата</title>
+</head>
+<body>
+{{> nav }}
+
+{{#if $ctrl.filePayInfo.payed}}
+  <h1>Здесь вы может поиграться с уникальностью своего файла</h1>
+
+  <docs-reunique file-name="{{ $ctrl.fileName}}"></docs-reunique>
+  {{> angular_imports}}
+
+{{/if}}
+{{#if $ctrl.filePayInfo.existButNotPayed}}
+  Файл не оплачен
+  <a href="{{$ctrl.urlForPay}}">Оплатить</a>
+{{/if}}
+{{#if $ctrl.filePayInfo.notExist}}
+  Файл не существует
+{{/if}}
+
+</body>
+</html>

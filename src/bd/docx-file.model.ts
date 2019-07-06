@@ -17,8 +17,11 @@ export default class DocxFile extends Model<DocxFile> implements IDocxFile {
   @PrimaryKey
   @Column id: number;
 
-  @Column({type: DataType.UUID}) uuid;
+  @Column({unique: true}) hash: string;
+  @Column name: string;
   @Column email: string;
   @Column payed: boolean;
+  @Column parsed: number;
+  @Column deleted: boolean;
 
 }

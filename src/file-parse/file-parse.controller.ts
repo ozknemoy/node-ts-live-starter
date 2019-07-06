@@ -4,7 +4,7 @@ import {
 } from '@nestjs/common';
 import {FileInterceptor} from "@nestjs/platform-express";
 import {IFileUpload} from "../types/file-upload";
-import {FileParseService} from "./file-parse.service";
+import {DOCX_MIME, FileParseService} from "./file-parse.service";
 import {consoleNode} from "../algo/helpers";
 
 export function handleErrorAndManualSend(err, resp) {
@@ -19,28 +19,57 @@ export class FileParseController {
 
   constructor(private readonly fileParseService: FileParseService) {}
 
-  @Get(':id')
-  getSecondTime() {
-    //return this.fileParseService.getHello();
-  }
-
-  @Post('uniqueize-2000/:from/:to')
-  @UseInterceptors(FileInterceptor('file'))
-  uploadFileForParse2000(
-    @UploadedFile() file: IFileUpload,
+  @Post('reuniquelize/:from/:to/:fileName')
+  reuniquelize(
     @Res() resp,
+    @Param('fileName') fileName: string,
     @Param('from') from: string,
-    @Param('to') to: string) {
-    return this.fileParseService.uniqueizeFree(file, +from, +to).then(
-      buffer => this.beforeSendBackDocx(buffer, file, resp, from, to),
+    @Param('to') to: string
+  ) {
+    return this.fileParseService.reuniquelize(+from, +to, fileName).then(
+      buffer => this.beforeSendBackDocx(buffer, resp, +from, +to),
       err => handleErrorAndManualSend(err, resp)
     );
   }
 
-  beforeSendBackDocx(buffer, file, resp, from, to) {
-    resp.contentType(`${file.mimetype};charset=utf-8`);
+  @Post('uniquelize-free/:from/:to')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFileForParseFree(
+    @UploadedFile() file: IFileUpload,
+    @Res() resp,
+    @Param('from') from: string,
+    @Param('to') to: string) {
+    return this.fileParseService.uniquelizeFree(file, +from, +to).then(
+      buffer => this.beforeSendBackDocx(buffer, resp, +from, +to),
+      err => handleErrorAndManualSend(err, resp)
+    );
+  }
+
+  @Post('uniquelize/:from/:to')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFileForParse(
+    @UploadedFile() file: IFileUpload,
+    @Res() resp,
+    @Param('from') from: string,
+    @Param('to') to: string,
+    @Query('email') email: string) {
+    return this.fileParseService.uniquelize(file, +from, +to, email).then(
+      url => {resp.send({url})},
+      err => handleErrorAndManualSend(err, resp)
+    );
+  }
+
+  beforeSendBackDocx(buffer, resp, from: number, to: number) {
+    resp.contentType(`${DOCX_MIME};charset=utf-8`);
     resp.setHeader('content-disposition', `${this.contentDisp}unique-${from}-${to}`);
     return resp.send(buffer);
   }
 
+  @Post('pay-for-file-from-acquiring/:fileName')
+  pay(@Param('fileName') fileName: string) {
+    return this.fileParseService.pay(fileName)/*.then(
+      buffer => this.beforeSendBackDocx(buffer, resp, +from, +to),
+      err => err
+    );*/
+  }
 }

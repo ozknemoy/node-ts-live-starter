@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Оплата</title>
+</head>
+<body>
+{{> nav }}
+<h2>Ваш документ {{ $ctrl.fileName}} успешно обработан.</h2>
+<button onclick="pay('{{$ctrl.fileName}}')">оплатить</button>
+<small>после нажатия кнопки на почту прилетит письмо</small>
+<script>
+  function pay(fileName) {
+    console.log('pay', fileName);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/file-parse/pay-for-file-from-acquiring/' + fileName, false);
+    xhr.send();
+  }
+</script>
+</body>
+</html>

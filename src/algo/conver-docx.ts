@@ -12,11 +12,10 @@ import * as path from "path";
 const fs = require('fs-extra');
 import JSZip = require('jszip');
 import {getDummyRun, realXml} from "./mocks";
-import {createWordsMap, getFileParseError, IDummyAmount} from "./create-words-map";
+import {createWordsMap, IDummyAmount} from "./create-words-map";
 import {dictWordRandom} from "./dict";
 import {HttpException, HttpStatus} from "@nestjs/common";
 const xml2js = require('xml2js');
-
 export const FREE_WORD_AMOUNT = 1500;
 
 export interface IDocxStats {
@@ -41,9 +40,9 @@ export interface IDocxStats {
 export class ConvertDocx {
   private originalDocxFileAsZip;
 
-  constructor(private filePath: string, private start: number, private end: number) {}
+  constructor(private start: number, private end: number) {}
 
-  create() {
+  /*createOld() {
     fs.readFile(path.join(FILE_DIRECTORY, this.filePath), (err, file) => {
       if(err) throw new Error('ошибка чтения файла');
       // https://stuk.github.io/jszip/documentation/howto/read_zip.html
@@ -54,21 +53,8 @@ export class ConvertDocx {
         });
       });
     });
-  }
+  }*/
 
-  createTest(filePath: string) {
-    // беру тестовый докс в который позже сделаю инжект
-    fs.readFile(path.join(FILE_DIRECTORY, this.filePath), (err, file) => {
-      if(err) throw new Error('ошибка чтения файла');
-      // https://stuk.github.io/jszip/documentation/howto/read_zip.html
-      JSZip.loadAsync(file).then((originalDocxFileAsZip) => {
-        this.originalDocxFileAsZip = originalDocxFileAsZip;
-        this.readDocx(realXml/*fs.readFileSync(path.join(WORKING_DIRECTORY, filePath))*/);
-      });
-    });
-  }
-
-  
   public createFree(file) {
     return new Promise((res, fail) =>
       JSZip.loadAsync(file).then((originalDocxFileAsZip) => {
@@ -88,6 +74,17 @@ export class ConvertDocx {
     );
   }
 
+  public create(file: Buffer) {
+    return new Promise((res, fail) =>
+      JSZip.loadAsync(file).then((originalDocxFileAsZip) => {
+        this.originalDocxFileAsZip = originalDocxFileAsZip;
+        originalDocxFileAsZip.file('word/document.xml').async('string').then((docXml) => {
+          res(this.readDocx(docXml))
+      });
+      },(e) => fail(e))
+    );
+  }
+
   private checkParseDocxError(err, failPromise) {
     if(err) failPromise(err)
   }
@@ -101,6 +98,8 @@ export class ConvertDocx {
     )
   }
 
+  // берет числа самого файла. но майкрософт врёт
+  // @deprecated
   private getStatsOld(originalDocxFileAsZip) {
     return new Promise((res, fail) =>
       originalDocxFileAsZip.file('docProps/app.xml').async('string').then((docPropsXml) => {
@@ -127,18 +126,6 @@ export class ConvertDocx {
       })
     )
 
-  }
-
-  readDocxAndSaveDev(xmlStr: string) {
-    xml2js.parseString(xmlStr, {ignoreAttrs : true}, (err, jsonXmlNoAttrs: IJsonXml) => {
-      //consoleNode(jsonXmlNoAttrs);
-      xml2js.parseString(xmlStr, (err, jsonXml: IJsonXml) => {
-        const parsedJsonXml = this.parseXml(jsonXml, jsonXmlNoAttrs);
-        const builder = new xml2js.Builder({renderOpts: {pretty: false}});
-        const xml = builder.buildObject(parsedJsonXml);
-        this.makeDocxCopyAndPushXml(xml);
-      });
-    });
   }
 
   parseXml(jsonXml: IJsonXml, jsonXmlNoAttrs: IJsonXml) {
@@ -242,11 +229,37 @@ export class ConvertDocx {
     return runs
   }
 
+
+
+  createTest(filePath = 's оригинал.docx') {
+    // беру тестовый докс в который позже сделаю инжект
+    fs.readFile(path.join(FILE_DIRECTORY, filePath), (err, file) => {
+      if(err) throw new Error('ошибка чтения файла');
+      // https://stuk.github.io/jszip/documentation/howto/read_zip.html
+      JSZip.loadAsync(file).then((originalDocxFileAsZip) => {
+        this.originalDocxFileAsZip = originalDocxFileAsZip;
+        this.readDocx(realXml/*fs.readFileSync(path.join(WORKING_DIRECTORY, filePath))*/);
+      });
+    });
+  }
+
+  readDocxAndSaveDev(xmlStr: string) {
+    xml2js.parseString(xmlStr, {ignoreAttrs : true}, (err, jsonXmlNoAttrs: IJsonXml) => {
+      //consoleNode(jsonXmlNoAttrs);
+      xml2js.parseString(xmlStr, (err, jsonXml: IJsonXml) => {
+        const parsedJsonXml = this.parseXml(jsonXml, jsonXmlNoAttrs);
+        const builder = new xml2js.Builder({renderOpts: {pretty: false}});
+        const xml = builder.buildObject(parsedJsonXml);
+        this.makeDocxCopyAndPushXml(xml);
+      });
+    });
+  }
   makeDocxCopyAndPushXml(xmlStr: string) {
     // а контейнере подменяю только document.xml
     this.originalDocxFileAsZip.file('word/document.xml', xmlStr);
     this.originalDocxFileAsZip.generateAsync({type: 'uint8array'}).then((d) => {
-      fs.writeFile(path.join(TEMP_FILE_DIRECTORY, this.filePath), d, ()=>{console.log('file writed ', path.join(TEMP_FILE_DIRECTORY, this.filePath));});
+      fs.writeFile(path.join(TEMP_FILE_DIRECTORY, 's оригинал.docx'), d,
+        ()=>{console.log('file writed ', path.join(TEMP_FILE_DIRECTORY, 's оригинал.docx'));});
 
     });
   }

@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-//require('dotenv').config();
+require('dotenv').config();
 import { AppModule } from './app.module';
 import './algo/create-words-map.test'
 import {FILE_DIRECTORY, isDev, TEMP_FILE_DIRECTORY} from "./algo/helpers";
