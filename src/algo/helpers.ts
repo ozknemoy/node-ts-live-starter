@@ -4,17 +4,13 @@ import {join} from "path";
 require('dotenv').config();
 const crypto = require('crypto');
 
-export const FOLDER_DIST = join(process.cwd(), 'dist');
 export const isDev = process.env.NODE_ENV === 'development';
-export const WORKING_DIRECTORY = !isDev
-  ? FOLDER_DIST
-  : join(process.cwd(), '');
-
+export const WORKING_DIRECTORY = process.cwd();
 export const FILE_DIRECTORY = join(WORKING_DIRECTORY, 'temp-file');
 export const TEMP_FILE_DIRECTORY = FILE_DIRECTORY + '-handled';
-export const DOMEN_PROD = 'test-domen.ru';
+export const DOMEN_PROD = 'sulky-submarine.glitch.me';
 export const DOMEN = isDev ? 'localhost:3001' : DOMEN_PROD;
-export const ORIGIN = 'http://' + DOMEN;
+export const ORIGIN = (isDev ? 'https://' : 'https://') + DOMEN;
 
 
 export const ruRegexp = /[а-яА-ЯёЁ]+/;

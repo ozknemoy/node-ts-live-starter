@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 require('dotenv').config();
 import { AppModule } from './app.module';
 import './algo/create-words-map.test'
-import {FILE_DIRECTORY, isDev, TEMP_FILE_DIRECTORY} from "./algo/helpers";
+import {FILE_DIRECTORY, isDev, ORIGIN, TEMP_FILE_DIRECTORY, WORKING_DIRECTORY} from "./algo/helpers";
 import {CorsOptions} from "@nestjs/common/interfaces/external/cors-options.interface";
 import {HttpException, HttpStatus} from "@nestjs/common";
 import * as helmet from 'helmet';
@@ -22,10 +22,15 @@ fs.ensureDir(TEMP_FILE_DIRECTORY);
 
 function setCors(app) {
   // https://github.com/expressjs/cors
-  const whitelist = ['https://rowan-relation.glitch.me/', 'chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop'];
+  const whitelist = [
+    'http://localhost:3000',
+    ORIGIN,
+    'chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop'];
   const corsOptions: CorsOptions = {
     origin: function (origin, callback) {
-      if (whitelist.indexOf(origin) !== -1) {
+      // если стучусь с родного урла то origin === undefined
+      // https://github.com/expressjs/cors/issues/118
+      if (origin === undefined || whitelist.indexOf(origin) !== -1) {
         callback(null, true)
       } else {
         callback(new HttpException('Not allowed by CORS', HttpStatus.FORBIDDEN))
@@ -38,10 +43,10 @@ function setCors(app) {
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   //https://docs.nestjs.com/techniques/mvc
-  app.useStaticAssets(path.join(__dirname, '..', 'assets'));
-  app.setBaseViewsDir(path.join(__dirname, '..', 'views'));
+  app.useStaticAssets(path.join(WORKING_DIRECTORY, 'assets'));
+  app.setBaseViewsDir(path.join(WORKING_DIRECTORY, 'views'));
   app.setViewEngine('hbs');
-  hbs.registerPartials(path.join(__dirname, '..', 'views/partials'));
+  hbs.registerPartials(path.join(WORKING_DIRECTORY, 'views/partials'));
 
   if(!isDev) {
     setCors(app);

@@ -2,21 +2,7 @@ import {Sequelize} from 'sequelize-typescript';
 import DocxFile from "./docx-file.model";
 import {isDev} from "../algo/helpers";
 
-/*export const docxParserDB = new Sequelize({
-  database: 'docxparser',
-  dialect: 'postgres',
-  username: 'postgres',
-  password: '1',
-  port: 5432,
-  define: {
-    timestamps: true,
-    // prevent sequelize from pluralizing table names
-    freezeTableName: true
-  },
-  operatorsAliases: false,
-  // storage: ':memory:',
-});*/
-require('sqlite3');
+console.log('isDev',isDev);
 export const docxParserDB = new Sequelize({
   database: '2',
   dialect: 'sqlite',

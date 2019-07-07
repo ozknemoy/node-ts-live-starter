@@ -80,7 +80,7 @@ export class FileParseService {
       throw this.getExeption()
     }
     return new Promise((res, fail) => {
-      fs.readFile(path.join(FILE_DIRECTORY, fileName/* + '.docx'*/), async (err, buffer) => {
+      fs.readFile(path.join(FILE_DIRECTORY, fileName), async (err, buffer) => {
         if (err) fail(this.getExeption());
         const file = new ConvertDocx(from, to).create(buffer);
         await row.update({parsed: row.parsed + 1});

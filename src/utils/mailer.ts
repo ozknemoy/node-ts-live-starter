@@ -25,7 +25,7 @@ class EmailSend {
     const html = `
     <html>
       В течении 5 дней вы можете повторно сделать обработку, изменив степень уникальности.
-      <a href="${getAfterPayUrl(fileName)}">Повторно обработать</a>
+      <a href="${getAfterPayUrl(fileName)}" target="_blank">Повторно обработать</a>
     </html>`;
     const message = {
       //text: '',
@@ -45,7 +45,7 @@ class EmailSend {
     const html = `
     <html>
       Уникальность документа ${originalName} повышена. После оплаты новый документ станет доступным для скачивания и изменения уникальности. Так же он будет отправлен на указанный e-mail.
-            <a href="${getForPayUrl(fileName)}">Перейти к оплате</a>
+            <a href="${getForPayUrl(fileName)}" target="_blank">Перейти к оплате</a>
     </html>
     `;
     const message = {
