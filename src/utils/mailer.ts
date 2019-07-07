@@ -11,7 +11,6 @@ const email = require("emailjs");
 
 //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const mailName = 'ozk.nemoy';
-
 class EmailSend {
   from = `${DOMEN_PROD} <${mailName}@mail.ru>`;
 

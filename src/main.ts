@@ -38,7 +38,7 @@ function setCors(app) {
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   //https://docs.nestjs.com/techniques/mvc
-  app.useStaticAssets(path.join(__dirname, '..', 'public'));
+  app.useStaticAssets(path.join(__dirname, '..', 'assets'));
   app.setBaseViewsDir(path.join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
   hbs.registerPartials(path.join(__dirname, '..', 'views/partials'));
