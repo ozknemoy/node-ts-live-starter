@@ -1,3 +1,7 @@
 body {
-  background-color: grey;
+  background-color: initial;
+}
+
+.docs-upload__range {
+  width: 400px;
 }

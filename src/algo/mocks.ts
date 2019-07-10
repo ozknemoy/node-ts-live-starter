@@ -264,7 +264,7 @@ export const getDummyRun = (word: string): IRunOne => ({
     }],
   'w:t': [
     <IWTextOne>{
-      _: word + ' ',
+      _: ' ' + word + ' ',
       '$': {'xml:space': 'preserve'}
     }
   ]

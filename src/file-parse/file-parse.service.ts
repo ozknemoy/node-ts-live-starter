@@ -31,6 +31,8 @@ export class FileParseService {
         const filePath = path.join(FILE_DIRECTORY, fileName/* + '.docx'*/);
         fs.writeFile(filePath, file.buffer, (err, d) => {
           if (err) fail(new HttpException(err.toString(), HttpStatus.CONFLICT));
+          console.log('234234');
+
           Promise.all([
             this.addNewRowOrUpdate(fileName, file.originalname, email),
             EMAIL_SEND.sendBeforePay(email, fileName, file.originalname)

@@ -6,10 +6,7 @@ const docsUpload = {
     this.upload = function () {
       if(!this.file) return;
       this.error = null;
-      Upload.upload({
-        url: `file-parse/uniquelize/${this.range.min}/${this.range.max}?email=${this.email}`,
-        data: {file: this.file}
-      }).then((d) => {
+      httpService.uploadFile(`file-parse/uniquelize/${this.range.min}/${this.range.max}?email=${this.email}`, this.file).then((d) => {
         location.href = d.data.url;
       }, (e) => {
         this.error = e.data.message;
@@ -19,28 +16,36 @@ const docsUpload = {
     this.uploadFree = function () {
       if(!this.file) return;
       this.error = null;
-      Upload.upload({
-        url: `file-parse/uniquelize-free/${this.range.min}/${this.range.max}`,
-        data: {file: this.file}
-      }).then((d) => {
+      httpService.uploadFile(`file-parse/uniquelize-free/${this.range.min}/${this.range.max}`, this.file, 'blob').then((d) => {
         httpService.saveFileAs(d)
       }, (e) => {
         this.error = e.data.message;
       });
     };
+
+    this.test = function () {
+      httpService.postFile(`file-parse/test`,{})
+    };
   },
   template: `
-  <div class="button" ngf-select="$ctrl.file = $file" ngf-accept="'.docx'">Нажмите для выбора файла</div>
-  <div range-slider min="1" max="100" step="1"
+  <button class="button" ngf-select="$ctrl.file = $file" ngf-accept="'.docx'">Нажмите для выбора файла</button>
+  <br>
+  Выберите исходную уникальность и требуемую:
+  
+  <div range-slider min="1" max="100" step="1" class="docs-upload__range"
        prevent-equal-min-max
        attach-handle-values="true"
        show-values="true"
        model-min="$ctrl.range.min"
        model-max="$ctrl.range.max"></div>
   <button ng-click="$ctrl.uploadFree($file)" ng-disabled="!$ctrl.file">Бесплатно попробовать небольшой файл</button><br>
+  
+  <br>
+  
   <input type="email" ng-model="$ctrl.email">
   <button ng-click="$ctrl.upload($file)" ng-disabled="!$ctrl.file || !$ctrl.email">Повысить уникальность</button>
-  <div ng-if="$ctrl.error">{{$ctrl.error}}</div>
+  <!--<button ng-click="$ctrl.test()">test</button>-->
+  <h2 ng-if="$ctrl.error">{{$ctrl.error}}</h2>
   `
 };
 
@@ -74,34 +79,47 @@ const docsReunique = {
   `
 };
 
-angular.module('docx-upload', ['ngFileUpload', 'ui-rangeSlider'])
+angular.module('docx-upload', ['ngFileUpload', 'ui-rangeSlider', 'ngFileSaver'])
   .component('docsUpload', docsUpload)
   .component('docsReunique', docsReunique)
 
 
-  .service('httpService', function ($http) {
+  .service('httpService', function ($http, FileSaver, Upload) {
+
     this.saveFileAs = function (response) {
       var contentDisposition = response.headers("content-disposition");
-      //Retrieve file name from content-disposition
-      var fileName = contentDisposition.substr(contentDisposition.indexOf("filename=") + 9);
-      fileName = fileName.replace(/\"/g, "");
-      var blob = new Blob([response.data], {type: response.headers("content-type")});
-      saveAs(blob, fileName);
+      var fileName = contentDisposition
+        .substr(contentDisposition.indexOf("filename=") + 9)
+        .replace(/\"/g, "");
+      FileSaver.saveAs(response.data, fileName);
     };
 
-    this.post = function (url, data) {
-      console.log(location.origin + '/' + url, url);
-      return $http.post(location.origin + '/' + url, data);
+    this.post = function (url, data, config) {
+      return $http.post(location.origin + '/' + url, data, config);
+    };
+
+    this.uploadFile = function (url, file, responseType = '') {
+      return Upload.upload({
+        url,
+        data: {file},
+        responseType
+      })
     };
 
     this.postFile = function (url, file) {
-      return $http({
-        url: url,
-        method: "POST",
-        data: file,
-        headers: {'Content-Type': undefined}
-      }).then(file => saveFileAs(file));
+      return $http.post(url,file,{responseType: 'blob'}).then(file => this.saveFileAs(file));
     };
   })
 
+/*.config(function httpInterceptor($httpProvider) {
+  'ngInject';
+  $httpProvider.interceptors.push(function () {
+      return {
+        request: function (config) {
+          return config;
+        },
+      }
+    }
+  )
+})*/
 ;
