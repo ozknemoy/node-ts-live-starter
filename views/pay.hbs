@@ -6,12 +6,18 @@
 </head>
 <body>
 {{> nav }}
-<h2>Ваш документ {{ $ctrl.fileName}} успешно обработан.</h2>
-<button onclick="pay('{{$ctrl.fileName}}')">оплатить</button>
-<small>после нажатия кнопки на почту прилетит письмо</small>
+
+{{#if $ctrl.filePayInfo.payed}}
+  <h2>Ваш документ {{ $ctrl.fileName}} оплачен. Письмо с файлом отправлено на указанный вами почтовый ящик</h2>
+  <a href="{{$ctrl.afterPayUrl}}">Здесь</a> вы можете повторно сделать обработку, изменив степень уникальности.
+{{else}}
+  <h2>Ваш документ {{ $ctrl.fileName}} успешно обработан.</h2>
+  <button onclick="payTest('{{$ctrl.fileName}}')">оплатить</button>
+  <small>после нажатия кнопки на почту прилетит письмо</small>
+{{/if}}
+
 <script>
-  function pay(fileName) {
-    console.log('pay', fileName);
+  function payTest(fileName) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/file-parse/pay-for-file-from-acquiring/' + fileName, false);
     xhr.send();

@@ -9,7 +9,7 @@ import {consoleNode} from "../algo/helpers";
 import * as fs from "fs";
 
 export function handleErrorAndManualSend(err, resp) {
-  const status = (err instanceof HttpException) ? err.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
+  const status = (err instanceof HttpException) ? err.getStatus() : HttpStatus.I_AM_A_TEAPOT;
   resp.status(status);
   return resp.send(err);
 }
@@ -25,8 +25,7 @@ export class FileParseController {
     @Res() resp,
     @Param('fileName') fileName: string,
     @Param('from') from: string,
-    @Param('to') to: string
-  ) {
+    @Param('to') to: string) {
     return this.fileParseService.reuniquelize(+from, +to, fileName).then(
       buffer => this.beforeSendBackDocx(buffer, resp, +from, +to),
       err => handleErrorAndManualSend(err, resp)
@@ -50,14 +49,10 @@ export class FileParseController {
   @UseInterceptors(FileInterceptor('file'))
   uploadFileForParse(
     @UploadedFile() file: IFileUpload,
-    @Res() resp,
     @Param('from') from: string,
     @Param('to') to: string,
     @Query('email') email: string) {
-    return this.fileParseService.uniquelize(file, +from, +to, email).then(
-      url => {console.log('123123123',url);resp.send({url:url})},// todo dhjlt yt ye;ty nen @Res() resp
-      err => handleErrorAndManualSend(err, resp)
-    );
+    return this.fileParseService.uniquelize(file, +from, +to, email).then(url => ({url:url}));
   }
 
   beforeSendBackDocx(buffer, resp, from: number, to: number) {

@@ -10,7 +10,7 @@ const path = require('path');
 const email = require("emailjs");
 
 //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-const mailName = 'ozk.nemoy';
+const mailName = 'admn-unique-text';
 class EmailSend {
   from = `${DOMEN_PROD} <${mailName}@mail.ru>`;
 

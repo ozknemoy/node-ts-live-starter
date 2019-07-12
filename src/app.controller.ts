@@ -1,6 +1,5 @@
-import {Controller, Get, Param, Render} from '@nestjs/common';
+import {Controller, Get, Param, Render, Res} from '@nestjs/common';
 import {AppService, IFilePayInfo} from './app.service';
-import DocxFile from "./bd/docx-file.model";
 import {getAfterPayUrl, getForPayUrl} from "./algo/helpers";
 
 @Controller()
@@ -31,10 +30,14 @@ export class AppController {
 
   @Get('pay/:fileName')
   @Render('pay')
-  pay(@Param('fileName') fileName: string) {
-    return {
+  async pay(@Param('fileName') fileName: string, @Res() res) {
+    const filePayInfo: IFilePayInfo = await this.appService.getHandledFile(fileName);
+    // если дока нет то редирект на главную
+    return filePayInfo.notExist ? res.redirect('../../') : {
       $ctrl: {
-        fileName
+        filePayInfo: filePayInfo,
+        fileName,
+        afterPayUrl: getAfterPayUrl(fileName),
       }
     };
   }
@@ -43,8 +46,6 @@ export class AppController {
   @Render('handled-file')
   async handledFile(@Param('fileName') fileName: string) {
     const filePayInfo: IFilePayInfo = await this.appService.getHandledFile(fileName);
-    console.log(filePayInfo
-    );
     return {
       $ctrl: {
         fileName,

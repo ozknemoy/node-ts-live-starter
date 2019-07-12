@@ -15,7 +15,7 @@ export class AppService {
     const row = await await this.fileParseService.getFileRowDB(fileName);
 
     return {
-      payed: row.payed,
+      payed: row ? row.payed : false,
       existButNotPayed: row && !row.payed,
       notExist: !row
     }

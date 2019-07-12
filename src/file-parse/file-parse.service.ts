@@ -7,6 +7,8 @@ import DocxFile from "../bd/docx-file.model";
 import {EMAIL_SEND} from "../utils/mailer";
 import {IDocxFile} from "../bd/docx-file.interface";
 import * as Bluebird from "bluebird";
+import {getFileParseError} from "../algo/create-words-map";
+import {logger} from "../utils/winston-logger";
 
 const fs = require('fs-extra');
 
@@ -22,22 +24,30 @@ export class FileParseService {
     if (!email) {
       return Promise.reject(new HttpException('Не верный Email', HttpStatus.BAD_REQUEST));
     }
-    return new Promise((res, fail) => {
+    return new Promise(async (res, fail) => {
       const buffer = new ConvertDocx(from, to).create(file.buffer);
       // если нормально обработался
       if (!!buffer) {
-        // сохраняю
         const fileName = getFileHash(file.buffer);
-        const filePath = path.join(FILE_DIRECTORY, fileName/* + '.docx'*/);
+        // сначала отправляю письмо
+        try {
+          await EMAIL_SEND.sendBeforePay(email, fileName, file.originalname);
+        } catch(e) {
+          fail(e)
+        }
+        // если отправилось то сохраняю
+        const filePath = path.join(FILE_DIRECTORY, fileName);
         fs.writeFile(filePath, file.buffer, (err, d) => {
-          if (err) fail(new HttpException(err.toString(), HttpStatus.CONFLICT));
-          console.log('234234');
+          if (err) {
+            logger.error(err);
+            fail(new HttpException('Ошибка записи файла. Попробуйте ещё раз', HttpStatus.CONFLICT));
+          }
 
-          Promise.all([
-            this.addNewRowOrUpdate(fileName, file.originalname, email),
-            EMAIL_SEND.sendBeforePay(email, fileName, file.originalname)
-          ]).then(() => res(getForPayUrl(fileName)), fail)
+          this.addNewRowOrUpdate(fileName, file.originalname, email)
+            .then(() => res(getForPayUrl(fileName)), (e) => fail(e))
         })
+      } else {
+        fail(getFileParseError())
       }
     });
 

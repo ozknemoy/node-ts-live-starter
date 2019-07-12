@@ -8,8 +8,8 @@ export interface IDummyAmount {
   to?: number
 }
 
-export function getFileParseError(e, strNum?: number) {
-  return new HttpException('Документ не разобрался', HttpStatus.UNPROCESSABLE_ENTITY)
+export function getFileParseError() {
+  return new HttpException('Данный документ не может быть обработан системой', HttpStatus.UNPROCESSABLE_ENTITY)
 }
 
 export function createWordsMap(jsonXml: IJsonXml, start: number, end: number, allWords: number): [IDummyAmount[][], number] {
