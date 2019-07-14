@@ -21,4 +21,4 @@ export const docxParserDB = new Sequelize({
 
 docxParserDB.addModels([DocxFile]);
 
-DocxFile.sync({force: true});
+DocxFile.sync(/*{force: true}*/);

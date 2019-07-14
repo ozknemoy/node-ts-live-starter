@@ -1,5 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 require('dotenv').config();
+import * as Bluebird from 'bluebird';
+export const FS = require('FS-extra');
+// http://bluebirdjs.com/docs/features.html#promisification-on-steroids
+Bluebird.promisifyAll(FS);
 import { AppModule } from './app.module';
 import './algo/create-words-map.test'
 import {FILE_DIRECTORY, isDev, ORIGIN, TEMP_FILE_DIRECTORY, WORKING_DIRECTORY} from "./algo/helpers";
@@ -11,9 +15,9 @@ import * as path from "path";
 import {NestExpressApplication} from "@nestjs/platform-express";
 import * as hbs from 'hbs';
 import './bd/bd'
-const fs = require('fs-extra');
-fs.ensureDir(FILE_DIRECTORY);
-fs.ensureDir(TEMP_FILE_DIRECTORY);
+
+FS.ensureDir(FILE_DIRECTORY);
+FS.ensureDir(TEMP_FILE_DIRECTORY);
 
 
 
