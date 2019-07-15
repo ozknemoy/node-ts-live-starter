@@ -23,5 +23,6 @@ export default class DocxFile extends Model<DocxFile> implements IDocxFile {
   @Column payed: boolean;
   @Column parsed: number;
   @Column deleted: boolean;
+  @Column lastEdit: number;
 
 }

@@ -61,7 +61,7 @@ export class FileParseService {
     const row = await this.getFileRowDB(hash);
     return row
       // если человек снова загрузил тот же файл
-      ? row.update(new IDocxFile(row.id, hash, orginalName, email))
+      ? row.update(new IDocxFile(row.id, undefined, orginalName, email))
       : DocxFile.create(new IDocxFile(undefined, hash, orginalName, email))
   }
 
