@@ -1,6 +1,7 @@
 import {Controller, Get, Param, Render, Res} from '@nestjs/common';
 import {AppService, IFilePayInfo} from './app.service';
-import {getAfterPayUrl, getForPayUrl} from "./algo/helpers";
+import {getAfterPayUrl, getForPayUrl, GLOBALS} from "./algo/helpers";
+import {SEO} from "./utils/seo";
 
 @Controller()
 export class AppController {
@@ -9,7 +10,13 @@ export class AppController {
   @Get()
   @Render('index')
   index() {
-    return {};
+    return {
+      $ctrl: {
+        head: SEO.index,
+        name: 'index',
+        GLOBALS
+      }
+    };
   }
 
   @Get('about')
@@ -17,7 +24,8 @@ export class AppController {
   about() {
     return {
       $ctrl: {
-        message: 'about'
+        message: 'about',
+        head: SEO.about
       }
     };
   }

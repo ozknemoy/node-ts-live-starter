@@ -12,6 +12,12 @@ export const DOMEN_PROD = 'sulky-submarine.glitch.me';
 export const DOMEN = isDev ? 'localhost:3001' : DOMEN_PROD;
 export const ORIGIN = (isDev ? 'https://' : 'https://') + DOMEN;
 
+export const GLOBALS = {
+  siteName: 'SITE_NAME',
+  currentYear() {
+    return (new Date).getFullYear()
+  }
+};
 
 export const ruRegexp = /[а-яА-ЯёЁ]+/;
 

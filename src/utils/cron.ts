@@ -8,7 +8,6 @@ import {logger} from "./winston-logger";
 
 const CronJob = require('cron').CronJob;
 
-//https://crontab.guru/ sqlite 2019-07-14T14:10:49.356Z
 
 export class Cron {
   constructor() {
@@ -16,7 +15,8 @@ export class Cron {
   }
 
   initDelitingOldFiles() {
-    new CronJob('15,30,45,0 * * * * *', async () => {
+//https://crontab.guru/
+    new CronJob('0 0,7 * * *', async () => {
       const to = moment()
         .subtract(5, 'day')
         .valueOf();

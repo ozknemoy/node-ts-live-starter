@@ -6,6 +6,6 @@ browserSync({
   files: [
     'views/**/*.hbs',
     'public/js/app.js',
-    'public/css/index.css'
+    'public/css/**.css'
   ]
 });

@@ -1,10 +1,121 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>App</title>
+  {{> common_html_head}}
+  {{> common_imports}}
 </head>
 <body>
-{{> nav }}
+<nav class="site-header sticky-top py-1">
+  <div class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2" href="/">{{$ctrl.GLOBALS.siteName}}</a>
+    <a class="py-2 d-none d-md-inline-block" href="/">Главная</a>
+    <a class="py-2 d-none d-md-inline-block" href="/about">О нас</a>
+    <a class="py-2 d-none d-md-inline-block" href="/docx-upload">Повышение уникальности</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
+  </div>
+</nav>
+
+<!--{{> nav }}-->
+<!--https://bootstrap-4.ru/docs/4.3.1/examples/product/#-->
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <div class="display-4 font-weight-normal">{{$ctrl.GLOBALS.siteName}}</div>
+    <h1 class="lead font-weight-normal">Повышаем уникальность текста <br> Помогаем мгновенно обойти Антиплагиат любого текста</h1>
+    <a class="btn btn-outline-secondary" href="/docx-upload">Повысить уникальность</a>
+  </div>
+  <div class="product-device shadow-sm d-none d-md-block"></div>
+  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+</div>
+
+<!--  2  -->
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+    <div class="my-3 py-3">
+      <h2 class="display-5">Идея</h2>
+      <p class="lead">
+        Мы повышаем оригинальность любого документа до 80 - 100%. Внешне все остается неизменным. Все изменения невидимы для антиплагиата</p>
+    </div>
+    <div class="bg-light shadow-sm mx-auto home__tile"></div>
+  </div>
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Как?</h2>
+      <p class="lead">
+        <span class="badge badge-secondary">1</span> Загрузите на сайт свой документ. <br>
+        <span class="badge badge-secondary">2</span> Укажите процент уникальности<!--Укажите текущий процент уникальности текста и тот который вам требуется.--> <br>
+        <span class="badge badge-secondary">3</span> Укажите Ваш email, на который мы пришлём обработанный файл <br>
+        <span class="badge badge-secondary">4</span> Оплатите или попробуйте <a href="/docx-upload">бесплатно</a>
+      </p>
+    </div>
+    <div class="bg-dark shadow-sm mx-auto home__tile"></div>
+  </div>
+</div>
+
+<!--  3  -->
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">FAQ</h2>
+      <p class="lead"></p>
+    </div>
+    <div class="bg-dark shadow-sm mx-auto home__tile"></div>
+  </div>
+</div>
+
+
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md">
+      {{$ctrl.GLOBALS.siteName}}
+      <small class="d-block mb-3 text-muted">© 2015-{{$ctrl.GLOBALS.currentYear}}</small>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Features</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Cool stuff</a></li>
+        <li><a class="text-muted" href="#">Random feature</a></li>
+        <li><a class="text-muted" href="#">Team feature</a></li>
+        <li><a class="text-muted" href="#">Stuff for developers</a></li>
+        <li><a class="text-muted" href="#">Another one</a></li>
+        <li><a class="text-muted" href="#">Last time</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Resources</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Resource</a></li>
+        <li><a class="text-muted" href="#">Resource name</a></li>
+        <li><a class="text-muted" href="#">Another resource</a></li>
+        <li><a class="text-muted" href="#">Final resource</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Resources</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Business</a></li>
+        <li><a class="text-muted" href="#">Education</a></li>
+        <li><a class="text-muted" href="#">Government</a></li>
+        <li><a class="text-muted" href="#">Gaming</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>About</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Team</a></li>
+        <li><a class="text-muted" href="#">Locations</a></li>
+        <li><a class="text-muted" href="#">Privacy</a></li>
+        <li><a class="text-muted" href="#">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+{{> footer}}
+
+<div class="container">
+  <!-- Content here -->
+</div>
 </body>
 </html>
