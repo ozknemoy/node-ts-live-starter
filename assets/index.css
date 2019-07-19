@@ -1,17 +1,9 @@
 
-* {
-  box-sizing: border-box;
-}
 
 .container {
   max-width: 960px;
 }
 
-.home__tile {
-  width: 80%;
-  height: 300px;
-  border-radius: 21px 21px 0 0;
-}
 
 .badge {
   vertical-align: text-bottom;
