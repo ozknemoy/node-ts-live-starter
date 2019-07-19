@@ -13,7 +13,7 @@ export const DOMEN = isDev ? 'localhost:3001' : DOMEN_PROD;
 export const ORIGIN = (isDev ? 'https://' : 'https://') + DOMEN;
 
 export const GLOBALS = {
-  siteName: 'SITE_NAME',
+  siteName: 'UNIQUE-TEXT',
   currentYear() {
     return (new Date).getFullYear()
   }

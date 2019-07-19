@@ -12,7 +12,7 @@ export class AppController {
   index() {
     return {
       $ctrl: {
-        head: SEO.index,
+        seo: SEO.index,
         name: 'index',
         GLOBALS
       }
@@ -24,8 +24,9 @@ export class AppController {
   about() {
     return {
       $ctrl: {
-        message: 'about',
-        head: SEO.about
+        name: 'about',
+        seo: SEO.about,
+        GLOBALS
       }
     };
   }
@@ -33,7 +34,14 @@ export class AppController {
   @Get('docx-upload')
   @Render('docx-upload')
   docxUpload() {
-    return {};
+    return {
+      GLOBALS,$ctrl: {
+        name: 'docx-upload',
+        seo: SEO.doxUpload,
+        GLOBALS
+      }
+
+    };
   }
 
   @Get('pay/:fileName')

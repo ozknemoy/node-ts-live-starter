@@ -5,7 +5,7 @@ browserSync({
   proxy: 'localhost:3000',
   files: [
     'views/**/*.hbs',
-    'public/js/app.js',
-    'public/css/**.css'
+    'assets/app.js',
+    'assets/**.css'
   ]
 });

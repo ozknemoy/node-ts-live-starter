@@ -1,13 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>about</title>
+  {{> v2_imports_css}}
+  {{> common_html_head}}
   {{> common_imports}}
 </head>
 <body>
-{{> nav }}
-<h1>{{ $ctrl.message}}</h1>
+<section class="page">
+  {{> v2_nav}}
+
+  <div class="jumbotron">
+    <div class="message container col-sm-6 col-sm-offset-6">
+      <h1>Мы помогаем обойти Антиплагиат любого текста</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row intro">
+      <div class="col-sm-6">
+        <h3>Digital Design. Passion for style.</h3>
+      </div>
+      <div class="col-sm-6">
+        <p>
+          Studieau is a creative space — a humble multi-disciplinary design studio with a focus on Art Direction &amp;
+          Digital Design. It is also the creative alter-ego of Ben Martineau. Studieau loves to collaborate with passionate people
+          — combining design thinking, creativity and smart technologies to solve unique problems. Studieau is day by day, pixel by
+          pixel, working with bespoke brands of various sizes and industries to create and grow unique ideas.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="shade">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-6">
+          <h2>Studieau attracts passionate people of all disciplines — from designers to developers, artists to architects. We come together to challenge the traditional.</h2>
+        </div>
+      </div>
+      <div class="row intro">
+        <div class="col-md-3 col-sm-6">
+          <h3>Expertise</h3>
+          <ul>
+            <li>Art Direction</li>
+            <li>Web &amp; Digital Design</li>
+            <li>iPhone/Mobile UI Design</li>
+            <li>Concept &amp; Idea Generation</li>
+            <li>Branding &amp; Identity</li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <h3>Industries</h3>
+          <ul>
+            <li>Fashion, Art &amp; Design</li>
+            <li>Travel &amp; Tourism</li>
+            <li>Sports &amp; Lifestyle</li>
+            <li>Retail &amp; Services</li>
+            <li>News &amp; Entertainment</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h3>Design Thinking &amp; Creative Collaboration</h3>
+          <p>Studieau is more than just a physical studio. We don't confine ourselves to a single space or team. We work with people all over the world — from designers to developers, artists to architects, to challenge the traditional. We come together with a broad skillset and unique perspective to offer companies and brands the opportunity to innovate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<h3 class="sticky left">ПОВЫШЕНИЕ УНИКАЛЬНОСТИ</h3>
+<h3 class="sticky right">{{$ctrl.GLOBALS.siteName}}</h3>
+
+<footer id="footer" class="footer">
+  <div class="container">
+    <div class="row">
+      <ul class="col-sm-3">
+        <li><a href="/"><span>{{$ctrl.GLOBALS.siteName}}</span></a></li>
+        <li><a href="/projects/"><span>Projects</span></a></li>
+        <li><a href="/profile/" class="selected"><span>Profile</span></a></li>
+
+        <li><a href="mailto:hello@studieau.co?subject=I%27d%20love%20to%20work%20with%20you"><span>Contact</span></a></li>
+
+      </ul>
+      <ul class="col-sm-3 social">
+
+        <li><a href="http://twitter.com/studieau" target="_blank">Twitter</a></li>
+
+        <li><a href="http://dribbble.com/benmartineau" target="_blank">Dribbble</a></li>
+
+        <li><a href="http://www.linkedin.com/company/studieau" target="_blank">Linkedin</a></li>
+
+        <li><a href="http://instagram.com/studieau.co" target="_blank">Instagram</a></li>
+
+      </ul>
+      <div class="col-sm-6">
+        <p>Studieau enjoys working with passionate, creative people to solve problems. If you have an interesting project — big or small, commercial or personal — Studieau is always on the lookout for people to collaborate with. Please get in touch.</p>
+        <p>
+
+          <a class="action invert" href="mailto:hello@studieau.co?subject=I%27d%20love%20to%20work%20with%20you">Get in touch</a>
+
+          <!--<a class="action invert" href="http://benmartineau.com" target="_blank">Visit benmartineau.com</a>-->
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
 
 </body>
 </html>

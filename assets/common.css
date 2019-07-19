@@ -7,7 +7,40 @@ body {
   box-sizing: border-box;
 }
 
-.docs-upload__range {
+.docs-upload__range.ngrs-range-slider {
+  border-radius: 0;
+}
+
+.docs-upload__range.ngrs-range-slider .ngrs-join {
+  background-color: black;
+  background-image: none;
+}
+
+.docs-upload__range.ngrs-range-slider .ngrs-value {
+  color: white;
+}
+
+.docs-upload__range.ngrs-range-slider .ngrs-handle {
+  background-color: white;
+  border-radius: 0;
+  border-color: black;
+}
+
+.docs-upload__range.ngrs-range-slider .ngrs-handle.ngrs-over i {
+  background-image: none;
+}
+
+.docs-upload__file-info {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docs-upload__file-info,
+.docs-upload__button,
+.docs-upload__range.ngrs-range-slider,
+.docs-upload__email-input {
   width: 400px;
 }
 
@@ -16,7 +49,7 @@ body {
   display: inline-block;
   width: 22px;
   height: 22px;
-  vertical-align: text-top;
+  vertical-align: text-bottom;
 }
 
 .my-icon__ok-sign-black {
@@ -35,4 +68,19 @@ body {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAtFBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgD88QAAAAPHRSTlMAodWGNQkKMd3bLdkyPjDcDoWYiFkuN9YrdzMNdRCCtngIhFA/W0CgmU9cD9R6eb6buZpSUVqHC5ZNTjRbl3a8AAAAzUlEQVQY032R1xKDIBBFAcUQlcSSaixJTO+9/v9/BYSoPCjD3L1zBnYXFoDaZdx8CB+pocBII16H0rtH3G1Bu/1wIhweIjOnVlAc0S3Jo35QTqgjJ4taqFYfT7k+Cc97trm3jzw/4f1cXxy02roUAFZrJn4nu9poNtjO7FxjAmdAcknBYlmNK5Kknij5zUue3vyTCGaaiAaTHAB3qD5nH2fBQXqZ9nYjYUyrxHvW4G9NNMZyGgc0KI44U7LaULq5kHik1MFrDUL3g+tH+wNB8wxmZNFgowAAAABJRU5ErkJggg==");
 }
 
+
+.site-header {
+  background-color: rgba(0, 0, 0, .85);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid white
+}
+.site-header a {
+  color: #999;
+  transition: ease-in-out color .15s;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
 

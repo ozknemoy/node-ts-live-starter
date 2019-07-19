@@ -6,23 +6,10 @@
 
 
 .badge {
-  vertical-align: text-bottom;
+  vertical-align: text-bottom !important;
   padding-bottom: 0.2em;
 }
 
-.site-header {
-  background-color: rgba(0, 0, 0, .85);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-}
-.site-header a {
-  color: #999;
-  transition: ease-in-out color .15s;
-}
-.site-header a:hover {
-  color: #fff;
-  text-decoration: none;
-}
 
 /*
  * Dummy devices (replace them with your own or something else entirely!)
@@ -59,10 +46,32 @@
   background-color: #e5e5e5;
 }
 
+.bg-darker {
+  background-color: #0C0C0C;
+}
 
-/*
- * Extra utilities
- */
+.home__block-folding-holder {
+  background-image: url('images/page-index-2-1600.jpg');
+  background-size: cover;
+}
+
+.home__block-folding {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.home__block-faq-holder {
+  background-image: url('images/page-index-1-1600-bright40.jpg');
+  background-size: cover;
+}
+
+.home__block-faq {
+  background-color: transparent;
+}
+
+.home__block-faq-lead {
+  background-color: rgba(248, 248, 248, 0.4);
+  display: inline-block;
+}
 
 .flex-equal > * {
   -ms-flex: 1;

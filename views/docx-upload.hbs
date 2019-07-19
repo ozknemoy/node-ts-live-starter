@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html ng-app="docx-upload">
 <head>
-  <title>docx upload</title>
+  {{> v2_imports_css}}
+  {{> common_html_head}}
+  {{> common_imports}}
+  {{> angular_imports}}
 </head>
 <body>
-{{> nav }}
 
 
-<docs-upload></docs-upload>
+<section class="page">
+  {{> v2_nav}}
 
-{{> common_imports}}
-{{> angular_imports}}
+  <div class="container">
+    <div class="row intro">
+      <div class="col-sm-6">
+        <h1 class="h1AsH3">Повышение оригинальности</h1>
+        <p>
+          Всего несколько мгновений и файл будет обработан.
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <p>
+          <docs-upload></docs-upload>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="shade">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-6">
+          <h2>После получения файла на почту вы сможете совершенно бесплатно повторно обработать файл по указанной ссылке.</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<h3 class="sticky left">ПОВЫШЕНИЕ УНИКАЛЬНОСТИ</h3>
+<h3 class="sticky right">{{$ctrl.GLOBALS.siteName}}</h3>
+
 
 </body>
 </html>

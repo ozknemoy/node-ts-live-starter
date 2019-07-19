@@ -28,9 +28,14 @@ const docsUpload = {
     };
   },
   template: `
-  <button class="button" ngf-select="$ctrl.file = $file" ngf-accept="'.docx'">Нажмите для выбора файла</button>
-  <br>
-  Выберите исходную уникальность и требуемую:
+  <p>
+    <button class="button docs-upload__button" ngf-select="$ctrl.file = $file" ngf-accept="'.docx'">
+      Нажмите для выбора файла
+    </button>
+    <span class="docs-upload__file-info">{{$ctrl.file.name}}</span>
+  </p>
+  
+  <h3>Выберите исходную уникальность и требуемую:</h3>
   
   <div range-slider min="1" max="100" step="1" class="docs-upload__range"
        prevent-equal-min-max
@@ -38,12 +43,23 @@ const docsUpload = {
        show-values="true"
        model-min="$ctrl.range.min"
        model-max="$ctrl.range.max"></div>
-  <button ng-click="$ctrl.uploadFree($file)" ng-disabled="!$ctrl.file">Бесплатно попробовать небольшой файл</button><br>
-  
+       
+  <h3>Введите email, на который мы отправим вам файл:</h3>
+  <p>
+    <input type="email" ng-model="$ctrl.email" class="docs-upload__email-input">
+  </p>
+  <p>
+    <button ng-click="$ctrl.upload($file)" ng-disabled="!$ctrl.file || !$ctrl.email" class="docs-upload__button">
+      Повысить уникальность
+    </button>
+  </p>
   <br>
-  
-  <input type="email" ng-model="$ctrl.email">
-  <button ng-click="$ctrl.upload($file)" ng-disabled="!$ctrl.file || !$ctrl.email">Повысить уникальность</button>
+  <br>
+  <p>
+    <button ng-click="$ctrl.uploadFree($file)" ng-disabled="!$ctrl.file" class="docs-upload__button">
+      Или бесплатно попробовать небольшой файл
+    </button>
+  </p>
   <!--<button ng-click="$ctrl.test()">test</button>-->
   <h2 ng-if="$ctrl.error">{{$ctrl.error}}</h2>
   `
