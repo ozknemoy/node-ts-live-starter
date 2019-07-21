@@ -10,7 +10,7 @@ export const FILE_DIRECTORY = join(WORKING_DIRECTORY, 'temp-file');
 export const TEMP_FILE_DIRECTORY = FILE_DIRECTORY + '-handled';
 export const DOMEN_PROD = 'sulky-submarine.glitch.me';
 export const DOMEN = isDev ? 'localhost:3001' : DOMEN_PROD;
-export const ORIGIN = (isDev ? 'https://' : 'https://') + DOMEN;
+export const ORIGIN = (isDev ? '' : 'https://') + DOMEN;
 
 export const GLOBALS = {
   siteName: 'UNIQUE-TEXT',

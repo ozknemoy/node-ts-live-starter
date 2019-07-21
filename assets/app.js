@@ -46,7 +46,7 @@ const docsUpload = {
        
   <h3>Введите email, на который мы отправим вам файл:</h3>
   <p>
-    <input type="email" ng-model="$ctrl.email" class="docs-upload__email-input">
+    <input type="email" ng-model="$ctrl.email" class="docs-upload__email-input" placeholder="abcd@mail.com">
   </p>
   <p>
     <button ng-click="$ctrl.upload($file)" ng-disabled="!$ctrl.file || !$ctrl.email" class="docs-upload__button">

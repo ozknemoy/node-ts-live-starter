@@ -31,6 +31,7 @@ export class AppController {
     };
   }
 
+  //скопировал с http://studieau.co/
   @Get('docx-upload')
   @Render('docx-upload')
   docxUpload() {

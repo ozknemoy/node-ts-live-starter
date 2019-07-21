@@ -63,7 +63,7 @@ class EmailSend {
       this.server.send(message, function (err, messageObj) {
         if (err) {
           logger.error(`${errorTxt} ${err.toString()}`);
-          console.log('----------fail');
+          console.log('----------fail', err.toString());
           fail(new HttpException('Ошибка отправки Email', HttpStatus.BAD_GATEWAY));
         } else {
           //console.log(messageObj);
