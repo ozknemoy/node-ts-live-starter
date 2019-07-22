@@ -1,12 +1,15 @@
 
 body {
-  font-family: Roboto, SansSerif, Monospaced;
+  font-family: Roboto, Monospaced;
 }
 
 * {
   box-sizing: border-box;
 }
 
+input {
+  text-indent: 4px;
+}
 .docs-upload__range.ngrs-range-slider {
   border-radius: 0;
 }
@@ -84,3 +87,88 @@ body {
   text-decoration: none;
 }
 
+.docs-upload__button{
+  border-color: #fff;
+  color: #fff;
+  background-color: black;
+}
+
+.docs-upload__button:hover{
+  background-color: #fff;
+  color: black;
+  border-color: transparent;
+}
+
+.docs-upload__main-button{
+  border-color: #ffc107;
+  color: #ffc107;
+  background-color: black;
+}
+
+.docs-upload__main-button:hover{
+  background-color: #ffc107;
+  color: black;
+  border-color: transparent;
+}
+
+.docs-upload__text-validation{
+  color: red !important;
+}
+
+
+form .docs-upload__email-input.docs-upload__email-input {
+  border-color: #fff!important;
+  color: #fff;
+  background-color: black;
+  box-shadow: none;
+}
+
+/*.docs-upload__email-input.ng-valid-email.ng-not-empty {
+  border-color: #fff;
+}*/
+input.docs-upload__email-input:-internal-autofill-selected,
+input.docs-upload__email-input:-internal-autofill-previewed {
+  border-color: transparent!important;
+}
+
+
+.pt-3,
+.py-3 {
+  padding-top: 1rem !important;
+}
+.pr-3,
+.px-3 {
+  padding-right: 1rem !important;
+}
+
+.pb-3,
+.py-3 {
+  padding-bottom: 1rem !important;
+}
+
+.pl-3,
+.px-3 {
+  padding-left: 1rem !important;
+}.p-5 {
+   padding: 3rem !important;
+ }
+
+.pt-5,
+.py-5 {
+  padding-top: 3rem !important;
+}
+
+.pr-5,
+.px-5 {
+  padding-right: 3rem !important;
+}
+
+.pb-5,
+.py-5 {
+  padding-bottom: 3rem !important;
+}
+
+.pl-5,
+.px-5 {
+  padding-left: 3rem !important;
+}

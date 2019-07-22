@@ -51,7 +51,7 @@
 }
 
 .home__block-folding-holder {
-  background-image: url('images/page-index-2-1600.jpg');
+  background-image: url('../images/page-index-2-1600.jpg');
   background-size: cover;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .home__block-faq-holder {
-  background-image: url('images/page-index-1-1600-bright40.jpg');
+  background-image: url('../images/page-index-1-1600-bright40.jpg');
   background-size: cover;
 }
 

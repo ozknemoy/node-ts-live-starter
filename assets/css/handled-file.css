@@ -1,0 +1,10 @@
+
+.nav.menu {
+  margin-right: 0;
+  margin-left: -30px;
+  width: 70%;
+}
+
+.sticky {
+  top: 25%;
+}

@@ -1,4 +1,5 @@
 import {
+  DAYS_STORE_FILE,
   DOMEN_PROD, FILE_DIRECTORY, getAfterPayUrl, getForPayUrl, ORIGIN,
 } from "../algo/helpers";
 import {DOCX_MIME} from "../file-parse/file-parse.service";
@@ -24,7 +25,7 @@ class EmailSend {
   sendFinalWithFile(to: string, fileName: string, originalName: string) {
     const html = `
     <html>
-      В течении 5 дней вы можете повторно сделать обработку, изменив степень уникальности.
+      В течении ${DAYS_STORE_FILE} дней вы можете повторно сделать обработку, изменив степень уникальности.
       <a href="${getAfterPayUrl(fileName)}" target="_blank">Повторно обработать</a>
     </html>`;
     const message = {

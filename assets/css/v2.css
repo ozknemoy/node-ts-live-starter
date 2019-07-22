@@ -1,6 +1,6 @@
 /*@import "bootstrap.min.css";*/
 .type-label {
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -11,7 +11,7 @@
   margin-top: 30px;
   padding: 8px;
   text-align: center;
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -30,7 +30,7 @@
   margin-top: 30px;
   padding: 8px;
   text-align: center;
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
   background: #000000;
@@ -95,7 +95,7 @@
 }
 body {
   background: #000000;
-  font-family: "source-code-pro", Menlo, monospace;
+  font-family: monospace;
   font-size: 14px;
   line-height: 1.75;
   color: #888888;
@@ -139,7 +139,7 @@ h2 {
 }
 h3, .h1AsH3 {
   margin-top: 0;
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -176,12 +176,14 @@ img {
   backface-visibility: hidden;
 }
 .sticky {
+  font-family: Roboto, Monospaced;
+  letter-spacing: 1px;
+  white-space: nowrap;
   display: none;
   color: #ffffff;
   position: fixed;
-  top: 45%;
+  top: 40%;
   margin: 0;
-  overflow: hidden;
   text-align: center;
   height: 40px;
   width: 200px;
@@ -226,7 +228,7 @@ img {
   margin-top: 30px;
   padding: 8px;
   text-align: center;
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -244,7 +246,7 @@ img {
 }
 .contact a {
   color: #888888;
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -288,7 +290,7 @@ img {
   display: block;
   padding: 15px 10px;
   z-index: 90;
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -432,7 +434,7 @@ img {
   z-index: 90;
 }
 .message h1 {
-  font: 36px/45px "franklin-gothic-urw", Helvetica, Arial, sans-serif;
+  font: 40px/45px "franklin-gothic-urw", Helvetica, Arial, sans-serif;
   color: #ffffff;
   margin-right: 10%;
 }
@@ -455,7 +457,7 @@ img {
   margin-top: 0;
   padding: 0;
   margin-bottom: 40px;
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -471,7 +473,7 @@ img {
   border-color: #ffffff;
 }
 .shade {
-  background-image: url('images/page-index-2-1600.jpg');
+  background-image: url('../images/page-index-2-1600.jpg');
   background: #000000 url('http://studieau.co/images/ST_02.jpg') no-repeat center center;
   padding-top: 40px;
   padding-bottom: 100px;
@@ -582,7 +584,7 @@ img {
   top: 10px;
   left: 30px;
   z-index: 99;
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -768,7 +770,7 @@ img {
   color: #000000;
   padding: 10px 0;
   display: block;
-  font: 14px/24px "source-code-pro", Menlo, monospace;
+  font: 14px/24px monospace;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -793,7 +795,7 @@ img {
     top: 40px;
     left: 40px;
     z-index: 99;
-    font: 14px/24px "source-code-pro", Menlo, monospace;
+    font: 14px/24px monospace;
     font-weight: 600;
     text-transform: uppercase;
   }
@@ -831,7 +833,7 @@ img {
     margin-top: 0;
     margin-right: 40px;
     text-align: left;
-    font: 14px/24px "source-code-pro", Menlo, monospace;
+    font: 14px/24px monospace;
     font-weight: 600;
     text-transform: uppercase;
   }
@@ -853,7 +855,7 @@ img {
     margin-top: 0;
     margin-right: 40px;
     text-align: left;
-    font: 14px/24px "source-code-pro", Menlo, monospace;
+    font: 14px/24px monospace;
     font-weight: 600;
     text-transform: uppercase;
     color: #000000;
@@ -915,7 +917,7 @@ img {
     margin-top: 0;
     margin-right: 40px;
     text-align: left;
-    font: 14px/24px "source-code-pro", Menlo, monospace;
+    font: 14px/24px monospace;
     font-weight: 600;
     text-transform: uppercase;
     margin-right: 0;
@@ -935,7 +937,7 @@ img {
     margin-top: 0;
     margin-right: 40px;
     text-align: left;
-    font: 14px/24px "source-code-pro", Menlo, monospace;
+    font: 14px/24px monospace;
     font-weight: 600;
     text-transform: uppercase;
     margin-right: 0;
@@ -974,7 +976,7 @@ img {
     top: 40px;
     left: 40px;
     z-index: 99;
-    font: 14px/24px "source-code-pro", Menlo, monospace;
+    font: 14px/24px monospace;
     font-weight: 600;
     text-transform: uppercase;
   }
@@ -1027,7 +1029,7 @@ img {
     border: none;
     color: #888888;
     padding: 0;
-    font: 14px/24px "source-code-pro", Menlo, monospace;
+    font: 14px/24px monospace;
     font-weight: 600;
     text-transform: uppercase;
   }

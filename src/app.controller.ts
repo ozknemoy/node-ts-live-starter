@@ -14,7 +14,8 @@ export class AppController {
       $ctrl: {
         seo: SEO.index,
         name: 'index',
-        GLOBALS
+        GLOBALS,
+        isUrlHome: true,
       }
     };
   }
@@ -26,7 +27,8 @@ export class AppController {
       $ctrl: {
         name: 'about',
         seo: SEO.about,
-        GLOBALS
+        GLOBALS,
+        isUrlAbout: true,
       }
     };
   }
@@ -39,7 +41,8 @@ export class AppController {
       GLOBALS,$ctrl: {
         name: 'docx-upload',
         seo: SEO.doxUpload,
-        GLOBALS
+        GLOBALS,
+        isUrlDocxUpload: true,
       }
 
     };
@@ -55,6 +58,9 @@ export class AppController {
         filePayInfo: filePayInfo,
         fileName,
         afterPayUrl: getAfterPayUrl(fileName),
+        name: 'pay',
+        seo: SEO.pay,
+        GLOBALS,
       }
     };
   }
@@ -69,6 +75,10 @@ export class AppController {
         filePayInfo,
         urlForPay: getForPayUrl(fileName),
         urlFile: getAfterPayUrl(fileName),
+        name: 'handled-file',
+        seo: SEO.handledFile,
+        GLOBALS,
+        isUrlHandledFile: true,
       }
     };
   }

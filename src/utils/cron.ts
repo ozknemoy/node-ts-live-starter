@@ -2,7 +2,7 @@ import DocxFile from "../bd/docx-file.model";
 import * as moment from "moment";
 import {Sequelize} from "sequelize-typescript";
 import {join} from "path";
-import {__, FILE_DIRECTORY} from "../algo/helpers";
+import {__, DAYS_STORE_FILE, FILE_DIRECTORY} from "../algo/helpers";
 import {FS} from "../main";
 import {logger} from "./winston-logger";
 
@@ -18,7 +18,7 @@ export class Cron {
 //https://crontab.guru/
     new CronJob('0 0,7 * * *', async () => {
       const to = moment()
-        .subtract(5, 'day')
+        .subtract(DAYS_STORE_FILE, 'day')
         .valueOf();
       const filesNeededDelete = await DocxFile.findAll({where: {
           deleted: false,

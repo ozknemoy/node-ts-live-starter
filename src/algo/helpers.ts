@@ -10,10 +10,16 @@ export const FILE_DIRECTORY = join(WORKING_DIRECTORY, 'temp-file');
 export const TEMP_FILE_DIRECTORY = FILE_DIRECTORY + '-handled';
 export const DOMEN_PROD = 'sulky-submarine.glitch.me';
 export const DOMEN = isDev ? 'localhost:3001' : DOMEN_PROD;
-export const ORIGIN = (isDev ? '' : 'https://') + DOMEN;
+// для isDev надо тоже чанк добавлять чтобы редиректило
+export const ORIGIN = (isDev ? 'http://' : 'https://') + DOMEN;
+export const DAYS_STORE_FILE = 5;
+export const FREE_WORD_AMOUNT = 1500;
 
 export const GLOBALS = {
   siteName: 'UNIQUE-TEXT',
+  FREE_WORD_AMOUNT,
+  DAYS_STORE_FILE,
+  antiplagiatSystems: 'Antiplagiat.ВУЗ, Antiplagiat.ru, Руконтекст, ETXT',
   currentYear() {
     return (new Date).getFullYear()
   }

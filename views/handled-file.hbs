@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html ng-app="docx-upload">
 <head>
-  <meta charset="utf-8" />
-  <title>Оплата</title>
+  {{> v2_imports_css}}
+  {{> common_html_head}}
   {{> common_imports}}
 </head>
 <body>
-{{> nav }}
+<section class="page">
+  {{> v2_nav }}
 
-{{#if $ctrl.filePayInfo.payed}}
-  <h1>Здесь вы может поиграться с уникальностью своего файла</h1>
 
-  <docs-reunique file-name="{{ $ctrl.fileName}}"></docs-reunique>
-  {{> angular_imports}}
+  <div class="container">
+    <div class="row intro">
+      <div class="col-md-offset-6 col-md-6">
+      <p>
+        {{#if $ctrl.filePayInfo.payedNotDeleted}}
+          <h1 class="h1AsH3">Бесплатно изменить уникальность своего файла</h1>
+          <docs-reunique file-name="{{ $ctrl.fileName}}"></docs-reunique>
+          {{> angular_imports}}
 
-{{/if}}
-{{#if $ctrl.filePayInfo.existButNotPayed}}
-  Файл не оплачен
-  <a href="{{$ctrl.urlForPay}}">Оплатить</a>
-{{/if}}
-{{#if $ctrl.filePayInfo.notExist}}
-  Файл не существует
-{{/if}}
+        {{else if $ctrl.filePayInfo.existButNotPayed}}
+          <h3>Файл не оплачен</h3>
+          <a href="{{$ctrl.urlForPay}}">Оплатить</a>
 
+        {{else if $ctrl.filePayInfo.existButDeleted}}
+          <h3>Файл был удалён. Мы храним ваш файл только {{$ctrl.GLOBALS.DAYS_STORE_FILE}} суток</h3>
+
+        {{else if $ctrl.filePayInfo.notExist}}
+          <h1>Файл не существует</h1>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<h3 class="sticky left">ПОВЫШЕНИЕ УНИКАЛЬНОСТИ</h3>
+<h3 class="sticky right">{{$ctrl.GLOBALS.siteName}}</h3>
+
+{{> footer}}
 </body>
 </html>

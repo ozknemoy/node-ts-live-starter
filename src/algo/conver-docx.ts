@@ -1,7 +1,7 @@
 import {
   __,
   consoleNode,
-  extendWRunWithWT, FILE_DIRECTORY, TEMP_FILE_DIRECTORY,
+  extendWRunWithWT, FILE_DIRECTORY, FREE_WORD_AMOUNT, TEMP_FILE_DIRECTORY,
   wTextTwoToWTextOne
 } from "./helpers";
 import {
@@ -16,7 +16,6 @@ import {createWordsMap, IDummyAmount} from "./create-words-map";
 import {dictWordRandom} from "./dict";
 import {HttpException, HttpStatus} from "@nestjs/common";
 const xml2js = require('xml2js');
-export const FREE_WORD_AMOUNT = 1500;
 
 export interface IDocxStats {
   Template: [string],

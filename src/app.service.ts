@@ -2,9 +2,10 @@ import { Injectable } from '@nestjs/common';
 import {FileParseService} from "./file-parse/file-parse.service";
 
 export interface IFilePayInfo {
-  payed: boolean,
+  payedNotDeleted: boolean,
   existButNotPayed: boolean,
-  notExist: boolean
+  notExist: boolean,
+  existButDeleted: boolean,
 }
 
 @Injectable()
@@ -15,9 +16,10 @@ export class AppService {
     const row = await await this.fileParseService.getFileRowDB(fileName);
 
     return {
-      payed: row ? row.payed : false,
+      payedNotDeleted: row && row.payed && !row.deleted,
       existButNotPayed: row && !row.payed,
-      notExist: !row
+      notExist: !row,
+      existButDeleted: row && row.deleted,
     }
   }
 }

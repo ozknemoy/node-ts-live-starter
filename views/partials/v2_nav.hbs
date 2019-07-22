@@ -1,0 +1,16 @@
+<div class="navbar-static-top">
+  <div class="container">
+    <ul class="nav brand">
+      <li><a href="/"><span>{{$ctrl.GLOBALS.siteName}}</span></a></li>
+    </ul>
+    <ul class="nav menu">
+      <li><a href="/" class="{{#if $ctrl.isUrlHome}}selected{{/if}}"><span>Главная</span></a></li>
+      <li><a href="/about" class="{{#if $ctrl.isUrlAbout}}selected{{/if}}"><span>О нас</span></a></li>
+      <li><a href="/docx-upload" class="{{#if $ctrl.isUrlHome}}selected{{/if}}"><span>Повышение уникальности</span></a></li>
+  {{#if $ctrl.isUrlHandledFile}}
+      <li><a href="/handled-file" class="selected"><span>Изменение уникальности</span></a></li>
+  {{/if}}
+      <!--<li class="hidden-xs"><a href="http://stream.studieau.co"><span>Stream</span></a></li>-->
+    </ul>
+  </div>
+</div>
