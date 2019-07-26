@@ -1,7 +1,7 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {IFileUpload} from "../types/file-upload";
 import {ConvertDocx} from "../algo/conver-docx";
-import {FILE_DIRECTORY, getFileHash, getForPayUrl} from "../algo/helpers";
+import {FILE_DIRECTORY, getFileHash, getForPayUrl, MAX_FILE_SIZE} from "../algo/helpers";
 import * as path from "path";
 import DocxFile from "../bd/docx-file.model";
 import {EMAIL_SEND} from "../utils/mailer";
@@ -70,8 +70,8 @@ export class FileParseService {
       return new HttpException('Кривой запрос', HttpStatus.BAD_REQUEST);
     } else if (file.mimetype !== DOCX_MIME) {
       return new HttpException('Кривой формат. Загружать можно только DOCX', HttpStatus.BAD_REQUEST);
-    } else if (file.size > 20 * 1024 * 1024) {
-      return new HttpException('Слишком большой файл', HttpStatus.BAD_REQUEST);
+    } else if (file.size > MAX_FILE_SIZE * 1024 * 1024) {
+      return new HttpException(`Слишком большой файл. Максимально допустимый размер ${MAX_FILE_SIZE}МБ`, HttpStatus.BAD_REQUEST);
     }
   }
 

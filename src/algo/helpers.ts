@@ -13,12 +13,14 @@ export const DOMEN = isDev ? 'localhost:3001' : DOMEN_PROD;
 // для isDev надо тоже чанк добавлять чтобы редиректило
 export const ORIGIN = (isDev ? 'http://' : 'https://') + DOMEN;
 export const DAYS_STORE_FILE = 5;
-export const FREE_WORD_AMOUNT = 1500;
+export const FREE_WORD_AMOUNT = isDev ? 11500 : 1500;
+export const MAX_FILE_SIZE = 10;
 
 export const GLOBALS = {
   siteName: 'UNIQUE-TEXT',
   FREE_WORD_AMOUNT,
   DAYS_STORE_FILE,
+  MAX_FILE_SIZE,
   antiplagiatSystems: 'Antiplagiat.ВУЗ, Antiplagiat.ru, Руконтекст, ETXT',
   currentYear() {
     return (new Date).getFullYear()

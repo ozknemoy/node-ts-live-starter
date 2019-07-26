@@ -19,7 +19,7 @@ const docsUpload = {
       httpService.uploadFile(`file-parse/uniquelize/${this.range.min}/${this.range.max}?email=${this.email}`, this.file).then((d) => {
         location.href = d.data.url;
       }, (e) => {
-        this.error = e.data.message;
+        httpService.blobToText(e).then(txt => this.error = txt)
       });
     };
 
@@ -31,7 +31,7 @@ const docsUpload = {
       httpService.uploadFile(`file-parse/uniquelize-free/${this.range.min}/${this.range.max}`, this.file, 'blob').then((d) => {
         httpService.saveFileAs(d)
       }, (e) => {
-        this.error = e.data.message;
+        httpService.blobToText(e).then(txt => this.error = txt)
       });
     };
 
@@ -114,7 +114,7 @@ angular.module('docx-upload', ['ngFileUpload', 'ui-rangeSlider', 'ngFileSaver'])
   .component('docsReunique', docsReunique)
 
 
-  .service('httpService', function ($http, FileSaver, Upload) {
+  .service('httpService', function ($http, FileSaver, Upload, $q) {
 
     this.saveFileAs = function (response) {
       var contentDisposition = response.headers("content-disposition");
@@ -122,6 +122,22 @@ angular.module('docx-upload', ['ngFileUpload', 'ui-rangeSlider', 'ngFileSaver'])
         .substr(contentDisposition.indexOf("filename=") + 9)
         .replace(/\"/g, "");
       FileSaver.saveAs(response.data, fileName);
+    };
+
+    this.blobToText = function (e) {
+      return $q((res, fail) => {
+        const blb = e.data;
+        const reader = new FileReader();
+        reader.addEventListener('loadend', (e) => {
+          const text = e.srcElement.result;
+          try {
+            res(JSON.parse(text).message);
+          } catch(e) {
+            res('Ошибка обработки');
+          }
+        });
+        reader.readAsText(blb);
+      })
     };
 
     this.post = function (url, data, config) {
