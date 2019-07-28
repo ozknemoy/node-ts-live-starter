@@ -16,17 +16,6 @@ export const DAYS_STORE_FILE = 5;
 export const FREE_WORD_AMOUNT = isDev ? 11500 : 1500;
 export const MAX_FILE_SIZE = 10;
 
-export const GLOBALS = {
-  siteName: 'UNIQUE-TEXT',
-  FREE_WORD_AMOUNT,
-  DAYS_STORE_FILE,
-  MAX_FILE_SIZE,
-  antiplagiatSystems: 'Antiplagiat.ВУЗ, Antiplagiat.ru, Руконтекст, ETXT',
-  currentYear() {
-    return (new Date).getFullYear()
-  }
-};
-
 export const ruRegexp = /[а-яА-ЯёЁ]+/;
 
 export const getAfterPayUrl = (fileName: string) => `${ORIGIN}/handled-file/${fileName}`;
@@ -206,7 +195,64 @@ export let __ = {
     return typeof str === 'string' && str.trim() === ''
       ? [str]
       : str.match(/[\s]*[^\s]+[\s]*/g)
+  },
+  /**
+   * 1 — яблоко
+   * 2 — яблока
+   * 5 — яблок
+   */
+
+  getNoun(number: number, one: string, two: string, five: string) {
+    number = Math.abs(number);
+    number %= 100;
+    if (number >= 5 && number <= 20) {
+      return five;
+    }
+    number %= 10;
+    if (number === 1) {
+      return one;
+    }
+    if (number >= 2 && number <= 4) {
+      return two;
+    }
+    return five;
+  },
+  thousand(nStr, toFixed = 2): string {
+    if (__.isInvalidPrimitive(nStr)) return '0';
+    nStr += '';
+    const x = nStr.split('.');
+    let x1 = x[0];
+    let x2 = '';
+
+    if(x.length > 1 && x[1] && x[1].length < toFixed) {
+      x[1] = x[1] + '00';
+      x2 = '.' + x[1].slice(0,toFixed)
+    } else if(x.length > 1 && x[1]) x2 = '.' + x[1];
+    const rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+      x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+    }
+    return (x1 + x2).replace(/\./g, ',');
+
   }
+};
+
+export const GLOBALS = {
+  siteName: 'UNIQUE-TEXT',
+  FREE_WORD_AMOUNT,
+  DAYS_STORE_FILE,
+  MAX_FILE_SIZE,
+  antiplagiatSystems: 'Antiplagiat.ВУЗ, Antiplagiat.ru, Руконтекст, ETXT',
+  currentYear(): number {
+    return (new Date).getFullYear()
+  },
+  helpedUsers(): number {
+    return Math.floor(+new Date()/10000000) - 130000
+  },
+  helpedUsersByDocs(): string {
+    const num = GLOBALS.helpedUsers();
+    return __.thousand(num) + ' ' + __.getNoun(num, 'документа', 'документов', 'документов')
+  },
 };
 
 export function getRsidR() {

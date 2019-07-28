@@ -47,6 +47,15 @@ input {
   width: 400px;
 }
 
+@media (max-width: 575.98px) {
+  .docs-upload__file-info,
+  .docs-upload__button,
+  .docs-upload__range.ngrs-range-slider,
+  .docs-upload__email-input {
+    width: 330px;
+  }
+}
+
 
 .my-icon {
   display: inline-block;

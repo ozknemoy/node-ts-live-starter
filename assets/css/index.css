@@ -60,7 +60,7 @@
 }
 
 .home__block-faq-holder {
-  background-image: url('../images/page-index-1-1600-bright40.jpg');
+  /*background-image: b-lazy*/
   background-size: cover;
 }
 

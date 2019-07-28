@@ -19,8 +19,8 @@
 
 <!--{{> nav }}-->
 <!--https://bootstrap-4.ru/docs/4.3.1/examples/product/#-->
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center home__block-folding-holder">
-  <div class="col-md-5 p-lg-5 mx-auto my-5 home__block-folding text-white">
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 mb-2 text-center home__block-folding-holder">
+  <div class="col-md-5 p-lg-5 py-3 mx-auto my-5 home__block-folding text-white">
     <div class="display-4 font-weight-normal">{{$ctrl.GLOBALS.siteName}}</div>
     <h1 class="lead font-weight-normal">Повышаем уникальность текста. Помогаем обойти Антиплагиат любого текста</h1>
     <a class="btn btn-outline-warning" href="/docx-upload">Повысить уникальность</a>
@@ -54,7 +54,7 @@
         <i class="my-icon my-icon__ok-sign-black"></i>
         Мгновенный результат без регистрации и телефонных звонков <br>
         <i class="my-icon my-icon__ok-sign-black"></i>
-        У уже оплаченного документа можно бесплатно повторно изменить уникальность <br>
+        У уже оплаченного документа можно мгновенно бесплатно изменить уникальность <br>
         <i class="my-icon my-icon__ok-sign-black"></i>
         Никуда не передаём ваши работы <br>
       </p>
@@ -75,21 +75,28 @@
   </div>
   <div class="bg-darker mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-white overflow-hidden">
     <div class="my-3 p-3">
-      <h2 class="display-5 text-center">Как работают другие? <!--Наши преимущества--></h2>
+      <h2 class="display-5 text-center">Как работают другие <!--Наши преимущества--></h2>
       <p class="lead">
         <i class="my-icon my-icon__not-ok-sign-white"></i>
         Нет бесплатной версии или она через связь с оператором. <br>
         <i class="my-icon my-icon__not-ok-sign-white"></i>
-        Обещают, что обладают самым самым алгоритмом. Но он у всех одинаковый <br>
+        Врут, что обладают самым крутым алгоритмом, при этом даже завышая ценник, а на выходе как у всех. <br>
         <i class="my-icon my-icon__not-ok-sign-white"></i>
-        Врут, что их алгоритм невозможно распознать. <br>
+        Обманывают, что их алгоритм невозможно распознать. <br>
+        <i class="my-icon my-icon__not-ok-sign-white"></i>
+        Сайт даже может не корректно функционировать, придется слать документы вручную и ждать. <br>
+        <i class="my-icon my-icon__not-ok-sign-white"></i>
+        Работая без предоплаты, в письмах угрожают, что выложат работу в интернет, если не оплатите в течение суток. <br>
+        <i class="my-icon my-icon__not-ok-sign-white"></i>
+        Часто нельзя выбрать уровень уникальности текста.
       </p>
     </div>
   </div>
 </div>
 
 <!--  3  -->
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 home__block-faq-holder">
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 home__block-faq-holder b-lazy"
+     data-src="../images/page-index-1-1600-bright40.jpg">
   <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden home__block-faq">
     <div class="my-3 p-3">
       <h2 class="display-5">Ответы на вопросы</h2>
@@ -97,7 +104,7 @@
         <span class="font-weight-bold">
           Может ли преподаватель распознать искусственное изменение уникальности? <br>
         </span>
-        - При тщательном анализе, да, но в отличии от других мы об этом честно говорим
+        - При тщательном анализе, да, и в отличии от других мы об этом честно говорим
       </p>
       <p class="lead home__block-faq-lead">
         <span class="font-weight-bold">
@@ -115,12 +122,12 @@
         <span class="font-weight-bold">
           Изменится ли содержание и/или оформление документа после повышения оригинальности? <br>
         </span>
-        Текст документа визуально не изменяется, все изменения происходят только внутри
+        Текст документа визуально не изменяется, все изменения скрыты от человеческого глаза
       </p>
 
 
-      <p class="lead">
-        Остались вопросы? загляните в ФАК
+      <p class="lead home__block-faq-lead">
+        Остались вопросы? Загляните в наш <a class="btn-link" href="/faq">FAQ</a>.
       </p>
 
 
@@ -132,14 +139,8 @@
 <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
   <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden bg-darker text-white">
     <div class="my-3 p-3">
-      <h2 class="display-5"></h2>
-      Мы уже повысили уникальность у 7 496 документов
-      <br>
-
+      <h2 class="display-5">Мы уже повысили уникальность у {{$ctrl.GLOBALS.helpedUsersByDocs}}</h2>
       <a class="btn btn-outline-warning" href="/docx-upload">Повысить уникальность</a>
-
-      <br>
-      и тут ещё ссылки на блог и тд
     </div>
   </div>
 </div>
