@@ -41,19 +41,6 @@ export class ConvertDocx {
 
   constructor(private start: number, private end: number) {}
 
-  /*createOld() {
-    fs.readFile(path.join(FILE_DIRECTORY, this.filePath), (err, file) => {
-      if(err) throw new Error('ошибка чтения файла');
-      // https://stuk.github.io/jszip/documentation/howto/read_zip.html
-      JSZip.loadAsync(file).then((originalDocxFileAsZip) => {
-        this.originalDocxFileAsZip = originalDocxFileAsZip;
-        originalDocxFileAsZip.file('word/document.xml').async('string').then((docXml) => {
-          this.readDocx(docXml);
-        });
-      });
-    });
-  }*/
-
   public createFree(file) {
     return new Promise((res, fail) =>
       JSZip.loadAsync(file).then((originalDocxFileAsZip) => {
@@ -79,9 +66,28 @@ export class ConvertDocx {
         this.originalDocxFileAsZip = originalDocxFileAsZip;
         originalDocxFileAsZip.file('word/document.xml').async('string').then((docXml) => {
           res(this.readDocx(docXml))
-      });
+        });
       },(e) => fail(e))
     );
+  }
+
+  public setMagicalDocxSettings() {
+    return new Promise((res, fail) => {
+      this.originalDocxFileAsZip.file('word/settings.xml').async('string').then((settingsXml) => {
+        xml2js.parseString(settingsXml, (err, jsonXml: IJsonXml) => {
+          if(err) fail(err);
+          if(jsonXml['w:settings']) {
+            jsonXml['w:settings']['w:hideSpellingErrors'] = [''];
+            jsonXml['w:settings']['w:hideGrammaticalErrors'] = [''];
+          }
+          const builder = new xml2js.Builder({renderOpts: {pretty: false}});
+          const xmlStr = builder.buildObject(jsonXml);
+          // подменяю settings.xml
+          this.originalDocxFileAsZip.file('word/settings.xml', xmlStr);
+          res()
+        });
+      },fail);
+    })
   }
 
   private checkParseDocxError(err, failPromise) {
@@ -109,14 +115,20 @@ export class ConvertDocx {
     )
   }
 
-  readDocx(xmlStr: string) {
+  async readDocx(xmlStr: string) {
+    try {
+      await this.setMagicalDocxSettings();
+    } catch(e) {
+      return Promise.reject(e)
+    }
+
     return new Promise((res, fail) =>
       xml2js.parseString(xmlStr, {ignoreAttrs : true}, (err, jsonXmlNoAttrs: IJsonXml) => {
         xml2js.parseString(xmlStr, (err, jsonXml: IJsonXml) => {
           const parsedJsonXml = this.parseXml(jsonXml, jsonXmlNoAttrs);
           const builder = new xml2js.Builder({renderOpts: {pretty: false}});
           const xmlStr = builder.buildObject(parsedJsonXml);
-          // а контейнере подменяю только document.xml
+          // в контейнере подменяю document.xml
           this.originalDocxFileAsZip.file('word/document.xml', xmlStr);
           this.originalDocxFileAsZip.generateAsync({type: 'uint8array'})
             .then(Buffer.from)
@@ -235,11 +247,35 @@ export class ConvertDocx {
     fs.readFile(path.join(FILE_DIRECTORY, filePath), (err, file) => {
       if(err) throw new Error('ошибка чтения файла');
       // https://stuk.github.io/jszip/documentation/howto/read_zip.html
-      JSZip.loadAsync(file).then((originalDocxFileAsZip) => {
+      JSZip.loadAsync(file).then(async (originalDocxFileAsZip) => {
         this.originalDocxFileAsZip = originalDocxFileAsZip;
+        try {
+          await this.setMagicalDocxSettings();
+        } catch(e) {
+          return Promise.reject(e)
+        }
         this.readDocx(realXml/*fs.readFileSync(path.join(WORKING_DIRECTORY, filePath))*/);
       });
     });
+  }
+
+  testXmlString(xmlStr) {
+    return new Promise((res, fail) =>
+      xml2js.parseString(xmlStr, (err, jsonXml: IJsonXml) => {
+        const builder = new xml2js.Builder({renderOpts: {pretty: false}});
+        if(jsonXml['w:settings']) {
+          jsonXml['w:settings']['w:hideSpellingErrors'] = [''];
+          jsonXml['w:settings']['w:hideGrammaticalErrors'] = [''];
+        }
+
+        console.log(jsonXml);
+        console.log(jsonXml['w:settings']['w:hideSpellingErrors']);
+        console.log(jsonXml['w:settings']['w:hideGrammaticalErrors']);
+        //const xmlStr = builder.buildObject(jsonXml);
+        res();
+
+      })
+    )
   }
 
   readDocxAndSaveDev(xmlStr: string) {

@@ -69,7 +69,7 @@ export class FileParseService {
     if (!file || Number.isNaN(from) || Number.isNaN(to)) {
       return new HttpException('Кривой запрос', HttpStatus.BAD_REQUEST);
     } else if (file.mimetype !== DOCX_MIME) {
-      return new HttpException('Кривой формат. Загружать можно только DOCX', HttpStatus.BAD_REQUEST);
+      return new HttpException('Не верный формат файла. Загружать можно только DOCX. По фэн-шую. Иначе китайская мудрость не поможет ;)', HttpStatus.BAD_REQUEST);
     } else if (file.size > MAX_FILE_SIZE * 1024 * 1024) {
       return new HttpException(`Слишком большой файл. Максимально допустимый размер ${MAX_FILE_SIZE}МБ`, HttpStatus.BAD_REQUEST);
     }

@@ -314,3 +314,13 @@ export const xmlSOriginalWTextOnlyJson = {
         ]
     }
 };
+
+export const xmlSetting = `
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:settings xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+	<w:zoom w:percent="100"/>
+	<w:hideSpellingErrors/>
+	<w:hideGrammaticalErrors/>
+	<w:proofState w:grammar="clean"/>
+</w:settings>
+`;
