@@ -110,6 +110,19 @@ export class AppController {
         //name: 'check-text-uniqueness',
         seo: SEO.checkTextUniqueness,
         GLOBALS,
+        isUrlCheckTextUniqueness: true
+      }
+    };
+  }
+  @Get('textru')
+  @Render('textru')
+  textRu() {
+    return {
+      $ctrl: {
+        //name: 'check-text-uniqueness',
+        seo: SEO.textRu,
+        GLOBALS,
+        isUrlTextRu: true
       }
     };
   }

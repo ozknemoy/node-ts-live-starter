@@ -15,6 +15,7 @@ export interface ISeo {
   handledFile: IPageInfo
   checkTextUniqueness: IPageInfo
   faq: IPageInfo
+  textRu: IPageInfo
 }
 
 const robots = 'index, follow';
@@ -67,6 +68,12 @@ export const SEO: ISeo = {
   },
   checkTextUniqueness: {
     title: 'Проверка на уникальность текста',
+    description: '',
+    keywords: '',
+    robots: robots,
+  },
+  textRu: {
+    title: 'Текст ру проверка уникальности',
     description: '',
     keywords: '',
     robots: robots,
