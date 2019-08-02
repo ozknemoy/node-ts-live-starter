@@ -137,7 +137,7 @@ h2 {
   font-size: 30px;
   line-height: 40px;
 }
-h3, .h1AsH3 {
+h3, .h1AsH3, .h2AsH3 {
   margin-top: 0;
   font: 14px/24px monospace;
   font-weight: 600;

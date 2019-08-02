@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="/css/common.css">
+{{#if $ctrl.name}}
 <link rel="stylesheet" href="/css/{{$ctrl.name}}.css">
+{{/if}}
 <script src="/jquery.min.js"></script>
 <script src="/b-lazy.min.js"></script>
 <script>
-  var bLazy = new Blazy({
-    // Options
-  });
+  new Blazy({offset: 200});
 </script>

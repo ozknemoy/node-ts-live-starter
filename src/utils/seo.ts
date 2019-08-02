@@ -13,10 +13,19 @@ export interface ISeo {
   doxUpload: IPageInfo
   pay: IPageInfo
   handledFile: IPageInfo
+  checkTextUniqueness: IPageInfo
+  faq: IPageInfo
 }
 
 const robots = 'index, follow';
 const norobots = 'nofollow';
+
+/*В тайтл, первый обзац и картинку статьи если есть самый лучший ключ.
+  В Заголовок h1 другой ключ.
+  Дискрипшен о чем статья можно сокращенно первый обзац вписать.
+  Тайтл не очень длинный он вписывается в первый абзац и внизу статьи
+у конкурентов есть же приличный твоих*/
+
 
 export const SEO: ISeo = {
   index: {
@@ -27,6 +36,12 @@ export const SEO: ISeo = {
   },
   about: {
     title: 'Повысить уникальность документа ' + DOMEN,
+    description: '',
+    keywords: '',
+    robots,
+  },
+  faq: {
+    title: 'FAQ Повысить уникальность документа ' + DOMEN,
     description: '',
     keywords: '',
     robots,
@@ -49,6 +64,12 @@ export const SEO: ISeo = {
     description: 'Изменение уникальности текста бесплатно',
     keywords: '',
     robots: norobots,
+  },
+  checkTextUniqueness: {
+    title: 'Проверка на уникальность текста',
+    description: '',
+    keywords: '',
+    robots: robots,
   },
 
 };

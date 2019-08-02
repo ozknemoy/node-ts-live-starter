@@ -10,7 +10,7 @@
   <div class="container d-flex flex-column flex-md-row justify-content-between">
     <a class="py-2" href="/">{{$ctrl.GLOBALS.siteName}}</a>
     <a class="py-2 d-none d-md-inline-block" href="/">Главная</a>
-    <a class="py-2 d-none d-md-inline-block" href="/about">О нас</a>
+    <a class="py-2 d-none d-md-inline-block" href="/faq">Вопросы</a>
     <a class="py-2 d-none d-md-inline-block" href="/docx-upload">Повышение уникальности</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
@@ -150,41 +150,31 @@
 <footer class="container py-3">
   <div class="row">
     <div class="col-12 col-md">
-      {{$ctrl.GLOBALS.siteName}}
-      <small class="d-block mb-3 text-muted">© 2015 - {{$ctrl.GLOBALS.currentYear}}</small>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Features</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="text-muted" href="#">Cool stuff</a></li>
+        <li><a class="text-muted" href="/check-text-uniqueness">Проверка текста на уникальность</a></li>
         <li><a class="text-muted" href="#">Random feature</a></li>
       </ul>
     </div>
-    <div class="col-6 col-md">
-      <h5>Resources</h5>
+    <div class="col-12 col-md">
       <ul class="list-unstyled text-small">
         <li><a class="text-muted" href="#">Resource</a></li>
         <li><a class="text-muted" href="#">Resource name</a></li>
       </ul>
     </div>
-    <div class="col-6 col-md">
-      <h5>Resources</h5>
-      <ul class="list-unstyled text-small">
-        <li><a class="text-muted" href="#">Business</a></li>
-        <li><a class="text-muted" href="#">Education</a></li>
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5>About</h5>
+    <div class="col-12 col-md">
       <ul class="list-unstyled text-small">
         <li><a class="text-muted" href="#">Team</a></li>
         <li><a class="text-muted" href="#">Locations</a></li>
       </ul>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12 col-md">
+      {{$ctrl.GLOBALS.siteName}}
+      <small class="mb-3 text-muted">© 2015 - {{$ctrl.GLOBALS.currentYear}}</small>
+    </div>
+  </div>
 </footer>
-
-{{> footer}}
 
 <div class="container">
   <!-- Content here -->

@@ -33,6 +33,19 @@ export class AppController {
     };
   }
 
+  @Get('faq')
+  @Render('faq')
+  faq() {
+    return {
+      $ctrl: {
+        name: 'faq',
+        seo: SEO.faq,
+        GLOBALS,
+        isUrlFaq: true,
+      }
+    };
+  }
+
   //скопировал с http://studieau.co/
   @Get('docx-upload')
   @Render('docx-upload')
@@ -82,4 +95,23 @@ export class AppController {
       }
     };
   }
+
+
+
+
+  /*-------------blog---------------*/
+
+
+  @Get('check-text-uniqueness')
+  @Render('check-text-uniqueness')
+  checkTextUniqueness() {
+    return {
+      $ctrl: {
+        //name: 'check-text-uniqueness',
+        seo: SEO.checkTextUniqueness,
+        GLOBALS,
+      }
+    };
+  }
+
 }
