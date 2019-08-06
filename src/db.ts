@@ -40,21 +40,12 @@ transac(async (db) => {
   );
   const JobEditedRow = new Job({
     JOB_ID: 'qwer',
-    MIN_SALARY: 111,
-    JOB_TITLE: 'President',
-    MAX_SALARY: 40000
+    MIN_SALARY: 1114,
+    JOB_TITLE: 'President3',
+    MAX_SALARY: 40003
   });
   const up = await JobEditedRow.save(db);
-  /*const newRow = new Job({
-    JOB_ID: 'qwertyuiop',
-    JOB_TITLE: 'President',
-    MAX_SALARY: 40000
-  });
-  await db.execute(`
-      insert into HR.jobs
-        values (:JOB_ID, :JOB_TITLE, :MIN_SALARY, :MAX_SALARY)
-        
-    `, newRow//returning JOB_ID, JOB_TITLE INTO v_a
-  );*/
+
+  console.log(up);
 
 });

@@ -7,6 +7,9 @@ export default class Model<T> {
   fk?;
   @nonenumerableTS
   enums?: (keyof T)[];
+  @readonly
+  @nonenumerableTS
+  tableName?: string;
 
   init?() {
     this.enums = <(keyof T)[]>Object.keys(this);
@@ -17,20 +20,20 @@ export default class Model<T> {
     return
   }
 
-  clean?(keys: (keyof T)[]) {
+  getModel?() {
     let ret = {};
-    keys.map((key) => ret[<string>key] = this[<string>key]);
+    this.enums.map((key) => ret[<string>key] = this[<string>key]);
     return ret
   }
 
   async save?(db) {
     await db.execute(
       this.update(),
-      this.enums
+      this.getModel()
     );
     return db.execute(`SELECT *
-       FROM hr.jobs
-       WHERE ${this.fk} = :JOB_ID`, {[this.fk]: this[<any>this.fk]})
+       FROM ${this.tableName}
+       WHERE ${this.fk} = :${this.fk}`, {[this.fk]: this[<any>this.fk]})
   }
 
 }

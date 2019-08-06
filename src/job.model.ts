@@ -9,7 +9,10 @@ export class Job extends Model<Job> {
   MAX_SALARY?: number = null;
   @readonly
   @nonenumerableTS
-  fk?: keyof this = 'JOB_ID';
+  fk? = 'JOB_ID';
+  @readonly
+  @nonenumerableTS
+  tableName? = 'hr.jobs';
 
   constructor(job: Job) {
     super();
@@ -18,8 +21,11 @@ export class Job extends Model<Job> {
   }
 
   update?() {
-    const set = this.enums.map(key=> ` ${key} = :${key} `).join();
-    console.log('set',set);
+    const set = this.enums
+      // fk не обнавлять
+      .filter(key => key !== this.fk)
+      .map(key=> ` ${key} = :${key} `)
+      .join();
     return `
       update HR.jobs
         set ${set}
