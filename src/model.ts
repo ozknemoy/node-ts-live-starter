@@ -1,15 +1,15 @@
-import {nonenumerable} from "core-decorators";
+import {nonenumerableTS} from "./nonenumerable-ts.decorator";
+import {readonly} from "core-decorators";
 
-export class Model<T> {
-
-  @nonenumerable
+export default class Model<T> {
+  @readonly
+  @nonenumerableTS
   fk?;
-  //https://github.com/jayphelps/core-decorators#nonenumerable
-  @nonenumerable
+  @nonenumerableTS
   enums?: (keyof T)[];
 
-  constructor() {
-    this.enums = <(keyof T)[]>Object.keys(this)
+  init?() {
+    this.enums = <(keyof T)[]>Object.keys(this);
   }
 
   update?() {
@@ -22,10 +22,6 @@ export class Model<T> {
     keys.map((key) => ret[<string>key] = this[<string>key]);
     return ret
   }
-
-  /*enums?() {
-    return
-  }*/
 
   async save?(db) {
     await db.execute(

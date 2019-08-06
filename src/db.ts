@@ -1,42 +1,12 @@
-import {nonenumerable, readonly} from "core-decorators";
-import {Model} from "./model";
+import {Job} from "./job.model";
 
-var sworm = require('sworm');
-var oracledb = require('oracledb');
+
+const oracledb = require('oracledb');
 
 
 oracledb.outFormat = oracledb.OBJECT;
 oracledb.autoCommit = true;
-/*var db = sworm.db({
-  driver: 'oracle',
-  config: {
-    user: 'system',
-    password: '1564615646',
-    connectString: 'localhost/XE',
-    pool: true,
-    options: {
-      // options to set on `oracledb`
-      maxRows: 1000
-    },
-    log: true
-  }
-});
 
-var jobs = db.model({table: 'hr.jobs'});
-
-
-db.connect(function () {
-  // connected
-  var ad_vp = jobs.get({job_id: 'AD_VP'});
-  console.log(ad_vp);
-  /!*return bob.save().then(function () {
-
-  });*!/
-}).then(function () {
-
-  // disconnected
-
-});*/
 async function transac(callback) {
   console.time('1');
   let db;
@@ -86,30 +56,5 @@ transac(async (db) => {
         
     `, newRow//returning JOB_ID, JOB_TITLE INTO v_a
   );*/
-  console.log(up);
+
 });
-
-class Job extends Model<Job> {
-  JOB_ID: string = null;
-  JOB_TITLE?: string = null;
-  MIN_SALARY?: number = null;
-  MAX_SALARY?: number = null;
-  @readonly
-  @nonenumerable
-  fk?: keyof this = 'JOB_ID';
-
-  constructor(job: Job) {
-    super();
-    Object.assign(this, job);
-  }
-
-  update?() {
-    const set = this.enums.map(key=> ` ${key} = :${key} `).join();
-    console.log('set',set);
-    return `
-      update HR.jobs
-        set ${set}
-        WHERE JOB_ID = :JOB_ID
-    `
-  }
-}
