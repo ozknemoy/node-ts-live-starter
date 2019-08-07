@@ -2,6 +2,14 @@ import {readonly} from "core-decorators";
 import {nonenumerableTS} from "./nonenumerable-ts.decorator";
 import Model from "./model";
 
+/*CREATE TABLE jobs
+(
+  JOB_ID VARCHAR(10) PRIMARY KEY NOT NULL,
+  JOB_TITLE VARCHAR(60),
+  MIN_SALARY INT,
+  MAX_SALARY INT
+);*/
+
 export class Job extends Model<Job> {
   JOB_ID: string = null;
   JOB_TITLE?: string = null;
@@ -12,7 +20,7 @@ export class Job extends Model<Job> {
   fk? = 'JOB_ID';
   @readonly
   @nonenumerableTS
-  tableName? = 'hr.jobs';
+  tableName? = 'jobs';
 
   constructor(job: Job) {
     super();
@@ -20,16 +28,4 @@ export class Job extends Model<Job> {
     super.init();
   }
 
-  update?() {
-    const set = this.enums
-      // fk не обнавлять
-      .filter(key => key !== this.fk)
-      .map(key=> ` ${key} = :${key} `)
-      .join();
-    return `
-      update HR.jobs
-        set ${set}
-        WHERE JOB_ID = :JOB_ID
-    `
-  }
 }

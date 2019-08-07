@@ -13,8 +13,8 @@ async function transac(callback) {
   try {
     db = await oracledb.getConnection({
         user: 'system',
-        password: '1564615646',
-        connectString: 'localhost/XE',
+        password: '15646nemoY',
+        connectString: 'localhost/orcl.esphere.local',
       });
     return await callback(db);
   } catch (err) {
@@ -32,20 +32,19 @@ async function transac(callback) {
 }
 
 transac(async (db) => {
-  const result = await db.execute(
+  /*const result = await db.execute(
     `SELECT *
-       FROM hr.jobs
+       FROM jobs
        WHERE JOB_ID = :JOB_ID`,
     {JOB_ID: 'PU_MAN'}
-  );
+  );*/
   const JobEditedRow = new Job({
-    JOB_ID: 'qwer',
+    JOB_ID: 'qwert',
     MIN_SALARY: 1114,
     JOB_TITLE: 'President3',
     MAX_SALARY: 40003
   });
-  const up = await JobEditedRow.save(db);
-
+  const up = await JobEditedRow.insert(db);
   console.log(up);
 
 });
