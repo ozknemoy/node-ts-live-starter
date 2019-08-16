@@ -26,10 +26,11 @@
     "@nestjs/websockets": "^6.0.4",
     "core-decorators": "^0.20.0",
     "oracledb": "^4.0.0",
-    "reflect-metadata": "0.1.13",
+    "reflect-metadata": "^0.1.13",
     "rimraf": "2.6.3",
     "rxjs": "6.4.0",
-    "sworm": "^3.8.0"
+    "sworm": "^3.8.0",
+    "typeorm": "^0.2.18"
   },
   "devDependencies": {
     "@nestjs/testing": "6.1.1",
