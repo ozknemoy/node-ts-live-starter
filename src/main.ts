@@ -5,14 +5,16 @@ import {OneList} from "./types";
 var request = require("request"),
   cheerio = require("cheerio");
 
-const limit = 100;
-// пробежал с 1 по 19 *100
-[0, 0, 0, 0, 0].forEach((n, i) =>
-  setTimeout(() => getList(i, 19), 3000 * i));
-function getList(from = 0, startFrom = 0) {
+const limit = 20;
+
+//(new Array(100).fill(0)).forEach((n, i) => setTimeout(() => getList(i), 3000 * i));
+
+
+function getList(from = 0, startFrom = 101) {
   from = from + startFrom;
+  const url = `https://love.mail.ru/api/search?offset=${from * limit}&limit=${(from + 1) * limit}&noid=1766268675&nchanged=1549811160&nactive=0`;
   request({
-    url: `https://love.mail.ru/api/search?offset=${from * limit}&limit=${(from + 1) * limit}&noid=1766268675&nchanged=1549811160&nactive=0`,
+    url,
     headers: {
       //Referer: 'https://love.mail.ru/ru/search.phtml?ia=M&lf=F&af=34&at=35&p=a&t=a&s_c=3159_4925_4962_0&form=1',
       Cookie: 'mmbsid=jOqugitemUwRtzlAER3jK9cdae5Iy6Oz_20190224150506_love.mail.ru;  stat=love.mail.ru|cr|mamba:/search.phtml|163|665|0|74;',
@@ -27,13 +29,12 @@ function getList(from = 0, startFrom = 0) {
         && one.lookFor === "парня"
         && one.location === "Россия, Санкт-Петербург");
       f.map(one => checkOn(one.login, one.selfAge));
-      console.log(f.length, 'from: ' + from);
+      console.log(f.length, 'from: ' + from, url);
     } else {
       console.log("Произошла ошибка: " + error, 'from: ' + from);
     }
   });
 }
-
 const baseUrl = 'https://love.mail.ru/ru/';
 const ids = [
   'mb1763967967',
@@ -51,6 +52,48 @@ const ids = [
   'mb1310255285',
   'mb1754195226',
   'ira_koko',
+  'mb1219494465',
+  'mb1759295852',
+  'mb1771751423',
+  'mb1771673460',
+  'mb1771496917',
+  'mb1771536321',
+  'mb1593831889',
+  'mb1767842014',
+  'mb1769968200',
+  'mb1771648767',
+  'mb1771735923',
+  'mb1771398746',
+  'mb1771272482',
+  'mb1771735923',
+  'mb1745916019',
+  'mb1769216371',
+  'mb1754279267',
+  'mb1372785103',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
   '',
   '',
 
@@ -81,7 +124,7 @@ function alreadySel(id) {
 
 
 function isFat(txt) {
-  return (txt.indexOf('Телосложение:') > -1 && txt.indexOf('Полное') > -1)
+  return (txt.indexOf('Телосложение:') > -1 && txt.indexOf('полное') > -1)
     || isFatCounted(txt)
 }
 
@@ -107,33 +150,43 @@ function isFatCounted(txt) {
   const regW = /(\d?\d\d) кг/;
 
   if (regH.test(txt) && regW.test(txt)) {
-    const h = +(regH.exec(txt))[1];
-    const w = +(regW.exec(txt))[1];
+    const h = +regH.exec(txt)[1];
+    const w = +regW.exec(txt)[1];
     const delta = h - 100 - w;
-    if (delta < -5) return true;
+    if (delta < -7) return true;
     return false
   } else if (regW.test(txt)) {
     const w = +(regW.exec(txt))[1];
 
-    if (w > 75) return true;
+    if (w > 70) return true;
     return false
   }
 
 }
 
+enum ERELS {
+  notSerious = 'ничего серьёзного',
+  husbant = 'в браке',
+  rels = 'в отношениях'
+}
+
 const _rel = 'Отношения:';
-const rel = _rel + '\n\t\t\t\t\t\tНет';
-function hasNoRels(txt) {
+const rel = _rel + '\n\t\t\t\t\t\tнет';
+function hasNoRels100(txt) {
   return txt.indexOf(_rel) > -1 && txt.indexOf(rel) > -1
 }
 
 function hasRels(txt) {
-  // второе условие сомнительно
-  return txt.indexOf(_rel) > -1 && txt.indexOf(rel) === -1 && txt.indexOf('Ничего серьёзного') === -1
+  return txt.indexOf(_rel) > -1 && txt.indexOf(ERELS.rels) > -1
 }
 
 function hasHusband(txt) {
-  return txt.indexOf('В браке') > -1 ? 'В браке' : ''
+  return txt.indexOf(_rel) > -1 && txt.indexOf(ERELS.husbant) > -1
+}
+
+
+function hasRelsHusband(txt): boolean {
+  return hasHusband(txt) || hasRels(txt)
 }
 
 function _isNeeded(txt: string) {
@@ -144,11 +197,23 @@ function isNeeded(txt: string) {
   return  _isNeeded(txt) ? '--------->' : ''
 }
 
-function isSmoling(txt) {
-  return txt.indexOf('Курю') > -1
+function isSmoking(txt) {
+  return txt.indexOf('курю') > -1 && txt.indexOf('не курю') === -1
 }
 
 
+checkOn('mb1771272482', 777);
+console.log(isNotMyAge('с парнем в возрасте 28 - 36 лет'));
+function isNotMyAge(txt) {
+  const ceil = 37;
+  const reg = /в возрасте (\d\d) - (\d\d) /;
+  if(reg.exec(txt)) {
+    const upperAge = +reg.exec(txt)[2];
+    return upperAge < ceil
+  }
+  return false
+}
+/*checkOn('mb1761458267', 777);*/
 function checkOn(id: string, selfAge) {
 
   request(baseUrl + id, function (error, response, body) {
@@ -157,9 +222,19 @@ function checkOn(id: string, selfAge) {
       const anketa_left = $('.span1.margin-r .b-anketa_field').text();
       const anketa_right = $('.span1:not(.margin-r) .b-anketa_field').text();
 
-      if(!isFat(anketa_left) && hasRels(anketa_left) && !alreadySel(id)) console.log(selfAge + ' ' + id ,
-        'isSmoling: ' + isSmoling(anketa_right),
-        hasHusband(anketa_left)/*, anketa_left*/);
+      console.log(selfAge + ' ' + id ,
+        'isNotMyAge: ' + isNotMyAge(anketa_left),
+        'isSmoking: ' + isSmoking(anketa_right),
+        'hasRelsHusband: ' + hasRelsHusband(anketa_left) + '.',
+        /*anketa_right, anketa_left*/);
+
+      if(!isFat(anketa_left)
+        && !isNotMyAge(anketa_left)
+        && hasRelsHusband(anketa_left)
+        && !isSmoking(anketa_right)
+        && !alreadySel(id)) {
+        console.log(selfAge + ' ' + id );
+      }
     } else {
       console.log("checkOn ошибка: " + error);
     }
