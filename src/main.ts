@@ -5,12 +5,13 @@ import {OneList} from "./types";
 var request = require("request"),
   cheerio = require("cheerio");
 
-const limit = 20;
+const limit = 100;
+const isTest = false;
 
-//(new Array(100).fill(0)).forEach((n, i) => setTimeout(() => getList(i), 3000 * i));
+if(!isTest) (new Array(20).fill(0)).forEach((n, i) => setTimeout(() => getList(i), 3000 * i));
 
 
-function getList(from = 0, startFrom = 101) {
+function getList(from = 0, startFrom = 0) {
   from = from + startFrom;
   const url = `https://love.mail.ru/api/search?offset=${from * limit}&limit=${(from + 1) * limit}&noid=1766268675&nchanged=1549811160&nactive=0`;
   request({
@@ -70,18 +71,15 @@ const ids = [
   'mb1769216371',
   'mb1754279267',
   'mb1372785103',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
+  'mb1771780904',
+  'mb1771784434',
+  'mb1771770249',
+  'mb748000409',
+  'mb1770633568',
+  'mb1771892230',
+  'mb1771033576',
+  'mb1771901204',
+  'mb1575170811',
   '',
   '',
   '',
@@ -124,7 +122,7 @@ function alreadySel(id) {
 
 
 function isFat(txt) {
-  return (txt.indexOf('Телосложение:') > -1 && txt.indexOf('полное') > -1)
+  return (txt.indexOf('Телосложение:') > -1 && /(плотное|полное)/.test(txt))
     || isFatCounted(txt)
 }
 
@@ -134,16 +132,9 @@ const a = 'Рост:\n' +
   '                        \n' +
   '                        \n' +
   '                            Вес:\n' +
-  '                            72 кг';
-const b = 'Вес:\n' +
-  '                            100 кг\n' +
-  '                            \n' +
-  '                        \n' +
-  '                    \n' +
-  '\t\t\t\t\t\tТелосложение:\n' +
-  '\t\t\t\t\t\tОбычное';
+  '                            56 кг';
 
-//console.log(isFatCounted(a));
+console.assert(isFatCounted(a),'isFatCounted');
 
 function isFatCounted(txt) {
   const regH = /(\d\d\d) см/;
@@ -153,7 +144,8 @@ function isFatCounted(txt) {
     const h = +regH.exec(txt)[1];
     const w = +regW.exec(txt)[1];
     const delta = h - 100 - w;
-    if (delta < -7) return true;
+    //console.log(h, w, delta);
+    if (delta < 7) return true;
     return false
   } else if (regW.test(txt)) {
     const w = +(regW.exec(txt))[1];
@@ -198,12 +190,13 @@ function isNeeded(txt: string) {
 }
 
 function isSmoking(txt) {
-  return txt.indexOf('курю') > -1 && txt.indexOf('не курю') === -1
+  return txt.indexOf('почти не курю') > -1 || (txt.indexOf('курю') > -1 && txt.indexOf('не курю') === -1)
 }
 
 
-checkOn('mb1771272482', 777);
-console.log(isNotMyAge('с парнем в возрасте 28 - 36 лет'));
+if(isTest) {
+  checkOn('angel-a36', 777);
+}
 function isNotMyAge(txt) {
   const ceil = 37;
   const reg = /в возрасте (\d\d) - (\d\d) /;
@@ -222,11 +215,14 @@ function checkOn(id: string, selfAge) {
       const anketa_left = $('.span1.margin-r .b-anketa_field').text();
       const anketa_right = $('.span1:not(.margin-r) .b-anketa_field').text();
 
-      console.log(selfAge + ' ' + id ,
-        'isNotMyAge: ' + isNotMyAge(anketa_left),
-        'isSmoking: ' + isSmoking(anketa_right),
-        'hasRelsHusband: ' + hasRelsHusband(anketa_left) + '.',
-        /*anketa_right, anketa_left*/);
+      if(isTest) {
+        console.log(selfAge + ' ' + id ,
+          'isNotMyAge: ' + isNotMyAge(anketa_left),
+          'isFat: ' + isFat(anketa_left),
+          'isSmoking: ' + isSmoking(anketa_right),
+          'hasRelsHusband: ' + hasRelsHusband(anketa_left),
+          /*anketa_right, anketa_left*/);
+      }
 
       if(!isFat(anketa_left)
         && !isNotMyAge(anketa_left)
