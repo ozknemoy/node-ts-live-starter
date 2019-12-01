@@ -10,7 +10,7 @@ import {__} from "../globals";
   database: 'EDI_GUI_SBR'
 })
 export class DiffNetLocation extends _BaseEntity implements IDiffNetLocation {
-  repo = DiffNetLocation.getRepository();
+  //repo = DiffNetLocation.getRepository();
 
   constructor(newJob: IDiffNetLocation) {
     super();

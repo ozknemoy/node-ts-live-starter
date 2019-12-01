@@ -8,11 +8,11 @@ import {IUserRight} from "./user-right.interface";
   synchronize: true,
 })
 export class UserRight extends _BaseEntity implements IUserRight {
-  repo = UserRight.getRepository();
+  //repo = UserRight.getRepository();
 
   constructor(newUserRight: IUserRight) {
     super();
-    Object.assign(this, newUserRight)
+    if(newUserRight) Object.assign(this, newUserRight)
   }
 
   @PrimaryColumn()

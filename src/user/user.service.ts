@@ -33,20 +33,25 @@ export class UserService {
   }
 
   async validateUser({login}): Promise<IUser> {
-    return await User.findOne({where: {login}, select: ['id', 'login', 'rights', 'password']});
+    return await User.__findOne<IUser>({where: {login}, select: ['id', 'login', 'rights', 'password']}, true);
   }
 
   async createSA({login, password, pin}) {
     if (pin === 'nemoy' && login && password) {
-      const sAdmin = await User.findOne({where: {id: 1}});
-      /*if (sAdmin) {
+      const sAdmin = await User.__findOne({where: {/*admin: true,*/ login}}, true);
+      if (sAdmin) {
         ErrHandler.throw('логин занят', 406)
       }
       const _password = await this.generateHash(password);
       console.log(login, password, _password);
       if (_password) {
-        return User.create({login, password: _password, admin: true})
-      }*/
+        return User.save(new User({
+          login,
+          password: _password,
+          admin: true,
+          rights: null
+        })).then(resp=> resp.id)
+      }
     }
     ErrHandler.throw('чего-то не хватает', 406)
   }
@@ -71,6 +76,6 @@ export class UserService {
   }
 
   getFullUserById(id): Promise<User> {
-    return User.findById<User>(id, {select: ['id', 'login', 'admin']})
+    return User._findById<User>(id, {select: ['id', 'login', 'admin']})
   }
 }

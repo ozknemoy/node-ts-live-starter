@@ -1,6 +1,8 @@
-import {Entity, Column, PrimaryColumn, BeforeInsert} from "typeorm";
+import {Entity, Column, PrimaryColumn, BeforeInsert, getConnection} from "typeorm";
 import {IJob} from "./_job.interface";
 import {_BaseEntity} from "../_base-entity";
+import {connection} from "../db";
+import {CONFIG} from "../config/main-config";
 
 @Entity({
   name: 'to_drop_test_v',
@@ -8,11 +10,14 @@ import {_BaseEntity} from "../_base-entity";
   //database: 'EDI_GUI_SBR'
 })
 export class Job extends _BaseEntity implements IJob {
-  repo = Job.getRepository();
+
+  //repo = Job.getRepository();
 
   constructor(newJob: IJob) {
     super();
-    Object.assign(this, newJob)
+      //console.log(getConnection(CONFIG.mainConnectionName));
+      //Job.useConnection(connection);
+    if(newJob) Object.assign(this, newJob)
   }
   @PrimaryColumn()
   id: number;

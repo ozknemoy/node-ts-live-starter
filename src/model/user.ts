@@ -6,9 +6,10 @@ import {IUser} from "./user.interface";
 @Entity({
   name: 'a_user',
   synchronize: true,
+  //database: 'EDI'
 })
 export class User extends _BaseEntity implements IUser {
-  repo = User.getRepository();
+  //repo = User.getRepository();
 
   constructor(newUser: IUser) {
     super();
@@ -21,8 +22,8 @@ export class User extends _BaseEntity implements IUser {
   @Column()
   login: string;
 
-  @Column()
-  password: number;
+  @Column({type: 'varchar', length: 60})
+  password: string;
 
   @OneToMany(() => UserRight, userRight => userRight.user)
   rights: UserRight[];

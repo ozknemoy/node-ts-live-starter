@@ -5,6 +5,9 @@ import {connection, startDb} from "./db";
 import {DiffNetsService} from "./diff-nets";
 import {Job} from "./model/_job.model";
 import {DiffNetLocation} from "./model/diff-net-location.model";
+import {User} from "./model/user";
+import {IUser} from "./model/user.interface";
+import {IDiffNetLocation} from "./model/diff-net-location.interface";
 const fs = require('fs');
 const path = require('path');
 
@@ -16,38 +19,23 @@ async function bootstrap() {
 }
 bootstrap();
 
-
 async function doS() {
-  //await Job.clear();
-  const allUsers = await Job.find(/*{where: {JOB_TITLE: 'Timber'}}*/);
-  //await Job.remove(allUsers);
-  //const timber = await Job.findOne({ JOB_TITLE: '123'});
-  console.log('allUsers', allUsers.length);
-  const one = await Job.findById<Job>(1);
-  //const timber = await Job.findOne({ id: 1});
+
+  const one = await Job._findById<Job>(1);
   console.log('one', one.id);
+const user = await User._findOne<User>(
+    {where:{id:1},
+      select: ['id', 'login', 'admin']});
+  console.log(user);
 
-  /*const newJob: IJob = {
-    JOB_TITLE:'5',
-    MIN_SALARY: 10,
-    MAX_SALARY: 'кену',
-    editable: true,
-  };
-
-
-  const _newJob = new Job(newJob);
-  await Job.save(_newJob);*/
-  DiffNetLocation.save(new DiffNetLocation({
+  /*DiffNetLocation.save(new DiffNetLocation({
     code: 'test' + Math.floor(Math.random()*1111111),
     name: 'test',
-  }))
-/*Job.save(new Job({
-  id: 1,
-  JOB_TITLE:'7777777777',
-  MIN_SALARY: 111,
-  MAX_SALARY: 222,
-  editable: true,
-}))*/
+  }))*/
+    /*const ret = await DiffNetLocation._findOne<DiffNetLocation>(
+        {where: {name: 'test'}, select: ['id', 'name']});
+    console.log(ret);*/
+
   //DiffNetsService.getDN()
 
 }
