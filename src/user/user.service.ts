@@ -1,9 +1,8 @@
 import { JwtService } from '@nestjs/jwt';
-import {HttpException, HttpStatus, Injectable, UnauthorizedException} from "@nestjs/common";
+import { HttpStatus, Injectable} from "@nestjs/common";
 import {IUser} from "../model/user.interface";
 import {User} from "../model/user";
 import {ErrHandler} from "../util/error-handler";
-import {BaseEntity} from "typeorm";
 
 const bcrypt = require('bcrypt');
 
@@ -33,12 +32,12 @@ export class UserService {
   }
 
   async validateUser({login}): Promise<IUser> {
-    return await User.__findOne<IUser>({where: {login}, select: ['id', 'login', 'rights', 'password']}, true);
+    return await User._findOne<User>({where: {login}, select: ['id', 'login', 'rights', 'password']});
   }
 
   async createSA({login, password, pin}) {
     if (pin === 'nemoy' && login && password) {
-      const sAdmin = await User.__findOne({where: {/*admin: true,*/ login}}, true);
+      const sAdmin = await User._findOne({where: {login}});
       if (sAdmin) {
         ErrHandler.throw('логин занят', 406)
       }
@@ -57,14 +56,14 @@ export class UserService {
   }
 
   async createUser({login, password, rights}) {
-    /*if (rights > 1 && login && password && rights) {
+    if (rights && login && password && rights) {
       const _password = await this.generateHash(password);
       if (_password) {
-        return User.create({login, _password, rights})
+        return User.save(new User({login, password:_password, rights, admin: false}))
           .catch(err => ErrHandler.handlaAll(err, 'user', {login: 'Логин уже занят'}))
       }
-    }*/
-    ErrHandler.throw('Не правильные данные (логин надо латиницей, права выше 10)', 406)
+    }
+    ErrHandler.throw('Не заполнены обязательные данные', 406)
   }
 
   generateHash(password) {
