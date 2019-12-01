@@ -6,14 +6,14 @@ var request = require("request"),
   cheerio = require("cheerio");
 
 const limit = 100;
+const offset = 0;
 const isTest = false;
 
 if(!isTest) (new Array(20).fill(0)).forEach((n, i) => setTimeout(() => getList(i), 3000 * i));
 
 
-function getList(from = 0, startFrom = 0) {
-  from = from + startFrom;
-  const url = `https://love.mail.ru/api/search?offset=${from * limit}&limit=${(from + 1) * limit}&noid=1766268675&nchanged=1549811160&nactive=0`;
+function getList(from: number) {
+  const url = `https://love.mail.ru/api/search?offset=${from * limit + offset}&limit=${(from + 1) * limit + offset}&noid=1766268675&nchanged=1549811160&nactive=0`;
   request({
     url,
     headers: {
@@ -28,6 +28,7 @@ function getList(from = 0, startFrom = 0) {
       const items: OneList[] = JSON.parse(body).items;
       const f: OneList[] = items.filter(one => one.gender === "F"
         && one.lookFor === "парня"
+        && !isNotMyAgeFromList(one.lookForAge)
         && one.location === "Россия, Санкт-Петербург");
       f.map(one => checkOn(one.login, one.selfAge));
       console.log(f.length, 'from: ' + from, url);
@@ -80,20 +81,49 @@ const ids = [
   'mb1771033576',
   'mb1771901204',
   'mb1575170811',
+  'mb1747698566',
+  'mb1765954407',
+  'mb1758947555',
+  'anyuta1985',
+  'mb1371947947',
+  'mb1756399053',
+  'mb1769690450',
+  'mb1770970337',
+  'mb1771398684',
+  'mb1767969396',
+  'mb1770464280',
+  'mb1770016595',
+  'mb1769958612',
+  'mb1769637987',
+  'mb1216693966',
+  'mb1767210669',
+  'mb1761840032',
+  'mb1761751476',
+  'mb1761544599',
+  'mb1760195711',
+  'mb1759208326',
+  'mb1759155655',
+  'mb1758689997',
+  'mb1757327247',
+  'mb1138206019',
+  'mb1762261169',
+  '',
+  'mb1772197290',
+  'mb1772200770',
+  'mb1772096239',
+  'mb1772102350',
   '',
   '',
   '',
   '',
   '',
   '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
+  'mb1772022024',
+  'mb1765400794',
+  'mb1756531177',
+  'mb1340692376',
+  'mb1755331171',
+  'mb1743958355',
 
 ];
 
@@ -197,6 +227,15 @@ function isSmoking(txt) {
 if(isTest) {
   checkOn('angel-a36', 777);
 }
+function isNotMyAgeFromList(txt: string) {
+  const reg = /(\d\d) - (\d\d) /;
+  if(reg.exec(txt)) {
+    const upperAge = +reg.exec(txt)[2];
+    const lowerAge = +reg.exec(txt)[1];
+    return upperAge <= 37 && lowerAge >=34
+  }
+  return false
+}
 function isNotMyAge(txt) {
   const ceil = 37;
   const reg = /в возрасте (\d\d) - (\d\d) /;
@@ -217,7 +256,6 @@ function checkOn(id: string, selfAge) {
 
       if(isTest) {
         console.log(selfAge + ' ' + id ,
-          'isNotMyAge: ' + isNotMyAge(anketa_left),
           'isFat: ' + isFat(anketa_left),
           'isSmoking: ' + isSmoking(anketa_right),
           'hasRelsHusband: ' + hasRelsHusband(anketa_left),
@@ -225,7 +263,7 @@ function checkOn(id: string, selfAge) {
       }
 
       if(!isFat(anketa_left)
-        && !isNotMyAge(anketa_left)
+        //&& !isNotMyAge(anketa_left)
         && hasRelsHusband(anketa_left)
         && !isSmoking(anketa_right)
         && !alreadySel(id)) {
