@@ -1,11 +1,11 @@
 
 import {Connection, createConnection} from 'typeorm';
 import 'reflect-metadata';
-import {Job} from "./model/_job.model";
-import {User} from "./model/user";
-import {UserRight} from "./model/user-right";
-import {DiffNetLocation} from "./model/diff-net-location.model";
-import {CONFIG} from "./config/main-config";
+import {User} from "../model/user";
+import {UserRight} from "../model/user-right";
+import {DiffNetLocation} from "../model/diff-net-location.model";
+import {CONFIG} from "./main-config";
+import {DictUserRight} from "../model/dict-user-right";
 
 export let connection: Connection = null;
 
@@ -20,10 +20,13 @@ export function startDb () {
     password: 'edi#007',
     sid: 'tstsfera',
     entities: [
-      Job, User, UserRight,
+      User, UserRight,
 
       // existed edi-gui-sbr
-      DiffNetLocation
+      DiffNetLocation,
+
+      // dicts
+      DictUserRight,
     ],
     synchronize: true,
     logging: ['query']

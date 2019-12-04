@@ -1,8 +1,9 @@
-import {connection} from "./db";
+import {connection} from "../config/db";
+import {Injectable} from "@nestjs/common";
 
-
+@Injectable()
 export class DiffNetsService {
-  getDN() {
+  getDN(DOC_TYPE_ID: number, SELLER_ID: number, BUYER_ID: number, ui_group: string) {
     return connection.query(`
   select
     ID, SELLER_ID, BUYER_ID,
@@ -21,9 +22,6 @@ export class DiffNetsService {
          from EDI_GUI_SBR.Dict_Sets_Ui_Sets_Vw s
          WHERE s.DOC_TYPE_ID = :DOC_TYPE_ID AND (s.SELLER_ID = :SELLER_ID OR s.SELLER_ID IS NULL) AND (s.BUYER_ID = :BUYER_ID OR s.BUYER_ID IS NULL) and (s.ui_group = :ui_group OR s.ui_group IS NULL)
      ) where Priority = 1
-  `, [/*DOC_TYPE_ID*/1, /*SELLER_ID*/1, /*BUYER_ID*/1, /*ui_group*/6]).then(resp => {
-      console.log(resp.length);
-
-    });
+  `, [DOC_TYPE_ID, SELLER_ID, BUYER_ID, ui_group])
   }
 }

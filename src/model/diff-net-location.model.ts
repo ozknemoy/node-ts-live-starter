@@ -1,21 +1,29 @@
-import {Entity, Column, PrimaryColumn, BeforeInsert, BaseEntity} from "typeorm";
-import {IJob} from "./_job.interface";
-import {_BaseEntity} from "../_base-entity";
+import {Entity, Column, PrimaryColumn,} from "typeorm";
+import {_BaseEntity} from "./_base-entity";
 import {IDiffNetLocation} from "./diff-net-location.interface";
-import {__} from "../globals";
+import {CONFIG} from "../config/main-config";
 
 @Entity({
   name: 'DICT_SETS_UI_LOCATIONS',
   synchronize: false,
-  database: 'EDI_GUI_SBR'
+  database: CONFIG.secondSchema,
 })
 export class DiffNetLocation extends _BaseEntity implements IDiffNetLocation {
-  //repo = DiffNetLocation.getRepository();
 
   constructor(newJob: IDiffNetLocation) {
     super();
     Object.assign(this, newJob)
   }
+
+  getSeqNameAddress() {
+    return CONFIG.secondSchema + '.DICT_SETS_UI_LOCATIONS_SEQ'
+  }
+
+  getSeqName() {
+    return 'DICT_SETS_UI_LOCATIONS_SEQ'
+  }
+
+
   @PrimaryColumn({name: 'ID'})
   id: number;
 
@@ -24,8 +32,6 @@ export class DiffNetLocation extends _BaseEntity implements IDiffNetLocation {
 
   @Column({name: 'NAME', length: 70})
   name: string;
-
-  //@BeforeInsert()
 
 
 }

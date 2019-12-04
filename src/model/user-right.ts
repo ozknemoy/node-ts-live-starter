@@ -1,14 +1,14 @@
 import {Entity, Column, PrimaryColumn, BeforeInsert, ManyToOne} from "typeorm";
-import {_BaseEntity} from "../_base-entity";
+import {_BaseEntity} from "./_base-entity";
 import {User} from "./user";
 import {IUserRight} from "./user-right.interface";
+import {BooleanOracleTransformer} from "../transformer/boolean-oracle-transformer";
 
 @Entity({
   name: 'a_user_right',
   synchronize: true,
 })
 export class UserRight extends _BaseEntity implements IUserRight {
-  //repo = UserRight.getRepository();
 
   constructor(newUserRight: IUserRight) {
     super();
@@ -19,9 +19,9 @@ export class UserRight extends _BaseEntity implements IUserRight {
   id: number;
 
   @Column()
-  name: string;
+  rightCode: string;
 
-  @Column({nullable: true, type: 'number', width: 1, default: 0})
+  @Column({nullable: true, type: 'number', width: 1, default: 0, transformer: new BooleanOracleTransformer()})
   editable: boolean;
 
   @ManyToOne(() => User, user => user.rights)

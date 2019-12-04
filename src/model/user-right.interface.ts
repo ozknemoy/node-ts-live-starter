@@ -1,7 +1,7 @@
 
 export class IUserRight {
-  id: number;
-  name: string;
+  id?: number;
+  rightCode: string;
   editable: boolean;
 }
 

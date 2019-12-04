@@ -3,6 +3,10 @@ import { HttpStatus, Injectable} from "@nestjs/common";
 import {IUser} from "../model/user.interface";
 import {User} from "../model/user";
 import {ErrHandler} from "../util/error-handler";
+import {DictService} from "../dict/dict.service";
+import {UserRight} from "../model/user-right";
+import {DictUserRight} from "../model/dict-user-right";
+import {Raw} from "typeorm";
 
 const bcrypt = require('bcrypt');
 
@@ -11,15 +15,16 @@ const bcrypt = require('bcrypt');
 export class UserService {
   private round = 10;
 
-  constructor(private readonly jwtService: JwtService) {}
+  constructor(private readonly jwtService: JwtService, private dictService: DictService) {}
 
   async signIn({login, password}): Promise<{token: string/*, rights: number*/}> {
-    // In the real-world app you shouldn't expose this method publicly
-    // instead, return a token once you verify user credentials
     const user = await this.validateUser({login});
+
     if (!user) {
       this.badCredentials();
     }
+    console.log(password, user);
+
     const isValid = await this.checkPassword(password, user.password);
     if (!isValid) {
       this.badCredentials();
@@ -31,8 +36,12 @@ export class UserService {
     ErrHandler.throw('Пара пароль/логин не валидна', HttpStatus.NOT_ACCEPTABLE);
   }
 
-  async validateUser({login}): Promise<IUser> {
-    return await User._findOne<User>({where: {login}, select: ['id', 'login', 'rights', 'password']});
+  validateUser({login}): Promise<IUser> {
+    return User._findOne<User>({
+      where: {login},
+      select: ['id', 'login', 'password', 'admin'],
+      relations: ['rights']
+    });
   }
 
   async createSA({login, password, pin}) {
@@ -42,13 +51,13 @@ export class UserService {
         ErrHandler.throw('логин занят', 406)
       }
       const _password = await this.generateHash(password);
-      console.log(login, password, _password);
       if (_password) {
+        const userRights = await this.dictService.getUserRight();
         return User.save(new User({
           login,
           password: _password,
           admin: true,
-          rights: null
+          rights: userRights.map(ur => new UserRight({rightCode: ur.code, editable: true}))
         })).then(resp=> resp.id)
       }
     }
@@ -75,6 +84,28 @@ export class UserService {
   }
 
   getFullUserById(id): Promise<User> {
-    return User._findById<User>(id, {select: ['id', 'login', 'admin']})
+    return User._findById<User>(id, {
+      relations: ['rights'],
+      select: ['id', 'login', 'admin']
+    })
   }
+
+  getAllUsers(): Promise<User[]> {
+    return User.find({
+      where: {admin: Raw(alias =>`${alias} != 1 OR ${alias} IS NULL`)},
+      select: ['id', 'login']
+    });
+  }
+
+
+
+
+  static async createDictUserRights() {
+    await DictUserRight.clear();
+    return DictUserRight.save<DictUserRight>([
+      new DictUserRight({name: 'Настройка полей', code: 'diff-nets', id: null}),
+      new DictUserRight({name: 'Новости', code: 'news', id: null})
+    ])
+  }
+
 }

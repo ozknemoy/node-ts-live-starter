@@ -1,10 +1,8 @@
 import {Body, Controller, Delete, Get, Param, Post, UseFilters, UseGuards} from '@nestjs/common';
 import {AuthGuard} from "@nestjs/passport";
 import {UserService} from "./user.service";
-import {User} from "../model/user";
 import {ErrHandler} from "../util/error-handler";
-import {Not} from "typeorm";
-
+import {AuthByRightGuard} from "../guard/auth-by-right.guard";
 
 @Controller('user')
 export class UserController {
@@ -12,9 +10,9 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('all')
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthByRightGuard({isAdmin: true}))
   findAll() {
-    return User.find({where: {admin: Not(1)}});
+    return this.userService.getAllUsers()
   }
 
   @Post('/login')
@@ -28,24 +26,27 @@ export class UserController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard())
   deleteUser(@Param('id') id: number) {
     return this.userService.getFullUserById(id).then((user) => {
       if(user.admin) {
-        ErrHandler.throw('нет прав', 401)
+        ErrHandler.throw('нет прав удалять этого пользователя', 401)
       }
       return user.remove()
     })
   }
 
   @Post('/new')
+  @UseGuards(AuthGuard())
   createUser(@Body() body) {
     return this.userService.createUser(body)
   }
 
 
   @Get(':id')
-  rootGet() {
-    return {oneUser: 1}
+  @UseGuards(AuthGuard())
+  rootGet(@Param('id') id: number) {
+    return this.userService.getFullUserById(id)
   }
 
 
