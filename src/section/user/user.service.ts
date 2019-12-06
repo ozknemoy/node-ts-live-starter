@@ -1,11 +1,11 @@
 import { JwtService } from '@nestjs/jwt';
 import { HttpStatus, Injectable} from "@nestjs/common";
-import {IUser} from "../model/user.interface";
-import {User} from "../model/user";
-import {ErrHandler} from "../util/error-handler";
+import {IUser} from "../../model/user.interface";
+import {User} from "../../model/user";
+import {ErrHandler} from "../../util/error-handler.util";
 import {DictService} from "../dict/dict.service";
-import {UserRight} from "../model/user-right";
-import {DictUserRight} from "../model/dict-user-right";
+import {UserRight} from "../../model/user-right";
+import {DictUserRight} from "../../model/dict-user-right";
 import {Raw} from "typeorm";
 
 const bcrypt = require('bcrypt');
@@ -57,7 +57,7 @@ export class UserService {
           login,
           password: _password,
           admin: true,
-          rights: userRights.map(ur => new UserRight({rightCode: ur.code, editable: true}))
+          rights: userRights.map(ur => new UserRight({code: ur.code, editable: true}))
         })).then(resp=> resp.id)
       }
     }

@@ -5,7 +5,7 @@ import {
   FindConditions,
   FindManyOptions, FindOneOptions, getRepository, ObjectType, SaveOptions,
 } from "typeorm";
-import {__} from "../util/globals";
+import {__} from "../util/__.util";
 import {CONFIG} from "../config/main-config";
 
 interface FindOneCond<T> {

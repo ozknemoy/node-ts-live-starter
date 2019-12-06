@@ -1,11 +1,11 @@
 import {ForbiddenException, HttpException, HttpStatus} from "@nestjs/common";
-import {logger} from "./logger";
+import {logger} from "./logger.util";
 
 export class ErrHandler {
 
   static STATUS_FOR_VALID_AND_UNIQUE_ERR = HttpStatus.NOT_ACCEPTABLE;
 
-  static throw(err: string, code = HttpStatus.NOT_ACCEPTABLE) {
+  static throw(err: any, code = HttpStatus.NOT_ACCEPTABLE) {
     logger.error(err);
     throw new HttpException(err, code);
   }

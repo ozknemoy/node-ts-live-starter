@@ -6,6 +6,12 @@ import {UserRight} from "../model/user-right";
 import {DiffNetLocation} from "../model/diff-net-location.model";
 import {CONFIG} from "./main-config";
 import {DictUserRight} from "../model/dict-user-right";
+import {DiffNetField} from "../model/diff-net-field.model";
+import {IDiffNetField} from "../model/diff-net-field.interface";
+import {DiffNetSet} from "../model/diff-net-set.model";
+import {Company} from "../model/company";
+import {DiffNetSetView} from "../model/diff-net-set.view.model";
+import {News} from "../model/news";
 
 export let connection: Connection = null;
 
@@ -23,10 +29,16 @@ export function startDb () {
       User, UserRight,
 
       // existed edi-gui-sbr
-      DiffNetLocation,
+      Company, News,
+
+      // existed edi-gui-sbr
+      DiffNetLocation, DiffNetField, DiffNetSet,
 
       // dicts
       DictUserRight,
+
+      // вьюшки
+      DiffNetSetView,
     ],
     synchronize: true,
     logging: ['query']

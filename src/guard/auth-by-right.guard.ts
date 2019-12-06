@@ -14,7 +14,6 @@ export function AuthByRightGuard(scopes: AuthByRightGuardOptions, type?: string 
         throw err || new UnauthorizedException();
       }
 
-      console.log('++++++++++++', scopes, info, user);
       if(scopes.isAdmin) {
         if(user.admin) {
           return user

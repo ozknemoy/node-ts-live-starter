@@ -1,6 +1,7 @@
 /**
  * Created by Vakarchuk.DM on 24.10.2017.
  */
+import {ValidationError} from "class-validator";
 
 interface IUnderscore {
     qntyDecimal: number,
@@ -28,6 +29,10 @@ interface IUnderscore {
     isInvalidValue: (value: any)=> boolean
     capitalizeFirstLetter: (str: string) => string
     lowerFirstLetter: (str: string) => string
+  constructErrorMessage: (err: string) => string
+  constructErrorNotUniqueMessage: (err: string) => string
+  constructErrorMaxLengthMessage: (err: string, num: number) => string
+  handleValidationErrors: (err: ValidationError[]) => string[]
 }
 
 const _cf = (function () {
@@ -204,5 +209,17 @@ export let __: IUnderscore = {
   },
   lowerFirstLetter(string) {
     return __.isInvalidPrimitive(string) ? null : string.charAt(0).toLowerCase() + string.slice(1);
-  }
+  },
+  constructErrorMessage(err: string) {
+      return `Не заполнено обязательное поле "${err}"`
+  },
+  constructErrorNotUniqueMessage(err: string) {
+      return `Поле "${err}" не уникально`
+  },
+  constructErrorMaxLengthMessage(err: string, num: number) {
+      return `Поле "${err}" не должно быть больше ${num} символов`
+  },
+  handleValidationErrors(err: ValidationError[]): string[] {
+      return this.flatten(err.map(e => Object.values(e.constraints)))
+  },
 };
