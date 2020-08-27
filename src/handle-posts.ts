@@ -1,15 +1,15 @@
-import {getUrlWithoffset, getVKUrl, urlRegexp, writeHtmlFile} from "./vk.helpers";
+import {getUrlWithOffset, getVKUrl, urlRegexp, writeHtmlFile} from "./vk.helpers";
 import {isCopyPost, IVKPostResponse} from "./vk-post-user.interface";
 import {IOnePostCopy} from "./vk-post-copy.interface";
 import {IOnePost} from "./vk-post-group.interface";
 const request = require('request-promise');
-const url = getUrlWithoffset('wall.get?owner_id=129244038');
+const url = getUrlWithOffset('wall.get?owner_id=129244038');
 
 
 Promise.all(
   new Array(1).fill(1)
     .map((ret, i) =>
-      request(getUrlWithoffset('wall.get?owner_id=129244038', i, 100))
+      request(getUrlWithOffset('wall.get?owner_id=129244038', i, 100))
         .then(d => JSON.parse(d).response.items)
     )
 ).then(resp =>  [].concat(...resp))

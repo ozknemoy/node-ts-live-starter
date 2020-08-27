@@ -116,7 +116,7 @@ export interface IVKProfile {
   online: number;
 }
 
-export interface IVKPostResponse extends IVKError {
+export interface IVKPostResponse {
   response: {
     count: number;
     items: (IOnePost | IOnePostCopy)[];

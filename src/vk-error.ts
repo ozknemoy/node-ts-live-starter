@@ -15,3 +15,7 @@ export interface Error {
 export interface IVKError {
   error?: Error;
 }
+
+export function isVkError(d: IVKError | any): d is IVKError {
+  return d.hasOwnProperty('error')
+}

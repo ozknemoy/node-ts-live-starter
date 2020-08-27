@@ -1,4 +1,4 @@
 
 console.log('start');
 //import './database'
-import './handle-posts'
+import './permanent-public'
