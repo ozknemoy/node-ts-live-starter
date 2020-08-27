@@ -8,15 +8,15 @@
     "start:debug": "nodemon --config nodemon-debug.json"
   },
   "dependencies": {
-    "@types/node": "^10.7.1",
-    "reflect-metadata": "^0.1.12",
-    "typescript": "^3.0.1"
+    "@types/node": "^10.17.28",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^3.9.7"
   },
   "devDependencies": {
-    "nodemon": "^1.18.3",
+    "nodemon": "^1.19.4",
     "ts-loader": "^4.4.2",
     "ts-node": "^7.0.1",
-    "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0"
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   }
 }
