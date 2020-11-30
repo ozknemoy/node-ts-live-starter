@@ -11,29 +11,30 @@ import {IUserFromGroup, ISerFromGroupRoot} from "./user-from-group";
 import {isVkError} from "./vk-error";
 import {IVKPostResponse} from "./vk-post-user.interface";
 
+let success = 0;
+let fail = 0;
 
 const request = require('request-promise');
 letsDoIt();
 function letsDoIt() {
-  request(getUrlWithOffset('groups.getMembers?group_id=196882515', yServiceToken, 0, 100))
+  request(getUrlWithOffset('groups.getMembers?group_id=196882515', yServiceToken, 0, 500))
     .then(d => JSON.parse(d))
     .then(d => !isVkError(d) ? d.response : Promise.reject(d.error))
     .then(async (d: IUserFromGroup) => {
-      const ids = shuffle(d.items).slice(0,20);
+      const ids = shuffle(d.items).slice(0,30);
 
-      if(ids.length > 10) {
-        return ids.forEach((id, i) => setTimeout(() => {
-          console.log(i);
-          likeLastPostOnWall(id);
-        }, 1000 * i));
-      }
-      return Promise.all(
-        ids.map(id=>likeLastPostOnWall(id).then(() => id))
-      )
+      ids.forEach((id, i) => setTimeout(() => {
+        console.log(new Date());
+        likeLastPostOnWall(id);
+        success++;
+        if(ids.length === i + 1) {
+          console.log('провалов: ' + Math.round(100 * fail/(fail + success)));
+          console.log('---------------------------------- end ------------------------------------------');
+        }
+      }, 8374 * i));
+
     })
-    .then((all: number[]) => {
-      if(Array.isArray(all)) console.log(all.filter(f=>!!f).length, all.length, all)
-    })
+
     .catch((e) => console.log(e))
 }
 
@@ -69,6 +70,7 @@ function getFirstPostIdFromWall(owner_id: number) {
       return d.items && d.items[0] ? d.items[0].id : null
     })
     .catch((e) => {
+      fail++;
       console.log(e.error_msg);
       return null
     });
