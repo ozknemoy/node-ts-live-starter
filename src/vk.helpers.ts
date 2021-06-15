@@ -1,4 +1,7 @@
 import * as fs from "fs";
+import {IVkUser} from "./vk-user";
+import {__} from "./__.util";
+const request = require('request-promise');
 
 const dunay = [59.961975, 30.935620];
 const ozerki = [60.036671, 30.316240];
@@ -16,10 +19,12 @@ const [location_latitude, location_longitude] = ozerki;
 export const VKBaseUrl = 'https://api.vk.com/';
 
 
-export const nemoyServiceToken = '399f1393399f1393399f13932b39d1e2213399f399f13936582251784888d414d724237';
-export const permServiceToken = '4be9657904894e9a432f519992c71b594a65185f6d89cd5826b8cde438d746ffc2feceb8f5c93caae37ee';
-export const yServiceToken = '98efa8fa98efa8fa98efa8fad7989c91f1998ef98efa8fac7f0a430336eaa7daba68385';
-export const yToken = '8ba48e74fa9652b9fc6421820ca48fd66b957c3b6dcf1dc3e5fd618dcf9c4326258f1e4d227515a31569c';
+export const nemoyServiceToken = process.env.nemoyServiceToken;
+export const permServiceToken = process.env.permServiceToken;
+export const yServiceToken = process.env.yServiceToken;
+export const yToken = process.env.yToken;
+
+
 export function getVKUrl (url, access_token) {
   return `${VKBaseUrl}method/${url}&v=5.120&access_token=${access_token}`
 }
@@ -44,6 +49,24 @@ export const urlRegexp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z
 export function getUrlWithOffset(url: string, access_token: string, n = 0, count = 100) {
   return getVKUrl(url + `&count=${count}&offset=${n * count}`, access_token)
 }
+
+export function urlCommentOnCroupWall(message: string, postId: number, groupId = 166231334, accessToken: string = yToken) {
+  return `${VKBaseUrl}method/wall.createComment?v=5.131&owner_id=-${groupId}&post_id=${postId}&message=${encodeURIComponent(message)}&access_token=${accessToken}`
+}
+
+export function postCommentOnCroupWall(message: string, postId: number, groupId = 166231334, accessToken: string = yToken): Promise<unknown> {
+  return request(urlCommentOnCroupWall(message, postId, groupId, accessToken)).then(d => JSON.parse(d)?.response)
+}
+
+export function urlUsersInfoByIds(ids: number[], accessToken: string = yToken) {
+  return `${VKBaseUrl}method/users.get?v=5.131&user_ids=${ids.join(',')}&access_token=${accessToken}&fields=bdate,city,sex,country,nickname`
+}
+
+export function getExistedWomenByIds(ids: number[], accessToken: string = yToken): Promise<IVkUser[]> {
+  if(!__.isFilledArray(ids)) return Promise.reject('no users for getExistedUsersInfoByIds')
+  return request(urlUsersInfoByIds(ids, accessToken)).then(d => JSON.parse(d)?.response?.map(u => new IVkUser(u)).filter(user => user.isWoman && !user.hasOwnProperty('deactivated')))
+}
+
 
 export function shuffle(array) {//https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   var currentIndex = array.length, temporaryValue, randomIndex;
