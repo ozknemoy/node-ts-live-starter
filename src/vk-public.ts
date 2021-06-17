@@ -38,7 +38,7 @@ class Messages {
     445: 'remind',
     382: 'remind',
     368: 'remind',
-    342: 'remind',
+    //524: 'remind',
     645: 'memas',
     620: 'remind',
     593: 'memas',
@@ -59,9 +59,9 @@ class Messages {
     `смотрите, что мы вам подобрали о любви к себе!`
   ];
   memasPostMessages = [
-    `для Вас новая классная цитата и много постов про любовь к себе :)`,
+    `новая классная цитата для Вас и много постов про любовь к себе :)`,
     `эту цитату лайкнул сам Лабковский, но только тссс никому :)`,
-    `эту цитату репостил у себя сам Курпатов, но только тссс никому :)`
+    `эту цитату репостил у себя на стене Курпатов, но только тссс никому :)`
   ];
   remindMessage() {
     return this.remindMessages[_.random(this.remindMessages.length - 1)];
@@ -110,7 +110,7 @@ async function prepareAndPost() {
   const newUsers = await getExistedWomenByIds(newIds).catch(e => <any>console.log(e) || []);
   console.log('found users ---->');
   newUsers.forEach(u => {
-    console.log(`${u.first_name} ${u.last_name}`);
+    console.log(`${u.first_name} ${u.last_name} (${u.id})`);
   });
   const successUser: number[] = [];
   const failUser: number[] = [];
