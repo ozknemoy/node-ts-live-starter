@@ -50,6 +50,7 @@ class Messages {
     `благодарим Вас за недавнюю активность, заходите в гости ещё :)`,
     `напоминаем Вам, что в описании группы есть ссылка на подарок - руководство по поднятию самооценки`,
     `у нас появились много интересных статей по самооценке за время вашего отсутствия, заходите в гости :)`,
+    `без вас как-то неуютно :(`,
     `приветствую Вас! Я соскучилась, заходите чаще, чтобы не пропустить посты о любви к себе :)`
   ];
   infoPostMessages = [
@@ -59,7 +60,8 @@ class Messages {
   ];
   memasPostMessages = [
     `для Вас новая классная цитата и много постов про любовь к себе :)`,
-    `будете проходить, не проходите мимо :)`
+    `эту цитату лайкнул сам Лабковский, но только тссс никому :)`,
+    `эту цитату репостил у себя сам Курпатов, но только тссс никому :)`
   ];
   remindMessage() {
     return this.remindMessages[_.random(this.remindMessages.length - 1)];
@@ -79,7 +81,6 @@ class Messages {
 }
 
 const messages = new Messages();
-console.log(messages.info);
 
 let alreadyUsedUserIds = storage.get('alreadyUsedUsers') || [];
 let allUsersIds: number[];
@@ -105,28 +106,44 @@ async function prepareAndPost() {
 
   if(!newIds.length) return console.log('---------------------------------- end ------------------------------------------')
 
-  const newUsers = await getExistedWomenByIds(newIds)/*.catch(console.log)*/;
 
+  const newUsers = await getExistedWomenByIds(newIds).catch(e => <any>console.log(e) || []);
+  console.log('found users ---->');
   newUsers.forEach(u => {
     console.log(`${u.first_name} ${u.last_name}`);
   });
+  const successUser: number[] = [];
+  const failUser: number[] = [];
+
   newUsers.forEach((u, i) => setTimeout(async () => {
     const [postId, msg] = messages.info;
-    console.log();
     try {
       await postCommentOnCroupWall(`[id${u.id}|${u.first_name}], ${msg}`, postId);
       success++;
+      successUser.push(u.id);
       if(newUsers.length === i + 1) {
+        updateUsedUsers(successUser);
         console.log(new Date(), 'провалов: ' + Math.round(100 * fail/(fail + success)));
         console.log('----------- restart ---------');
-        setTimeout(prepareAndPost, /*53 **/ 60 * 1000)
+
+        setTimeout(prepareAndPost, 53 * 60 * 1000)
       }
 
     } catch(e) {
+      console.log('fail=======>',e);
       fail++;
+      failUser.push(u.id);
+      if(newUsers.length === i + 1) {
+        updateUsedUsers(successUser);
+        console.log(new Date(), 'провалов: ' + Math.round(100 * fail/(fail + success)));
+      }
     }
 
-  }, /*17*/8374 * i));
+  }, 28374 * i));
+
+}
+
+function updateUsedUsers(newIds: number[]) {
   // после того как сделал все что хотел с юзерами добавляю их в использованные
   alreadyUsedUserIds = alreadyUsedUserIds.concat(newIds);
   storage.set('alreadyUsedUsers', alreadyUsedUserIds)

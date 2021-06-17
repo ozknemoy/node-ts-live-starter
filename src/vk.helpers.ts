@@ -55,7 +55,8 @@ export function urlCommentOnCroupWall(message: string, postId: number, groupId =
 }
 
 export function postCommentOnCroupWall(message: string, postId: number, groupId = 166231334, accessToken: string = yToken): Promise<unknown> {
-  return request(urlCommentOnCroupWall(message, postId, groupId, accessToken)).then(d => JSON.parse(d)?.response)
+  console.log('...posting comment for users...');
+  return request(urlCommentOnCroupWall(message, postId, groupId, accessToken)).then(handleVKResponse)
 }
 
 export function urlUsersInfoByIds(ids: number[], accessToken: string = yToken) {
@@ -63,8 +64,23 @@ export function urlUsersInfoByIds(ids: number[], accessToken: string = yToken) {
 }
 
 export function getExistedWomenByIds(ids: number[], accessToken: string = yToken): Promise<IVkUser[]> {
-  if(!__.isFilledArray(ids)) return Promise.reject('no users for getExistedUsersInfoByIds')
-  return request(urlUsersInfoByIds(ids, accessToken)).then(d => JSON.parse(d)?.response?.map(u => new IVkUser(u)).filter(user => user.isWoman && !user.hasOwnProperty('deactivated')))
+  if(!__.isFilledArray(ids)) return Promise.reject('no users for getExistedUsersInfoByIds');
+  console.log('...requesting users...');
+  return request(urlUsersInfoByIds(ids, accessToken)).then(handleVKResponse).then(d => d.map(u => new IVkUser(u)).filter(user => /*user.isWoman &&*/ !user.hasOwnProperty('deactivated')))
+}
+
+function handleVKResponse(d) {
+  try {
+    const resp = JSON.parse(d);
+    if(resp.hasOwnProperty('error')) {
+      console.log(resp.error);
+      return Promise.reject(resp.error)
+    } else {
+      return resp.response
+    }
+  } catch(e) {
+    console.log(e);
+  }
 }
 
 
