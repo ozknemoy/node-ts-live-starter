@@ -65,8 +65,10 @@ export function urlUsersInfoByIds(ids: number[], accessToken: string = yToken) {
 
 export function getExistedWomenByIds(ids: number[], accessToken: string = yToken): Promise<IVkUser[]> {
   if(!__.isFilledArray(ids)) return Promise.reject('no users for getExistedUsersInfoByIds');
-  console.log('...requesting users...');
-  return request(urlUsersInfoByIds(ids, accessToken)).then(handleVKResponse).then(d => d.map(u => new IVkUser(u)).filter(user => /*user.isWoman &&*/ !user.hasOwnProperty('deactivated')))
+  console.log('...requesting users...', ids);
+  return request(urlUsersInfoByIds(ids, accessToken)).then(handleVKResponse)
+    .then((d: IVkUser[]) => d.map(u => new IVkUser(u)))
+    .then((d: IVkUser[]) => d.filter(user => user.isWoman && !user.hasOwnProperty('deactivated')))
 }
 
 function handleVKResponse(d) {

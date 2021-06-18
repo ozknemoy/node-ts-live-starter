@@ -99,7 +99,7 @@ async function prepareAndPost() {
       newIds.push(userId);
     }
 
-    if(newIds.length >= 2) {
+    if(newIds.length >= 3) {
       break;
     }
   }
@@ -107,11 +107,25 @@ async function prepareAndPost() {
   if(!newIds.length) return console.log('---------------------------------- end ------------------------------------------')
 
 
-  const newUsers = await getExistedWomenByIds(newIds).catch(e => <any>console.log(e) || []);
+  const newUsers: IVkUser[] = await getExistedWomenByIds(newIds).catch(e => <any>console.log(e) || []);
+
+  // кривых юзеров сразу записываю в использованные
+  if(newIds.length !== newUsers.length) {
+    const foundedUserIds: number[] = newUsers.map(u => u.id);
+    const bannedUserIds = newIds.filter(id => !foundedUserIds.includes(id));
+    console.log(' bannedUserIds ----> ', bannedUserIds);
+    updateUsedUsers(bannedUserIds);
+  }
+
+  if(!__.isFilledArray(newUsers)) {
+    prepareAndPost()
+  }
+
   console.log('found users ---->');
   newUsers.forEach(u => {
     console.log(`${u.first_name} ${u.last_name} (${u.id})`);
   });
+
   const successUser: number[] = [];
   const failUser: number[] = [];
 
