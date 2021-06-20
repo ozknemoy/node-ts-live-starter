@@ -137,7 +137,7 @@ async function prepareAndPost() {
       successUser.push(u.id);
       if(newUsers.length === i + 1) {
         updateUsedUsers(successUser);
-        console.log(new Date(), 'провалов: ' + Math.round(100 * fail/(fail + success)));
+        console.log(new Date(), 'провалов: ' + Math.round(100 * fail/(fail + success)), ', успешно: ' + success);
         console.log('----------- restart ---------');
 
         setTimeout(prepareAndPost, 53 * 60 * 1000)
