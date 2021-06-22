@@ -19,6 +19,7 @@ var _ = require('lodash');
 
 let success = 0;
 let fail = 0;
+let filtered = 0;
 
 
 class Messages {
@@ -114,6 +115,7 @@ async function prepareAndPost() {
     const foundedUserIds: number[] = newUsers.map(u => u.id);
     const bannedUserIds = newIds.filter(id => !foundedUserIds.includes(id));
     console.log(' bannedUserIds ----> ', bannedUserIds);
+    filtered++;
     updateUsedUsers(bannedUserIds);
   }
 
@@ -137,7 +139,7 @@ async function prepareAndPost() {
       successUser.push(u.id);
       if(newUsers.length === i + 1) {
         updateUsedUsers(successUser);
-        console.log(new Date(), 'провалов: ' + Math.round(100 * fail/(fail + success)), ', успешно: ' + success);
+        console.log(new Date(), 'провалов: ' + Math.round(100 * fail/(fail + success)), ', успешно: ' + success, ', filtered: ' + filtered);
         console.log('----------- restart ---------');
 
         setTimeout(prepareAndPost, 53 * 60 * 1000)
