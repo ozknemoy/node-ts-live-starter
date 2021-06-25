@@ -83,9 +83,9 @@ class Messages {
 
 const messages = new Messages();
 
-let alreadyUsedUserIds = storage.get('alreadyUsedUsers') || [];
+let alreadyUsedUserIds: number[] = storage.get('alreadyUsedUsers') || [];
 let allUsersIds: number[];
-
+let postIdsByDate: {[key: string]: number[]} = storage.get('postIdsByDate') || {};
 
 
 
@@ -134,7 +134,9 @@ async function prepareAndPost() {
   newUsers.forEach((u, i) => setTimeout(async () => {
     const [postId, msg] = messages.info;
     try {
-      await postCommentOnCroupWall(`[id${u.id}|${u.first_name}], ${msg}`, postId);
+      const {comment_id} = await postCommentOnCroupWall(`[id${u.id}|${u.first_name}], ${msg}`, postId);
+      console.log(comment_id);
+      updateAdminCommentIds(comment_id);
       success++;
       successUser.push(u.id);
       if(newUsers.length === i + 1) {
@@ -163,6 +165,18 @@ function updateUsedUsers(newIds: number[]) {
   // после того как сделал все что хотел с юзерами добавляю их в использованные
   alreadyUsedUserIds = alreadyUsedUserIds.concat(newIds);
   storage.set('alreadyUsedUsers', alreadyUsedUserIds)
+}
+
+function updateAdminCommentIds(commentId: number) {
+  const d = new Date();
+  // имя свойства вида '2021-6-25'
+  const datePropName = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+  if(postIdsByDate[datePropName]) {
+    postIdsByDate[datePropName].push(commentId);
+  } else {
+    postIdsByDate[datePropName] = [commentId];
+  }
+  storage.set('postIdsByDate', postIdsByDate)
 }
 
 fse.readFile(path.normalize('./src/competitor-users.txt')).then((txt) => {

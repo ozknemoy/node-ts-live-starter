@@ -54,9 +54,14 @@ export function urlCommentOnCroupWall(message: string, postId: number, groupId =
   return `${VKBaseUrl}method/wall.createComment?v=5.131&owner_id=-${groupId}&post_id=${postId}&message=${encodeURIComponent(message)}&access_token=${accessToken}`
 }
 
-export function postCommentOnCroupWall(message: string, postId: number, groupId = 166231334, accessToken: string = yToken): Promise<unknown> {
-  console.log('...posting comment for users...');
+export function postCommentOnCroupWall(message: string, postId: number, groupId = 166231334, accessToken: string = yToken): Promise<{ comment_id: number, parents_stack: [] }> {
+  console.log('...posting comment for user...');
   return request(urlCommentOnCroupWall(message, postId, groupId, accessToken)).then(handleVKResponse)
+}
+
+export function deleteCommentOnWall(comment_id: number, userId: number = 599363966, accessToken: string = yToken): Promise<unknown> {
+  console.log(`...deleting comment ${comment_id}...`);
+  return request(`${VKBaseUrl}method/wall.wall.deleteComment?v=5.131&owner_id=-${userId}&comment_id=${comment_id}&access_token=${accessToken}`).then(handleVKResponse)
 }
 
 export function urlUsersInfoByIds(ids: number[], accessToken: string = yToken) {

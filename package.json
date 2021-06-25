@@ -4,6 +4,7 @@
   "description": "small nodejs for testing purposes",
   "license": "MIT",
   "scripts": {
+    "delete:comment": "ts-node -r dotenv/config ./src/delete-old-comment.ts",
     "start": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json"
   },
