@@ -135,7 +135,6 @@ async function prepareAndPost() {
     const [postId, msg] = messages.info;
     try {
       const {comment_id} = await postCommentOnCroupWall(`[id${u.id}|${u.first_name}], ${msg}`, postId);
-      console.log(comment_id);
       updateAdminCommentIds(comment_id);
       success++;
       successUser.push(u.id);
