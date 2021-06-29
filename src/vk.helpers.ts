@@ -59,9 +59,9 @@ export function postCommentOnCroupWall(message: string, postId: number, groupId 
   return request(urlCommentOnCroupWall(message, postId, groupId, accessToken)).then(handleVKResponse)
 }
 
-export function deleteCommentOnWall(comment_id: number, userId: number = 599363966, accessToken: string = yToken): Promise<unknown> {
+export function deleteCommentOnWall(comment_id: number, groupOrUserId: number = -166231334, accessToken: string = yToken): Promise<unknown> {
   console.log(`...deleting comment ${comment_id}...`);
-  return request(`${VKBaseUrl}method/wall.deleteComment?v=5.131&owner_id=-${userId}&comment_id=${comment_id}&access_token=${accessToken}`).then(handleVKResponse)
+  return request(`${VKBaseUrl}method/wall.deleteComment?v=5.131&owner_id=${groupOrUserId}&comment_id=${comment_id}&access_token=${accessToken}`).then(handleVKResponse)
 }
 
 export function urlUsersInfoByIds(ids: number[], accessToken: string = yToken) {
