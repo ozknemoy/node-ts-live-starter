@@ -1,6 +1,5 @@
 import {
-  Table, Column, Model, PrimaryKey, Unique, AutoIncrement, HasMany, HasOne,
-  DefaultScope, Is, DataType, Default, NotEmpty
+  Table, Column, Model, PrimaryKey, Unique, AutoIncrement
 } from 'sequelize-typescript';
 import {IDocxFile} from "./docx-file.interface";
 
