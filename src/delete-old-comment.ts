@@ -3,25 +3,25 @@ import {storage} from "./storage";
 
 let postIdsByDate: {[key: string]: number[]} = storage.get('postIdsByDate') || {};
 
+let checkAndDeleteCommentI = -1;
+
 Object.keys(postIdsByDate).forEach(postDate => {
   checkAndDeleteComment(postDate);
 })
 
-
 function checkAndDeleteComment(postDate: string) {
-  let i = 0;
   const delta = new Date().valueOf() - new Date(postDate).valueOf();
   console.log(delta /(24 *60 * 60 * 1000));
   // посты более 2-3 дней удаляю
   if(delta > 3 * 24 * 60 * 60 * 1000) {
+    checkAndDeleteCommentI++;
     setTimeout(() => {
-      i++;
       deleteComments(postIdsByDate[postDate]).then(() => {
         delete postIdsByDate[postDate];
         storage.set('postIdsByDate', postIdsByDate);
         console.log('this dates comments have deleted');
       })
-    }, 48111 * i);
+    }, 48111 * checkAndDeleteCommentI);
   }
 }
 
