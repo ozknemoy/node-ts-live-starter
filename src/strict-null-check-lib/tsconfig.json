@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "../dist/strict-null-check",
+    "composite": true,
+    "strictNullChecks": true
+  },
+  "exclude": ["*.spec.ts"]
+}

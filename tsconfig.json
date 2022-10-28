@@ -1,23 +1,18 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "noImplicitAny": false,
-    "removeComments": true,
-    "noLib": false,
-    "allowSyntheticDefaultImports": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es6",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./src"
+    "rootDir": ".",
+    "outDir": "dist/",
+    "composite": true,
+    "strictNullChecks": false
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+  "files": ["src/index.ts"],
+  "exclude": ["*.spec.ts"],
+  "references": [
+    {
+      "path": "src/strict-null-check-lib/tsconfig.json"
+    },
+    {
+      "path": "src/not-strict-null-check-lib/tsconfig.json"
+    }
   ]
 }
