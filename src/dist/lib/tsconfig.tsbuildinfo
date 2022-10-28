@@ -156,7 +156,7 @@
         "signature": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
         "affectsGlobalScope": true
       },
-      "../../lib/index.ts": {
+      "../../lib/main.ts": {
         "version": "6564a1476aeb8f3a121efbaa408460d74d313b03299cb8d87400c4166fc5e1e2",
         "signature": "967908208170ee5156ee52755ca13d33f2515d8c71f3bb4918ee72e5d8098a31",
         "affectsGlobalScope": false
@@ -954,7 +954,7 @@
       "../../../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../../../node_modules/typescript/lib/lib.scripthost.d.ts",
       "../../../node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
-      "../../lib/index.ts"
+      "../../lib/main.ts"
     ]
   },
   "version": "4.0.8"

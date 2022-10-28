@@ -5,7 +5,8 @@
     "composite": true,
     "strictNullChecks": false
   },
-  "files": ["src/index.ts"],
+  "files": ["src/main.ts"],
+  "include": ["src/strict-null-check-lib"],
   "exclude": ["*.spec.ts"],
   "references": [
     {
